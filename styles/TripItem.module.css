@@ -1,0 +1,30 @@
+.card {
+  display: flex;
+  flex-direction:column;
+  position: relative;
+
+  margin-right: 1em;
+  padding: 1rem;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: all .2s ease-in-out;
+  min-width: 400px;
+  min-height: 250px;
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+  transform: scale(1.015);
+}
+
+.heading {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  color: white;
+}
+.headingItem {
+  margin: 5px 0px 5px 10px;
+}
+
