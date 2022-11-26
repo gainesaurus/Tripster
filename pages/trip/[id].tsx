@@ -1,7 +1,10 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import TripHeader from '../../src/components/TripHeader';
-import AttendeeList from '../../src/components/AttendeeList';
+
+import TripHeader from '../../src/components/TripHeader/TripHeader';
+import AttendeeList from '../../src/components/AttendeeList/AttendeeList';
+import TripTimeline from '../../src/components/TripTimeline/TripTimeline';
+import TripPinDrop from '../../src/components/TripPinDropList/TripPinDrop';
 
 function Trip () {
   const router = useRouter();
@@ -12,6 +15,8 @@ function Trip () {
     <div className='trip-container'>
       <TripHeader />
       <AttendeeList />
+      <TripTimeline />
+      <TripPinDrop />
     </div>
   )
 }
