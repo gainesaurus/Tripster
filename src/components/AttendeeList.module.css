@@ -1,0 +1,29 @@
+.attendeeContainer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid red;
+}
+
+.attendeeTitle {
+  margin: 0;
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.attendeeList {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  /* background-color: antiquewhite; */
+}
+
+.profilePic {
+  display: flex;
+  height: 4rem;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  margin: 5px;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+}
