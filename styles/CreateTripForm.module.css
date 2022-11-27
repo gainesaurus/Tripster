@@ -23,8 +23,23 @@
   padding: 10px;
   min-width: 300px;
   background-color: transparent;
+  font-family: 'Manrope', sans-serif;
   border: 1px solid black;
   border-radius: 3px;
+}
+
+.formDate {
+  text-align: right;
+}
+
+.formInput:before {
+  color: rgb(145, 145, 145);
+  font-family: 'Manrope', sans-serif;
+  content: attr(placeholder) !important;
+  margin-right: 0.5em;
+}
+.formInput:focus:before {
+  content: '' !important;
 }
 
 .button {

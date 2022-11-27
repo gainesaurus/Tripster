@@ -45,9 +45,14 @@ const CreateTripForm = () => {
         placeholder="Description?"
       ></input>
       <input
-        className={styles.formInput}
+        className={`${styles.formInput} ${styles.formDate}`}
         type='date'
-        placeholder="Dates"
+        placeholder='Start'
+      ></input>
+      <input
+        className={`${styles.formInput} ${styles.formDate}`}
+        type='date'
+        placeholder='End'
       ></input>
       <button
         className={styles.button}
