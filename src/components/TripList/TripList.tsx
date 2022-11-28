@@ -13,8 +13,8 @@ const TripList: FC<TripListProps> = ({ trips }) => {
 
   return (
     <div className={styles.listCont}>
-      {trips.map((item:ITripItem) => {
-        return <TripItem key={item.id} item={item}/>
+      {trips.map((trip:ITripItem) => {
+        return <TripItem key={trip.id} trip={trip}/>
       })}
     </div>
   )
