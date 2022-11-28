@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styles from './AttendeeList.module.css';
+import { IUser } from '../../../Types';
+import User from '../User/User';
 
-function AttendeeList () {
+interface AttendeeListProps {
+  attendees: IUser[],
+}
+
+const AttendeeList: FC<AttendeeListProps> = ({ attendees }) => {
 
   return (
     <div className={styles.attendeeContainer}>
       <h1 className={styles.attendeeTitle}>Attendees:</h1>
       <div className={styles.attendeeList}>
-        <picture>
+        {attendees.map((attendingUser: IUser)=> {
+          return <User key={attendingUser.id} person={attendingUser}/>
+        })}
+
+        {/* <picture>
           <source srcSet='https://steinhardt.nyu.edu/sites/default/files/styles/nyu_profile_image/public/2020-10/AlyssaWise-NewSquareProfile.jpg?h=e9176a28&itok=F0T9f1FO' type='image/webp' />
           <img src ='https://steinhardt.nyu.edu/sites/default/files/styles/nyu_profile_image/public/2020-10/AlyssaWise-NewSquareProfile.jpg?h=e9176a28&itok=F0T9f1FO'
           alt='sarah' className={styles.profilePic} />
@@ -31,7 +41,7 @@ function AttendeeList () {
           <source srcSet='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfnzimvort8i7zNPU06JVl_6or8ZzojAvGJw&usqp=CAU' type='image/webp' />
           <img src ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfnzimvort8i7zNPU06JVl_6or8ZzojAvGJw&usqp=CAU'
           alt='Jordan' className={styles.profilePic} />
-        </picture>
+        </picture> */}
       </div>
     </div>
   )
