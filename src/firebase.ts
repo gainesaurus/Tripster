@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   UserCredential,
+  signOut,
 } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 
@@ -39,4 +40,8 @@ const signIn = async (email?: string, password?: string) => {
   return user;
 };
 
-export { auth, provider, storage, signIn, signUp };
+const logout = async () => {
+  await signOut(auth);
+};
+
+export { auth, provider, storage, signIn, signUp, logout };
