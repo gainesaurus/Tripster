@@ -1,7 +1,7 @@
 export interface ITripItem {
   id: number;
   title: string;
-  date: string;
+  startDate: string;
+  endDate: string;
   pic_url: string;
-  status: string;
 };

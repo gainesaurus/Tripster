@@ -1,4 +1,4 @@
-import styles from '../../styles/NavBar.module.css';
+import styles from './NavBar.module.css';
 
 const NavBar = () => {
   //MOCKDATA
@@ -8,7 +8,7 @@ const NavBar = () => {
     email: 'd@test.com',
     profile_pic: 'url...',
   };
-  
+
   return (
     <div className={styles.navigation}>
       <h1 className={styles.logo}>TRIPSTER</h1>

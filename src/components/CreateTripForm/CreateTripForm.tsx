@@ -1,7 +1,6 @@
-import styles from '../../styles/CreateTripForm.module.css';
+import styles from './CreateTripForm.module.css';
 import React, { useState } from 'react';
 
-import { FilePondFile } from 'filepond'
 import { FilePond, registerPlugin } from 'react-filepond';
 
 import 'filepond/dist/filepond.min.css'
@@ -28,7 +27,7 @@ const CreateTripForm = () => {
           onupdatefiles={() => setImgFiles}
           allowMultiple={false}
           acceptedFileTypes={['image/*']}
-          server="/api"
+          // server="/api"
           name="files" /* sets the file input name, it's filepond by default */
           labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
         />

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import styles from '../../styles/TripItem.module.css';
-import { ITripItem } from '../../Types';
+import styles from './TripItem.module.css';
+import { ITripItem } from '../../../Types';
 
 interface TripItemProps {
   item: ITripItem;
@@ -17,7 +17,7 @@ const TripItem: FC<TripItemProps> = ({ item }) => {
     }>
       <div className={styles.heading}>
         <h1 className={styles.headingItem}>{item.title}</h1>
-        <h3 className={styles.headingItem}>{item.date}</h3>
+        <h3 className={styles.headingItem}>{item.startDate} - {item.endDate}</h3>
       </div>
     </div>
   )
