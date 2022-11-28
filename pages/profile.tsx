@@ -47,7 +47,7 @@ function Profile() {
       (item) => getTripStatus(item.startDate, item.endDate) === 'memories',
     );
     setPastTrips(pastTrips);
-    let tripInvites = tripItems.filter((item, index) => index === 0);
+    let tripInvites = tripItems.filter((item, index) => index !== 0);
     setTripInvites(tripInvites);
   }, []);
 

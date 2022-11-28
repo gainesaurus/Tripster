@@ -1,7 +1,7 @@
 .listCont::-webkit-scrollbar { width: 0 !important }
 .listCont {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   overflow-x: scroll;
   padding: 1em;
 }
