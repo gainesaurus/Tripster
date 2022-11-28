@@ -5,6 +5,7 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
+  UserCredential,
 } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 
@@ -23,15 +24,19 @@ const provider = new GoogleAuthProvider();
 const storage = getStorage(app);
 
 const signUp = async (email?: string, password?: string) => {
+  let user: UserCredential;
   email !== undefined && password !== undefined
-    ? await createUserWithEmailAndPassword(auth, email, password)
-    : await signInWithPopup(auth, provider);
+    ? (user = await createUserWithEmailAndPassword(auth, email, password))
+    : (user = await signInWithPopup(auth, provider));
+  return user;
 };
 
 const signIn = async (email?: string, password?: string) => {
+  let user: UserCredential;
   email !== undefined && password !== undefined
-    ? await signInWithEmailAndPassword(auth, email, password)
-    : await signInWithPopup(auth, provider);
+    ? (user = await signInWithEmailAndPassword(auth, email, password))
+    : (user = await signInWithPopup(auth, provider));
+  return user;
 };
 
 export { auth, provider, storage, signIn, signUp };
