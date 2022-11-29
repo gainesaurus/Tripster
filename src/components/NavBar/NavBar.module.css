@@ -13,6 +13,10 @@
   color: white;
 }
 
+.logo{
+  cursor: pointer;
+}
+
 .userInfo {
   display: flex;
   flex-direction: row;

@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
-import styles from '../styles/Home.module.css';
-import { useState } from 'react';
-import { ITripItem } from '../Types';
-
+import React, { useEffect, useState } from 'react';
+import styles from '../styles/profile.module.css';
 import NavBar from '../src/components/NavBar/NavBar';
-import CreateTripForm from '../src/components/CreateTripForm/CreateTripForm';
 import HomeLeft from '../src/components/HomeLeft/HomeLeft';
+import { ITripItem } from '../Types';
 import Divider from '../src/components/Divider/Divider';
+import Image from 'next/image';
+import { auth } from '../src/firebase';
+import TripInviteList from '../src/components/TripInviteList/TripInviteList';
 
-export default function Home() {
+function Profile() {
   //MOCK DATA
   const tripItems: ITripItem[] = [
     {
@@ -36,6 +36,7 @@ export default function Home() {
 
   const [currentTrips, setCurrentTrips] = useState<ITripItem[]>([]);
   const [pastTrips, setPastTrips] = useState<ITripItem[]>([]);
+  const [tripInvites, setTripInvites] = useState<ITripItem[]>([]);
 
   useEffect(() => {
     let currentTrips = tripItems.filter(
@@ -46,6 +47,8 @@ export default function Home() {
       (item) => getTripStatus(item.startDate, item.endDate) === 'memories',
     );
     setPastTrips(pastTrips);
+    let tripInvites = tripItems.filter((item, index) => index !== 0);
+    setTripInvites(tripInvites);
   }, []);
 
   function getTripStatus(startDate: string, endDate: string) {
@@ -60,15 +63,34 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className={styles.body}>
       <NavBar />
       <div className={styles.main}>
         <HomeLeft currentTrips={currentTrips} pastTrips={pastTrips} />
         <Divider />
-        <div className={styles.homeRight}>
-          <CreateTripForm />
+        <div className={styles.profileContainer}>
+          <div className={styles.profile}>
+            <img
+              alt="profile picture"
+              src="IMG_1640.jpg"
+              className={styles.profileImage}
+            />
+            <div className={styles.profileInfo}>
+              <p className={styles.profileText}>Danielle</p>
+              <p className={styles.profileText}>{auth.currentUser?.email}</p>
+            </div>
+          </div>
+          <div className={styles.invitations}>
+            {tripInvites.length > 0 ? (
+              <TripInviteList title="Invitations" trips={tripInvites} />
+            ) : (
+              <h2>No invites yet!</h2>
+            )}
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
+export default Profile;
