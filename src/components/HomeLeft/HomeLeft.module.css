@@ -1,7 +1,0 @@
-.homeLeft {
-  display: flex;
-  flex-direction: column;
-  padding: 2em 0em 1em 4em;
-  flex: 1;
-  overflow-x: hidden;
-}
