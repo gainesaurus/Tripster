@@ -22,9 +22,10 @@ const NavBar = () => {
 
   return (
     <div className={styles.navigation}>
-      <h1 className={styles.logo} onClick={goToHome}>
-        TRIPSTER
-      </h1>
+      <img className={styles.logo} onClick={goToHome}
+        src='https://static.wixstatic.com/media/3dbed1_672e6e2a9fad4b57b166897e41d8ac31~mv2.png/v1/fill/w_418,h_163,al_c,q_85,enc_auto/3dbed1_672e6e2a9fad4b57b166897e41d8ac31~mv2.png'
+        alt='vakay logo'
+      />
       {router.pathname !== '/login' ? (
         <section className={styles.userInfo}>
           <p className={styles.para}>Welcome back {user.name}!</p>

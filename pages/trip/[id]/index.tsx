@@ -30,22 +30,22 @@ export default function TripPage() {
       title: 'Yosemite',
       startDate: 'June 3 2023',
       endDate: 'June 10 2023',
-      id: 1,
-      pic_url: './yosemite.jpg',
+      _id: 1,
+      picUrl: './yosemite.jpg',
     },
     {
       title: 'Paris',
       startDate: 'Nov 30 2022',
       endDate: 'Dec 12 2022',
-      id: 2,
-      pic_url: './paris.jpg',
+      _id: 2,
+      picUrl: './paris.jpg',
     },
     {
       title: 'Mexico',
       startDate: 'Sept 22 2019',
       endDate: 'Sept 28 2019',
-      id: 3,
-      pic_url: './mexico.webp',
+      _id: 3,
+      picUrl: './mexico.webp',
     },
   ];
 
