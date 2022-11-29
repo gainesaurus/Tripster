@@ -1,0 +1,81 @@
+.container{
+  margin: auto;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.input{
+  padding: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.formBody{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  max-width: 450px;
+}
+
+.selector{
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  width: 40%;
+  max-width: 450px;
+}
+
+.selectorText{
+  width: 50%;
+  text-align: center;
+  min-width: fit-content;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.selected{
+  font-weight: bold;
+  /* text-decoration-line: underline;
+  text-decoration-thickness: 4px;
+  text-decoration-color: darkgreen; */
+  border-bottom: 4px solid darkgreen;
+  color: darkgreen;
+}
+
+.inputText{
+  margin: 5px;
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 2px solid darkgreen;
+  width: 98%;
+}
+
+.submitButton{
+  width: 55%;
+  padding: 15px;
+  font-weight: bold;
+  margin-top: 5px;
+  border-radius: 10px;
+  border: 0px;
+  background-color: darkgreen;
+  color: white;
+  font-size: 16px;
+}
+
+@media screen and (max-width:700px) {
+  .selectorText{
+    font-size: 16px;
+  }
+  .inputText,
+  .submitButton{
+    font-size: 12px;
+  }
+}

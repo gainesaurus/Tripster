@@ -1,0 +1,26 @@
+.pinDropContainer {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 300px;
+  height: 140px;
+  margin-right: 4%;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+  border-radius: 6px;
+  position: relative
+}
+
+.pinDropInfo {
+  margin: 10px;
+  font-size: 15px;
+}
+.mapLink {
+  display: flex;
+  font-size: 12px;
+}
+.ts {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 10px;
+}

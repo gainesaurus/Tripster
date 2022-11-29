@@ -1,0 +1,29 @@
+.Container {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  margin: 5% 2% 0 2%;
+}
+
+.locationTitle {
+  display: flex;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.pinListContainer {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  margin: 1%;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.pinListContainer::-webkit-scrollbar {
+  display: none;
+}
+
+
+
