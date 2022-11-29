@@ -6,7 +6,6 @@ import { DateTime } from "luxon";
 import styles from './TimeLineList.module.css';
 
 function TimeLineList () {
-
   const events = [
     {ts: "2022-09-16T12:21:46.587Z", text: "Skiing Windy Gap"},
     {ts: "2022-09-17T12:22:46.587Z", text: "Breakfast at Curly's Diner"},
@@ -16,14 +15,9 @@ function TimeLineList () {
     {ts: "2022-09-16T12:20:46.587Z", text: 'Lunch'},
   ];
 
-  const formatDay = (date:any) => {
-    date.toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY);
-  }
-
   const eventDay = (item: any) => (DateTime.fromISO(item.ts).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY));
 
   const result = _.groupBy(events, eventDay);
-  console.log(result)
 
   return (
     <div className={styles.timelineContainer}>

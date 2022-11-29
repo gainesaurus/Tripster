@@ -1,17 +1,19 @@
 import React from 'react';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
+import { DateTime } from "luxon";
 
 import styles from './TimeLineItem.module.css';
 
 
 function TimeLineItem ({ event }: any) {
 
+  const dateTime = (DateTime.fromISO(event.ts).toLocaleString(DateTime.TIME_SIMPLE));
+
   return (
     <div className={styles.timeline}>
-      {/* <h4 className={styles.timelineDate}>Thursday, 6 Sept</h4> */}
       <div className={styles.timelineItem}>
         <h4>
-          09:30am
+          {dateTime}
         </h4>
           <div className={styles.timelineIcon}>
             <RestaurantIcon />
