@@ -6,6 +6,7 @@ import AttendeeList from '../../../src/components/AttendeeList/AttendeeList';
 import AlbumList from '../../../src/components/PhotoAlbumList/AlbumList';
 import TripTimeline from '../../../src/components/TimeLineList/TimeLineList';
 import TripPinDropList from '../../../src/components/TripPinDropList/TripPinDropList';
+import LodgingList from '../../../src/components/LodgingList/LodgingList';
 
 export default function TripPage() {
   const router = useRouter();
@@ -43,11 +44,22 @@ export default function TripPage() {
       {
         info: 'Tonights Beach Bonfire',
         latLng: '40.6063179, -122.5301481',
+        ts: '04/20/2022',
       },
       {
         info: 'Meet here before site-seeing today!',
         latLng: '34.67, -10.88',
+        ts: '04/20/2022'
       }
+    ],
+    lodging: [
+      {
+        title: 'Danielles Place',
+        address: '6155 Oracle Rd, Sechelt, BC, Canada',
+        pic_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMmrIA27K-t7Uf9LMW9ZztqY9kb9lGzLKrqw&usqp=CAU',
+        latLng: '',
+      }
+
     ]
   }
 
@@ -58,6 +70,7 @@ export default function TripPage() {
       <AlbumList photos={trip.photos} id={trip.id} />
       <TripTimeline />
       <TripPinDropList pinDrops={trip.locations} />
+      <LodgingList lodging={trip.lodging}></LodgingList>
     </div>
   )
 }

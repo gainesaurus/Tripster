@@ -19,3 +19,16 @@ export interface IPhoto {
   height: number;
   width: number;
 }
+
+export interface ILocation {
+  info: string;
+  latLng: string;
+  ts: string;
+}
+
+export interface ILodge {
+  title: string;
+  address: string;
+  pic_url: string;
+  latLng: string;
+}

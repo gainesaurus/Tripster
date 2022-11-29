@@ -1,13 +1,11 @@
 import React, { FC } from 'react';
 import styles from './PinDropItem.module.css';
+import { ILocation } from '../../../Types';
 
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
 interface PinDropItemProps {
-  location: {
-    info: string;
-    latLng: string;
-  }
+  location: ILocation;
 }
 const PinDropItem: FC<PinDropItemProps> =({ location }) => {
   const latLng = location.latLng.split(',');
@@ -30,7 +28,6 @@ const PinDropItem: FC<PinDropItemProps> =({ location }) => {
   });
 
   return (
-    <>
     <div className={styles.pinDropContainer}>
       {
         isLoaded?
@@ -52,8 +49,8 @@ const PinDropItem: FC<PinDropItemProps> =({ location }) => {
         className={styles.mapLink}
         href={`https://www.google.com/maps/search/?api=1&query=${latLng[0]}%2C${latLng[1]}`}>Get directions</a>
       </div>
+      <div className={styles.ts}>{location.ts + ' '}</div>
     </div>
-    </>
   )
 }
 
