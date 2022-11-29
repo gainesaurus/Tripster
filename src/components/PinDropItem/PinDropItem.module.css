@@ -1,15 +1,19 @@
 .pinDropContainer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   overflow: hidden;
-  height: 90%;
-  max-width: 300px;
-  margin-right: 5%;
+  width: 300px;
+  margin-right: 4%;
   box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
   border-radius: 6px;
 }
+
 .pinDropInfo {
   margin: 10px;
-  font-size: large;
+  font-size: 15px;
+}
+.mapLink {
+  display: flex;
+  font-size: 12px;
+
 }
