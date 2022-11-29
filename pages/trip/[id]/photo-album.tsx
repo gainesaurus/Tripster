@@ -11,11 +11,6 @@ export default function Photos() {
       width: 15,
       height: 10,
     },
-    {
-      src: 'https://res.cloudinary.com/enchanting/q_70,f_auto,c_fit,dpr_2,w_700,h_400/exodus-web/2022/09/Landing-page-walking.jpg',
-      width: 15,
-      height: 10,
-    }
   ];
 
   return (
