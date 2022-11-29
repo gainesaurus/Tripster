@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
+
 import HomeLeft from '../../../src/components/HomeLeft/HomeLeft';
 import Divider from '../../../src/components/Divider/Divider';
 import TripHeader from '../../../src/components/TripHeader/TripHeader';
@@ -14,6 +15,7 @@ import TripPinDrop from '../../../src/components/TripPinDropList/TripPinDropList
 import { ITripItem } from '../../../Types';
 
 import styles from './Trip.module.css';
+import NavBar from '../../../src/components/NavBar/NavBar';
 
 export default function TripPage() {
   const router = useRouter();
@@ -122,13 +124,22 @@ export default function TripPage() {
   }
 
   return (
-    <div className='trip-container'>
-      <TripHeader title={trip.title} start={trip.startDate} end={trip.endDate} pic={trip.pic_url} />
-      <AttendeeList attendees={trip.attendees} />
-      <AlbumList photos={trip.photos} id={trip.id} />
-      <TripTimeline />
-      <TripPinDropList pinDrops={trip.locations} />
-      <LodgingList lodging={trip.lodging}></LodgingList>
+    <div className={styles.page}>
+      <NavBar />
+      <div className={styles.pageContainer}>
+        <div className={styles.homeContainer}>
+          <HomeLeft currentTrips={currentTrips} pastTrips={pastTrips} />
+          <Divider />
+        </div>
+        <div className={styles.tripContainer}>
+          <TripHeader title={trip.title} start={trip.startDate} end={trip.endDate} pic={trip.pic_url} />
+          <AttendeeList attendees={trip.attendees} />
+          <AlbumList photos={trip.photos} id={trip.id} />
+          <TimeLineList />
+          <TripPinDropList pinDrops={trip.locations} />
+          <LodgingList lodging={trip.lodging}></LodgingList>
+        </div>
+      </div>
     </div>
   )
 }
