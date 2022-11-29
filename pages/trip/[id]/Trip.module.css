@@ -4,7 +4,7 @@
 
 .homeContainer {
   display: flex;
-  width: 50%;
+  flex: 1;
   height: 100vh;
   overflow-y: scroll;
 }
@@ -12,7 +12,7 @@
 .tripContainer {
   margin: 20px;
   height: 100vh;
-  width: 46%;
+  flex: 1;
   overflow-y: scroll;
 }
 

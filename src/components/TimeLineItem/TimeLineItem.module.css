@@ -37,3 +37,10 @@
   border-radius: 2px;
   box-shadow: 0 5px 10px -5px #2c4875;
 }
+
+/* @media (prefers-color-scheme: dark) {
+  .timelineContent {
+    background-color: #2c4875;
+    box-shadow: 0 5px 10px -5px #8a508f;
+  }
+} */

@@ -40,9 +40,9 @@ function TimeLineList () {
       <div id='addEventForm' className={styles.addEventForm}>
         <AddEventForm closeForm={closeForm}/>
       </div>
-      {Object.keys(result).map((day:string) => ([
+      {Object.entries(result).map(([day, events]) => ([
         <h4 key={day} className={styles.timelineDate}>{day}</h4>,
-        result[day].map((event: any) =>
+        events.map((event: any) =>
         <TimeLineItem key={event.ts} event={event} />
       )]))}
     </div>

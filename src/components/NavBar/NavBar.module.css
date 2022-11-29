@@ -5,6 +5,7 @@
   justify-content: space-between;
   padding: 1em;
   background-color: #00202E;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
 }
 
 .logo, .para {
@@ -15,6 +16,7 @@
 
 .logo{
   cursor: pointer;
+  height: 70px;
 }
 
 .userInfo {
