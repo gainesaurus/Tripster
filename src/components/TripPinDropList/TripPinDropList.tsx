@@ -1,5 +1,5 @@
 import React from 'react';
-import PinDropItem from './PinDropItem/PinDropItem';
+import PinDropItem from '../PinDropItem/PinDropItem';
 import styles from './TripPinDropList.module.css';
 
 function TripPinDrop () {
