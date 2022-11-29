@@ -3,24 +3,24 @@ import styles from './TripInviteItem.module.css';
 import { ITripItem } from '../../../Types';
 
 interface TripItemProps {
-  item: ITripItem;
+  trip: ITripItem;
 }
 
-const TripInviteItem: FC<TripItemProps> = ({ item }) => {
+const TripInviteItem: FC<TripItemProps> = ({ trip }) => {
   const created_by = 'Jane Doe';
   return (
     <div
       className={styles.card}
       style={{
-        backgroundImage: `url(${item.pic_url})`,
+        backgroundImage: `url(${trip.pic_url})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
       }}
     >
       <div className={styles.heading}>
-        <h1 className={styles.headingItem}>{item.title}</h1>
+        <h1 className={styles.headingItem}>{trip.title}</h1>
         <h3 className={styles.headingItem}>
-          {item.startDate} - {item.endDate}
+          {trip.startDate} - {trip.endDate}
         </h3>
       </div>
       <div className={styles.footer}>
