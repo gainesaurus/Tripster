@@ -1,26 +1,26 @@
 .pinDropContainer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 90%;
-  min-width: 250px;
-  margin-right: 5%;
+  flex-direction: column;
+  overflow: hidden;
+  width: 300px;
+  height: 140px;
+  margin-right: 4%;
   box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+  border-radius: 6px;
+  position: relative
 }
 
-.pinImage {
-  display: flex;
-  height: 100%;
-  max-width: 40%;
+.pinDropInfo {
+  margin: 10px;
+  font-size: 15px;
 }
-
-.pinInfo {
+.mapLink {
   display: flex;
-  background-color: white;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  font-size: 1rem;
-  height: 100%;
-  width: 50%;
+  font-size: 12px;
+}
+.ts {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 10px;
 }
