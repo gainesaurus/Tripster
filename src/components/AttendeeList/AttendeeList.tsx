@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './AttendeeList.module.css';
 import { IUser } from '../../../Types';
-import User from '../User/User';
+import User from '../UserIcon/UserIcon';
 
 interface AttendeeListProps {
   attendees: IUser[],

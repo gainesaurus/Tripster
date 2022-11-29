@@ -7,6 +7,9 @@ import Divider from '../../../src/components/Divider/Divider';
 import TripHeader from '../../../src/components/TripHeader/TripHeader';
 import AttendeeList from '../../../src/components/AttendeeList/AttendeeList';
 import AlbumList from '../../../src/components/PhotoAlbumList/AlbumList';
+import TripTimeline from '../../../src/components/TimeLineList/TimeLineList';
+import TripPinDropList from '../../../src/components/TripPinDropList/TripPinDropList';
+import LodgingList from '../../../src/components/LodgingList/LodgingList';
 import TimeLineList from '../../../src/components/TimeLineList/TimeLineList';
 import TripPinDrop from '../../../src/components/TripPinDropList/TripPinDropList';
 import { ITripItem } from '../../../Types';
@@ -97,10 +100,25 @@ export default function TripPage() {
         width: 20,
         height: 20,
       },
+    ],
+    locations: [
       {
-        src: 'https://res.cloudinary.com/enchanting/q_70,f_auto,c_fit,dpr_2,w_700,h_400/exodus-web/2022/09/Landing-page-walking.jpg',
-        width: 20,
-        height: 20,
+        info: 'Tonights Beach Bonfire',
+        latLng: '40.6063179, -122.5301481',
+        ts: '04/20/2022',
+      },
+      {
+        info: 'Meet here before site-seeing today!',
+        latLng: '34.67, -10.88',
+        ts: '04/20/2022'
+      }
+    ],
+    lodging: [
+      {
+        title: 'Danielles Place',
+        address: '6155 Oracle Rd, Sechelt, BC, Canada',
+        pic_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMmrIA27K-t7Uf9LMW9ZztqY9kb9lGzLKrqw&usqp=CAU',
+        latLng: '',
       }
     ]
   }
@@ -118,7 +136,8 @@ export default function TripPage() {
           <AttendeeList attendees={trip.attendees} />
           <AlbumList photos={trip.photos} id={trip.id} />
           <TimeLineList />
-          <TripPinDrop />
+          <TripPinDropList pinDrops={trip.locations} />
+          <LodgingList lodging={trip.lodging}></LodgingList>
         </div>
       </div>
     </div>
