@@ -5,7 +5,7 @@ import TripHeader from '../../../src/components/TripHeader/TripHeader';
 import AttendeeList from '../../../src/components/AttendeeList/AttendeeList';
 import AlbumList from '../../../src/components/PhotoAlbumList/AlbumList';
 import TripTimeline from '../../../src/components/TripTimeline/TripTimeline';
-import TripPinDrop from '../../../src/components/TripPinDropList/TripPinDropList';
+import TripPinDropList from '../../../src/components/TripPinDropList/TripPinDropList';
 
 export default function TripPage() {
   const router = useRouter();
@@ -38,12 +38,16 @@ export default function TripPage() {
         width: 20,
         height: 20,
       },
+    ],
+    locations: [
       {
-        src: 'https://res.cloudinary.com/enchanting/q_70,f_auto,c_fit,dpr_2,w_700,h_400/exodus-web/2022/09/Landing-page-walking.jpg',
-        width: 20,
-        height: 20,
+        info: 'Tonights Beach Bonfire',
+        latLng: '40.6063179, -122.5301481',
+      },
+      {
+        info: 'Meet here before site-seeing today!',
+        latLng: '34.67, -10.88',
       }
-
     ]
   }
 
@@ -53,7 +57,7 @@ export default function TripPage() {
       <AttendeeList attendees={trip.attendees} />
       <AlbumList photos={trip.photos} id={trip.id} />
       <TripTimeline />
-      <TripPinDrop />
+      <TripPinDropList pinDrops={trip.locations} />
     </div>
   )
 }

@@ -1,0 +1,15 @@
+.pinDropContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  height: 90%;
+  max-width: 300px;
+  margin-right: 5%;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+  border-radius: 6px;
+}
+.pinDropInfo {
+  margin: 10px;
+  font-size: large;
+}
