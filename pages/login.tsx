@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { signIn, signUp } from '../src/firebase';
 import styles from '../styles/login.module.css';
 import { useUser } from '../src/components/AppContext';
+import NavBar from '../src/components/NavBar/NavBar';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -31,6 +32,7 @@ function Login() {
 
   return (
     <div className={styles.container}>
+      <NavBar />
       <div className={styles.input}>
         <div className={styles.selector}>
           <text

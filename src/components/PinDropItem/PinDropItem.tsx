@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import styles from './PinDropItem.module.css';
 
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';

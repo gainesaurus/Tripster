@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import TripItem from '../TripItem/TripItem';
-import styles from './TripList.module.css';
+import TripInviteItem from '../TripInviteItem/TripInviteItem';
+import styles from './TripInviteList.module.css';
 
 import { ITripItem } from '../../../Types';
 
@@ -9,17 +9,17 @@ interface TripListProps {
   title: string;
 }
 
-const TripList: FC<TripListProps> = ({ trips, title }) => {
+const TripInviteList: FC<TripListProps> = ({ trips, title }) => {
   return (
     <section>
       <h3 className={styles.header}>{title}</h3>
       <div className={styles.listCont}>
-        {trips.map((trip: ITripItem) => {
-          return <TripItem key={trip.id} trip={trip} />;
+        {trips.map((item: ITripItem) => {
+          return <TripInviteItem key={item.id} item={item} />;
         })}
       </div>
     </section>
   );
 };
 
-export default TripList;
+export default TripInviteList;

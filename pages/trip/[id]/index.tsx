@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import TripHeader from '../../../src/components/TripHeader/TripHeader';
 import AttendeeList from '../../../src/components/AttendeeList/AttendeeList';
 import AlbumList from '../../../src/components/PhotoAlbumList/AlbumList';
-import TripTimeline from '../../../src/components/TripTimeline/TripTimeline';
+import TripTimeline from '../../../src/components/TimeLineList/TimeLineList';
 import TripPinDropList from '../../../src/components/TripPinDropList/TripPinDropList';
 
 export default function TripPage() {

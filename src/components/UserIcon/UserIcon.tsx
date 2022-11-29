@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import styles from './User.module.css';
+import styles from './UserIcon.module.css';
 import { IUser } from '../../../Types';
 
 interface UserProps {

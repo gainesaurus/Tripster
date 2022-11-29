@@ -7,27 +7,9 @@
   color:rgb(33, 33, 33);
 
 }
-.homeLeft {
-  display: flex;
-  flex-direction: column;
-  padding: 2em 0em 1em 4em;
-  min-width: 50%;
-}
-
-.header {
-  padding-left: 1em;
-}
-
-.divide {
-  border: 1px solid rgb(84, 84, 84);
-  background-color:rgb(84, 84, 84);
-  border-radius: 5px;
-  max-height: 100%;
-  margin: 25px 0px 25px 0px;
-}
 
 .homeRight{
   display: flex;
   padding: 2em 4em 1em 6em;
-  min-width: 50%;
+  min-width: calc(50% - 1px);
 }
