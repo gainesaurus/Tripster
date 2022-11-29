@@ -7,6 +7,7 @@ import {
   signInWithPopup,
   UserCredential,
   signOut,
+  browserLocalPersistence,
 } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 
@@ -25,6 +26,7 @@ const provider = new GoogleAuthProvider();
 const storage = getStorage(app);
 
 const signUp = async (email?: string, password?: string) => {
+  await auth.setPersistence(browserLocalPersistence);
   let user: UserCredential;
   email !== undefined && password !== undefined
     ? (user = await createUserWithEmailAndPassword(auth, email, password))
@@ -33,6 +35,7 @@ const signUp = async (email?: string, password?: string) => {
 };
 
 const signIn = async (email?: string, password?: string) => {
+  await auth.setPersistence(browserLocalPersistence);
   let user: UserCredential;
   email !== undefined && password !== undefined
     ? (user = await signInWithEmailAndPassword(auth, email, password))

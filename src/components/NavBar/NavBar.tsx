@@ -25,16 +25,18 @@ const NavBar = () => {
       <h1 className={styles.logo} onClick={goToHome}>
         TRIPSTER
       </h1>
-      <section className={styles.userInfo}>
-        <p className={styles.para}>Welcome back {user.name}!</p>
-        <img
-          src="IMG_1640.jpg"
-          alt="profile pic"
-          className={styles.profile}
-          onClick={goToProfile}
-        />
-        <button className={styles.logout}>Logout</button>
-      </section>
+      {router.pathname !== '/login' ? (
+        <section className={styles.userInfo}>
+          <p className={styles.para}>Welcome back {user.name}!</p>
+          <img
+            src="IMG_1640.jpg"
+            alt="profile pic"
+            className={styles.profile}
+            onClick={goToProfile}
+          />
+          <button className={styles.logout}>Logout</button>
+        </section>
+      ) : null}
     </div>
   );
 };
