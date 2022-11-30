@@ -15,7 +15,7 @@ const TripInviteList: FC<TripListProps> = ({ trips, title }) => {
       <h3 className={styles.header}>{title}</h3>
       <div className={styles.listCont}>
         {trips.map((trip: ITripItem) => {
-          return <TripInviteItem key={trip.id} trip={trip} />;
+          return <TripInviteItem key={trip._id} trip={trip} />;
         })}
       </div>
     </section>

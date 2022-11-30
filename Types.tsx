@@ -14,27 +14,34 @@ export interface ITripItem {
 }
 
 export interface IUser {
-  id: number;
+  _id: number;
+  uid: number;
   username: string;
   email: string;
   profile_pic: string;
 }
 
 export interface IPhoto {
+  _id: number;
+  tripId: number;
   src: string;
   height: number;
   width: number;
 }
 
 export interface ILocation {
+  _id: number;
+  tripId: number;
   info: string;
   latLng: string;
   ts: string;
 }
 
 export interface ILodge {
+  _id: number;
+  tripId: number;
   title: string;
   address: string;
-  pic_url: string;
+  picUrl: string;
   latLng: string;
 }
