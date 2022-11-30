@@ -24,7 +24,7 @@ function AddEventForm ({ closeForm, submitEvent }: any) {
             <option value="travel">travel</option>
           </select>
         <h3 className={styles.formHeading}>Event Info:</h3>
-          <input required className={styles.input} name='info' type='text' placeholder="What do we need to know..." />
+          <textarea required className={styles.textarea} name='info' placeholder="What do we need to know..." />
         <div className={styles.buttonDiv}>
           <button className={styles.submitButton} type="submit">Submit</button>
           <button className={styles.cancelButton} onClick={closeForm}>Cancel</button>

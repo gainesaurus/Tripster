@@ -42,6 +42,10 @@ function TimeLineItem ({ event }: any) {
           <h3 className={styles.eventTitle}>{event.title}</h3>
           <div id={`${event._id}info`} className={styles.eventInfo}>
             <p>{event.info}</p>
+            <div className={styles.buttonDiv}>
+              <button className={styles.editButton} type="button">Edit</button>
+              <button className={styles.deleteButton} >Delete</button>
+            </div>
           </div>
         </div>
       </div>

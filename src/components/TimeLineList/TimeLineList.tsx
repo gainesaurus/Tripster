@@ -49,7 +49,7 @@ function TimeLineList ({ tripId }:any) {
     <div className={styles.timelineContainer}>
       <div className={styles.titleContainer}>
         <h1 className={styles.timelineTitle}>Events Timeline:</h1>
-        <button onClick={openForm} className={styles.button}>
+        <button onClick={openForm} className={styles.button} title="Add Event">
           <AddBox className={styles.addIcon}/>
         </button>
       </div>
