@@ -1,13 +1,20 @@
-import React from 'react';
-import TimeLineItem from '../TimeLineItem/TimeLineItem';
+import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
 import { DateTime } from "luxon";
-import { AddBox } from '@mui/icons-material';
 
-import styles from './TimeLineList.module.css';
+import { AddBox } from '@mui/icons-material';
+import TimeLineItem from '../TimeLineItem/TimeLineItem';
 import AddEventForm from '../AddEventForm/AddEventForm';
 
+import styles from './TimeLineList.module.css';
+
 function TimeLineList () {
+  const [allEvents, setAllEvents] = useState([]);
+
+  // useEffect(() => {
+
+  // }, []);
+
   const events = [
     {ts: "2022-09-16T12:20:46.587Z", title: 'Flight to Windy Gap', eventType: 'travel'},
     {ts: "2022-09-17T12:20:46.587Z", title: 'Margs on the Patio', eventType: 'other'},
