@@ -9,7 +9,8 @@ import {
   signOut,
   browserLocalPersistence,
 } from 'firebase/auth';
-import { getStorage } from 'firebase/storage';
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
+import { uuidv4 } from '@firebase/util';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -47,4 +48,16 @@ const logout = async () => {
   await signOut(auth);
 };
 
-export { auth, provider, storage, signIn, signUp, logout };
+const uploadImage = async (blob: ArrayBuffer) => {
+  try {
+    const uuid = uuidv4();
+    const fileRef = ref(storage, 'trips/main_image/' + uuid);
+    await uploadBytes(fileRef, blob);
+    return { imageUuid: uuid, imageUrl: await getDownloadURL(fileRef) };
+  } catch (error) {
+    console.log('Error saving the image, please try again later');
+    console.log(error);
+  }
+};
+
+export { auth, provider, storage, signIn, signUp, logout, uploadImage };
