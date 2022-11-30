@@ -29,7 +29,7 @@ export interface IEvent {
   title: string;
   startTime: string;
   endTime: string;
-  type: string;
+  eventType: string;
   info: string;
 }
 
