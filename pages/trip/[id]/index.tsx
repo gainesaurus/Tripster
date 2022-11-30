@@ -7,11 +7,9 @@ import Divider from '../../../src/components/Divider/Divider';
 import TripHeader from '../../../src/components/TripHeader/TripHeader';
 import AttendeeList from '../../../src/components/AttendeeList/AttendeeList';
 import AlbumList from '../../../src/components/PhotoAlbumList/AlbumList';
-import TripTimeline from '../../../src/components/TimeLineList/TimeLineList';
 import TripPinDropList from '../../../src/components/TripPinDropList/TripPinDropList';
 import LodgingList from '../../../src/components/LodgingList/LodgingList';
 import TimeLineList from '../../../src/components/TimeLineList/TimeLineList';
-import TripPinDrop from '../../../src/components/TripPinDropList/TripPinDropList';
 import { ITripItem } from '../../../Types';
 
 import styles from './Trip.module.css';
@@ -22,6 +20,7 @@ export default function TripPage() {
   const { id } = router.query
 
   const [currentTrips, setCurrentTrips] = useState<ITripItem[]>([]);
+  const [upcomingTrips, setUpcomingTrips] = useState<ITripItem[]>([]);
   const [pastTrips, setPastTrips] = useState<ITripItem[]>([]);
   const [tripInvites, setTripInvites] = useState<ITripItem[]>([]);
 
@@ -54,7 +53,7 @@ export default function TripPage() {
     const start = new Date(startDate).getTime();
     const end = new Date(endDate).getTime();
     let tripDirectory;
-    if (currentDate > start && currentDate < end) tripDirectory = 'upcoming';
+    if (currentDate > start && currentDate < end) tripDirectory = 'current';
     if (currentDate < start) tripDirectory = 'upcoming';
     if (currentDate > end) tripDirectory = 'memories';
     return tripDirectory;
@@ -62,9 +61,13 @@ export default function TripPage() {
 
   useEffect(() => {
     let currentTrips = tripItems.filter(
-      (item) => getTripStatus(item.startDate, item.endDate) === 'upcoming',
+      (item) => getTripStatus(item.startDate, item.endDate) === 'current',
     );
     setCurrentTrips(currentTrips);
+    let upcomingTrips = tripItems.filter(
+      (item) => getTripStatus(item.startDate, item.endDate) === 'upcoming',
+    )
+    setUpcomingTrips(upcomingTrips);
     let pastTrips = tripItems.filter(
       (item) => getTripStatus(item.startDate, item.endDate) === 'memories',
     );
@@ -78,11 +81,11 @@ export default function TripPage() {
     title: "Grand Tetons FTW",
     startDate: 'May 3 2023',
     endDate: 'May 9 2023',
-    _id:1,
+    _id: 1,
     picUrl: './yosemite.jpg',
     attendees: [
       {
-        _id:1,
+        _id:6,
         uid:234,
         username:'danielle',
         email:'d@test.com',
@@ -138,7 +141,7 @@ export default function TripPage() {
       <NavBar />
       <div className={styles.pageContainer}>
         <div className={styles.homeContainer}>
-          <HomeLeft currentTrips={currentTrips} pastTrips={pastTrips} />
+          <HomeLeft currentTrips={currentTrips} upcomingTrips={upcomingTrips} pastTrips={pastTrips} />
           <Divider />
         </div>
         <div className={styles.tripContainer}>
