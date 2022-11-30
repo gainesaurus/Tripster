@@ -17,15 +17,18 @@ const CreateTripForm = () => {
   const [imgFiles, setImgFiles] = React.useState<FilePondFile[]>([]);
   const [trip, setTrip] = useState<ITripItem | undefined>();
 
-  const handlePicAdd = (newImages: FilePondFile[]) => {
+  const uploadPic = async () => {
     console.log('Handle add called');
-    newImages.forEach(async (filepond) => {
+    imgFiles.forEach(async (filepond) => {
       const blob = await filepond.file.arrayBuffer();
       const uploaded = await uploadImage(blob);
       console.log(uploaded?.imageUrl);
       trip && uploaded && setTrip({ ...trip, picUrl: uploaded.imageUrl });
     });
-    setImgFiles(newImages);
+  };
+
+  const handleSubmit = (e: React.MouseEvent) => {
+    e.preventDefault();
   };
 
   return (
@@ -35,7 +38,7 @@ const CreateTripForm = () => {
         <div className={styles.formContImage}>
           <FilePond
             files={imgFiles.map((fileItem) => fileItem.file)}
-            onupdatefiles={handlePicAdd}
+            onupdatefiles={setImgFiles}
             allowMultiple={false}
             acceptedFileTypes={['image/*']}
             // server="/api"
@@ -45,6 +48,8 @@ const CreateTripForm = () => {
         </div>
 
         <input
+          value={trip?.title}
+          onChange={(e) => trip && setTrip({ ...trip, title: e.target.value })}
           className={styles.formInput}
           type="text"
           placeholder="Trip Name"
@@ -55,17 +60,35 @@ const CreateTripForm = () => {
           placeholder="Description?"
         ></input>
         <input
+          value={trip?.startDate}
+          onChange={(e) =>
+            trip &&
+            setTrip({
+              ...trip,
+              startDate: new Date(e.target.value).toISOString(),
+            })
+          }
           className={`${styles.formInput} ${styles.formDate}`}
           type="date"
           placeholder="Start"
         ></input>
         <input
+          value={trip?.endDate}
+          onChange={(e) =>
+            trip &&
+            setTrip({
+              ...trip,
+              endDate: new Date(e.target.value).toISOString(),
+            })
+          }
           className={`${styles.formInput} ${styles.formDate}`}
           type="date"
           placeholder="End"
         ></input>
         <button className={styles.button}>Invite friends</button>
-        <button className={styles.button}>Create trip</button>
+        <button className={styles.button} onClick={(e) => handleSubmit}>
+          Create trip
+        </button>
       </form>
     </div>
   );
