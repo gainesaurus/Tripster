@@ -1,7 +1,7 @@
 const BASEurl = '';
 import { IEvent } from "../../Types";
 
-export const getEventsByTripId = async (tripId:number) => {
+export const getEventsByTripId = async (tripId:string) => {
   try {
     const result = await fetch(`${BASEurl}/events/${tripId}`, {
       method: 'GET',
@@ -13,9 +13,9 @@ export const getEventsByTripId = async (tripId:number) => {
   }
 }
 
-export const createEvent = async (tripId:number, event:IEvent) => {
+export const createEvent = async (event:IEvent) => {
   try {
-    const result = await fetch(`${BASEurl}/events/${tripId}`, {
+    const result = await fetch(`${BASEurl}/events`, {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -30,9 +30,9 @@ export const createEvent = async (tripId:number, event:IEvent) => {
   }
 };
 
-export const updateEvent = async (tripId:number, _id:number, event:IEvent) => {
+export const updateEvent = async ( _id:string, event:IEvent) => {
   try {
-    const result = await fetch(`${BASEurl}/events/${tripId}/${_id}`, {
+    const result = await fetch(`${BASEurl}/events/${_id}`, {
       method: 'PUT',
       mode: 'cors',
       headers: {

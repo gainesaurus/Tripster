@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-
 import HomeLeft from '../../../src/components/HomeLeft/HomeLeft';
 import Divider from '../../../src/components/Divider/Divider';
 import TripHeader from '../../../src/components/TripHeader/TripHeader';
@@ -12,7 +11,7 @@ import LodgingList from '../../../src/components/LodgingList/LodgingList';
 import TimeLineList from '../../../src/components/TimeLineList/TimeLineList';
 import { ITripItem } from '../../../Types';
 
-import styles from './Trip.module.css';
+import styles from '../../../styles/Trip.module.css';
 import NavBar from '../../../src/components/NavBar/NavBar';
 
 export default function TripPage() {
@@ -29,21 +28,21 @@ export default function TripPage() {
       title: 'Yosemite',
       startDate: 'June 3 2023',
       endDate: 'June 10 2023',
-      _id: 1,
+      _id: '1',
       picUrl: './yosemite.jpg',
     },
     {
       title: 'Paris',
       startDate: 'Nov 27 2022',
       endDate: 'Dec 12 2022',
-      _id: 2,
+      _id: '2',
       picUrl: './paris.jpg',
     },
     {
       title: 'Mexico',
       startDate: 'Sept 22 2019',
       endDate: 'Sept 28 2019',
-      _id: 3,
+      _id: '3',
       picUrl: './mexico.webp',
     },
   ];
@@ -83,19 +82,19 @@ export default function TripPage() {
     title: "Grand Tetons FTW",
     startDate: 'May 3 2023',
     endDate: 'May 9 2023',
-    _id: 1,
+    _id: '1',
     picUrl: './yosemite.jpg',
     attendees: [
       {
-        _id:6,
-        uid:234,
+        _id:'6',
+        uid:'234',
         username:'danielle',
         email:'d@test.com',
         profile_pic:'./profile.jpg',
       },
       {
-        _id:2,
-        uid:235,
+        _id: '2',
+        uid: '235',
         username:'someone',
         email:'',
         profile_pic:'',
@@ -106,8 +105,8 @@ export default function TripPage() {
         src: 'https://res.cloudinary.com/enchanting/q_70,f_auto,c_fit,dpr_2,w_700,h_400/exodus-web/2022/09/Landing-page-walking.jpg',
         width: 20,
         height: 20,
-        _id: 99,
-        tripId: 345678,
+        _id: '99',
+        tripId: '345678',
       },
     ],
     locations: [
@@ -115,15 +114,15 @@ export default function TripPage() {
         info: 'Tonights Beach Bonfire',
         latLng: '40.6063179, -122.5301481',
         ts: '04/20/2022',
-        _id:100,
-        tripId: 345678,
+        _id:'100',
+        tripId: '345678',
       },
       {
         info: 'Meet here before site-seeing today!',
         latLng: '34.67, -10.88',
         ts: '04/20/2022',
-        _id:101,
-        tripId: 345678,
+        _id:'101',
+        tripId: '345678',
       }
     ],
     lodging: [
@@ -132,8 +131,8 @@ export default function TripPage() {
         address: '6155 Oracle Rd, Sechelt, BC, Canada',
         picUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMmrIA27K-t7Uf9LMW9ZztqY9kb9lGzLKrqw&usqp=CAU',
         latLng: '',
-        _id:102,
-        tripId: 345678,
+        _id:'102',
+        tripId: '345678',
       }
     ]
   }
@@ -150,7 +149,7 @@ export default function TripPage() {
           <TripHeader title={trip.title} start={trip.startDate} end={trip.endDate} pic={trip.picUrl} />
           <AttendeeList attendees={trip.attendees} />
           <AlbumList photos={trip.photos} id={trip._id} />
-          <TimeLineList />
+          <TimeLineList tripId={id}/>
           <TripPinDropList pinDrops={trip.locations} />
           <LodgingList lodging={trip.lodging}></LodgingList>
         </div>

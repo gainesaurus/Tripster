@@ -11,7 +11,7 @@ import { getEventsByTripId, createEvent, updateEvent } from '../../services/even
 
 import styles from './TimeLineList.module.css';
 
-function TimeLineList () {
+function TimeLineList ({ tripId }:any) {
   const [allEvents, setAllEvents] = useState([]);
 
   // useEffect(() => {

@@ -4,7 +4,7 @@ import { ILodge } from '../Types';
 const Schema = mongoose.Schema;
 const LodgingSchema = new Schema<ILodge>({
 
-  tripId: {type: Number, required: true},
+  tripId: {type: String, required: true},
   title: {type: String, required: true},
   address: {type: String, required: true},
   picUrl: {type: String, required: true},
