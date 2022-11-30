@@ -7,7 +7,7 @@ import { IPhoto } from '../../../Types'
 
 interface AlbumListProps {
   photos: IPhoto[];
-  id: number;
+  id: string;
 }
 
 const  AlbumList: FC<AlbumListProps> = ({ photos, id }) => {
