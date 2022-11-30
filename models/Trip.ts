@@ -8,12 +8,13 @@ const tripSchema = new Schema<ITripItem>({
   endDate: { type: String, required: true },
   picUrl: { type: String, required: true },
   createdBy: { type: String, required: true }, // userUid
-  attendees: [{ userUid: String, accepted: Boolean }],
+  attendees: [String], // userUid
   events: [String], // eventId
   albums: [String], // AlbumId
   polls: [String], // PollId
   locations: [String], // LocationsId
   lodging: [String], // LodgingId
+  invites: [String], // userUid
 });
 
 const Trip =
