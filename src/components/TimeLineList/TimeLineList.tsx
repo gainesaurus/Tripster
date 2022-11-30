@@ -9,12 +9,12 @@ import AddEventForm from '../AddEventForm/AddEventForm';
 
 function TimeLineList () {
   const events = [
-    {ts: "2022-09-16T12:20:46.587Z", text: 'Lunch'},
-    {ts: "2022-09-17T12:20:46.587Z", text: 'Taco Bar and Margs'},
-    {ts: "2022-09-17T12:21:46.587Z", text: "Booze Cruise on Lake Geneva"},
-    {ts: "2022-09-16T12:21:46.587Z", text: "Skiing Windy Gap"},
-    {ts: "2022-09-16T12:22:46.587Z", text: 'Dinner'},
-    {ts: "2022-09-17T12:22:46.587Z", text: "Breakfast at Curly's Diner"},
+    {ts: "2022-09-16T12:20:46.587Z", text: 'Flight to Windy Gap', eventType: 'travel'},
+    {ts: "2022-09-17T12:20:46.587Z", text: 'Margs on the Patio', eventType: 'other'},
+    {ts: "2022-09-17T12:21:46.587Z", text: "Cruise on Lake Geneva", eventType: 'leisure'},
+    {ts: "2022-09-16T12:21:46.587Z", text: "Skiing Windy Gap", eventType: 'active'},
+    {ts: "2022-09-16T12:22:46.587Z", text: 'Hit the Outlets', eventType: 'shopping'},
+    {ts: "2022-09-17T12:22:46.587Z", text: "Breakfast at Curly's Diner", eventType: 'food'},
   ];
 
   const eventDay = (item: any) => (DateTime.fromISO(item.ts).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY));

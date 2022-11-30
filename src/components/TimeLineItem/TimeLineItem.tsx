@@ -1,6 +1,13 @@
 import React from 'react';
-import RestaurantIcon from '@mui/icons-material/Restaurant';
 import { DateTime } from "luxon";
+import {
+  Restaurant,
+  DirectionsRun,
+  AirlineSeatReclineExtra,
+  AttachMoney,
+  Luggage,
+  ContentPaste,
+} from '@mui/icons-material';
 
 import styles from './TimeLineItem.module.css';
 
@@ -12,12 +19,13 @@ function TimeLineItem ({ event }: any) {
   return (
     <div className={styles.timeline}>
       <div className={styles.timelineItem}>
-        <h4>
-          {dateTime}
-        </h4>
-          <div className={styles.timelineIcon}>
-            <RestaurantIcon />
-          </div>
+        <h4>{dateTime}</h4>
+          {event.eventType == 'food' ? <Restaurant className={styles.restaurantIcon} /> : <></>}
+          {event.eventType == 'active' ? <DirectionsRun className={styles.activeIcon} /> : <></>}
+          {event.eventType == 'leisure' ? <AirlineSeatReclineExtra className={styles.leisureIcon} /> : <></>}
+          {event.eventType == 'shopping' ? <AttachMoney className={styles.shopIcon}/> : <></>}
+          {event.eventType == 'travel' ? <Luggage className={styles.travelIcon} /> : <></>}
+          {event.eventType == 'other' ? <ContentPaste className={styles.otherIcon} /> : <></>}
         <h3 className={styles.timelineContent}>
           {event.text}
         </h3>
