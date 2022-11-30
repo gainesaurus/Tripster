@@ -42,13 +42,21 @@
   content: '' !important;
 }
 
-.button {
+.button,
+.spinnerContainer {
   margin: 10px;
   padding: 10px;
-  max-width: 100px;
+  max-width: 200px;
   background-color: black;
   color: white;
   border: 1px solid black;
   border-radius: 20px;
   cursor: pointer;
+  font-size: 16px;
+}
+
+.spinnerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
