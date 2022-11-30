@@ -46,7 +46,7 @@
   background-color: #8a508f;
   color: white;
   margin: 5px 12px 5px 0;
-  padding: 8px 0 8px 0;
+  padding: 5px 0 5px 0;
   width: 65px;
   border: none;
   border-radius: 6px;
@@ -54,10 +54,10 @@
 }
 
 .deleteButton {
-  background-color: #ff6361;
+  background-color: #003f5c;
   color: white;
   margin: 5px 0 5px 0;
-  padding: 8px 0 8px 0;
+  padding: 5px 0 5px 0;
   width: 65px;
   border: none;
   border-radius: 6px;

@@ -1,13 +1,12 @@
 .timelineContainer {
   display: flex;
   flex-direction: column;
-  margin: 5% 2% 0 2%;
+  margin: 20px 2% 0 2%;
 }
 
 .titleContainer {
   display: flex;
   justify-content: space-between;
-  max-width: 500px;
 }
 
 .timelineTitle {
@@ -40,9 +39,10 @@
 .timelineDate {
   align-self: flex-start;
   color: white;
-  padding: 0;
-  margin: 15px 0 0 0;
-  background-color: #2c4875;
-  padding: 4px;
-  border-radius: 2px;
+  font-size: 1.1rem;
+  margin: 10px 0 0 0;
+  background-color: #ff6361;
+  padding: 5px 10px 5px 10px;
+  border-radius: 4px;
+  text-shadow: 1px 1px #00202e;
 }
