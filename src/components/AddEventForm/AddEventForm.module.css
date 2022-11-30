@@ -1,6 +1,6 @@
 .addEventContainer {
   display: flex;
-  position: fixed;
+  position: absolute;
   flex-direction: column;
   z-index: 200;
   background-color: white;

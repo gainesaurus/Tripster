@@ -2,21 +2,22 @@
   display: flex;
   flex-direction: column;
   margin: 5% 2% 0 2%;
-  /* border: 1px solid red; */
 }
 
 .titleContainer {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  max-width: 500px;
 }
 
 .timelineTitle {
+  display: flex;
   margin: 0;
   font-size: 1.5rem;
 }
 
 .addIcon {
+  display: flex;
   color: #003f5c;
   font-size: 28px;
 }
@@ -28,6 +29,8 @@
 .button {
   background: none;
   border: none;
+  padding: 0;
+  margin: 0;
 }
 
 .addEventForm {
