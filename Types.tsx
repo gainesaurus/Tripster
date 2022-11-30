@@ -1,5 +1,5 @@
 export interface ITripItem {
-  _id: number;
+  _id?: number;
   title: string;
   startDate: string;
   endDate: string;
@@ -13,7 +13,6 @@ export interface ITripItem {
   lodging?: [string]; // LodgingId
   invites?: [string]; // UserUid
 }
-
 
 export interface IUser {
   _id: number;
