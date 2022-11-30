@@ -25,7 +25,10 @@
   left: 5px;
   color: white;
   border-radius: 6px;
-  backdrop-filter: blur(3px);
+  /* backdrop-filter: brightness(60%); */
+  /* backdrop-filter: invert(30%); */
+  backdrop-filter: contrast(50%);
+  /* backdrop-filter: blur(3px); */
   padding: 0 5px 0 5px;
 }
 
