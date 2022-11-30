@@ -13,12 +13,23 @@ export interface ITripItem {
   lodging?: [string]; // LodgingId
 }
 
+
 export interface IUser {
   _id: number;
   uid: number;
   username: string;
   email: string;
   profile_pic: string;
+}
+
+export interface IEvent {
+  _id: number;
+  tripId: number;
+  title: string;
+  startTime: string;
+  endTime: string;
+  type: string;
+  info: string;
 }
 
 export interface IPhoto {

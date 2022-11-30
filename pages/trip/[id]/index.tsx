@@ -34,7 +34,7 @@ export default function TripPage() {
     },
     {
       title: 'Paris',
-      startDate: 'Nov 30 2022',
+      startDate: 'Nov 27 2022',
       endDate: 'Dec 12 2022',
       _id: 2,
       picUrl: './paris.jpg',
@@ -75,6 +75,8 @@ export default function TripPage() {
     let tripInvites = tripItems.filter((item, index) => index !== 0);
     setTripInvites(tripInvites);
   }, []);
+
+  console.log(currentTrips, upcomingTrips, pastTrips);
 
   //Mock Data
   let trip = {
