@@ -5,12 +5,13 @@ export interface ITripItem {
   endDate: string;
   picUrl: string;
   createdBy?: string;
-  attendees?: { userUid: string; accepted: Boolean }[];
+  attendees?: [string]; // UserUid
   events?: [string]; // eventId
   albums?: [string]; // AlbumId
   polls?: [string]; // PollId
   locations?: [string]; // LocationsId
   lodging?: [string]; // LodgingId
+  invites?: [string]; // UserUid
 }
 
 export interface IUser {
