@@ -10,11 +10,21 @@ type HomeLeftProps = {
 };
 
 function HomeLeft({ currentTrips, upcomingTrips, pastTrips }: HomeLeftProps) {
+  console.log(currentTrips, pastTrips, upcomingTrips);
   return (
     <div className={styles.homeLeft}>
-      <TripList trips={currentTrips} title={'Current Trips'} />
-      <TripList trips={upcomingTrips} title={'Upcoming Trips'} />
-      <TripList trips={pastTrips} title={'Memories'} />
+      {
+        currentTrips && currentTrips.length > 0 ?
+        <TripList trips={currentTrips} title={'Current Trips'} /> : <></>
+      }
+      {
+        upcomingTrips && upcomingTrips.length > 0 ?
+        <TripList trips={upcomingTrips} title={'Upcoming Trips'} /> : <></>
+      }
+      {
+        pastTrips && pastTrips.length > 0 ?
+        <TripList trips={pastTrips} title={'Memories'} /> : <></>
+      }
     </div>
   );
 }

@@ -20,7 +20,7 @@ export default function Home() {
     },
     {
       title: 'Paris',
-      startDate: 'Nov 30 2022',
+      startDate: 'Nov 27 2022',
       endDate: 'Dec 12 2022',
       _id: 2,
       picUrl: './paris.jpg',
@@ -35,13 +35,18 @@ export default function Home() {
   ];
 
   const [currentTrips, setCurrentTrips] = useState<ITripItem[]>([]);
+  const [upcomingTrips, setUpcomingTrips] = useState<ITripItem[]>([]);
   const [pastTrips, setPastTrips] = useState<ITripItem[]>([]);
 
   useEffect(() => {
     let currentTrips = tripItems.filter(
-      (item) => getTripStatus(item.startDate, item.endDate) === 'upcoming',
+      (item) => getTripStatus(item.startDate, item.endDate) === 'current',
     );
     setCurrentTrips(currentTrips);
+    let upcomingTrips = tripItems.filter(
+      (item) => getTripStatus(item.startDate, item.endDate) === 'upcoming',
+    )
+    setUpcomingTrips(upcomingTrips);
     let pastTrips = tripItems.filter(
       (item) => getTripStatus(item.startDate, item.endDate) === 'memories',
     );
@@ -53,7 +58,7 @@ export default function Home() {
     const start = new Date(startDate).getTime();
     const end = new Date(endDate).getTime();
     let tripDirectory;
-    if (currentDate > start && currentDate < end) tripDirectory = 'upcoming';
+    if (currentDate > start && currentDate < end) tripDirectory = 'current';
     if (currentDate < start) tripDirectory = 'upcoming';
     if (currentDate > end) tripDirectory = 'memories';
     return tripDirectory;
@@ -63,7 +68,7 @@ export default function Home() {
     <div>
       <NavBar />
       <div className={styles.main}>
-        <HomeLeft currentTrips={currentTrips} pastTrips={pastTrips} />
+        <HomeLeft currentTrips={currentTrips} upcomingTrips={upcomingTrips} pastTrips={pastTrips} />
         <Divider />
         <div className={styles.homeRight}>
           <CreateTripForm />
