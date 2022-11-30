@@ -4,10 +4,11 @@
   align-items: center;
   justify-content: space-between;
   padding: 1em;
-  background-color: darkgreen;
+  background-color: #00202E;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
 }
 
-.logo, .para {
+.para {
   margin:0;
   padding:0px 0px 0px 10px;
   color: white;
@@ -15,6 +16,7 @@
 
 .logo{
   cursor: pointer;
+  height: 70px;
 }
 
 .userInfo {
@@ -38,4 +40,10 @@
   border-radius: 5px;
   background-color: white;
   cursor: pointer;
+}
+
+@media screen and (max-width: 750px) {
+  p.para {
+    display: none;
+  }
 }
