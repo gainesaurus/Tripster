@@ -25,21 +25,18 @@
   left: 5px;
   color: white;
   border-radius: 6px;
-  /* backdrop-filter: brightness(60%); */
-  /* backdrop-filter: invert(30%); */
-  backdrop-filter: contrast(50%);
-  /* backdrop-filter: blur(3px); */
+  backdrop-filter: blur(1px);
   padding: 0 5px 0 5px;
 }
 
 .tripTitle {
   display: flex;
   margin: 0;
-  text-shadow: 2px 2px 6px black;
+  text-shadow: 2px 2px black;
 }
 
 .tripDate {
   display: flex;
   margin: 0;
-  text-shadow: 2px 2px 4px black;
+  text-shadow: 2px 2px black;
 }

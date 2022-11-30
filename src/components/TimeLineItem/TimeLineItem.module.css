@@ -26,7 +26,7 @@
 
 .eventTitle {
   padding: 0;
-  margin: 0;
+  margin: 5px 0 5px 0;
 }
 
 .eventInfo {
@@ -35,6 +35,41 @@
   background-color:white;
   border-radius: 6px;
   padding: 0 10px 0 10px;
+}
+
+.buttonDiv {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.editButton {
+  background-color: #8a508f;
+  color: white;
+  margin: 5px 12px 5px 0;
+  padding: 8px 0 8px 0;
+  width: 65px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.4);
+}
+
+.deleteButton {
+  background-color: #ff6361;
+  color: white;
+  margin: 5px 0 5px 0;
+  padding: 8px 0 8px 0;
+  width: 65px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.4);
+}
+
+.editButton:active {
+  box-shadow: none;
+}
+
+.deleteButton:active {
+  box-shadow: none;
 }
 
 .restaurantIcon {

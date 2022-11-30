@@ -46,3 +46,19 @@ export const updateEvent = async ( _id:string, event:IEvent) => {
     console.error(err);
   }
 };
+
+export const removeEvent = async ( _id:string ) => {
+  try {
+    const result = await fetch(`${BASEurl}/events/${_id}`, {
+      method: 'DELETE',
+      mode: 'cors',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+    return await result.json();
+  } catch (err) {
+    console.error(err);
+  }
+};
