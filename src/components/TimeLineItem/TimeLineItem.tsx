@@ -13,7 +13,6 @@ import styles from './TimeLineItem.module.css';
 
 
 function TimeLineItem ({ event }: any) {
-
   const dateTime = (DateTime.fromISO(event.ts).toLocaleString(DateTime.TIME_SIMPLE));
 
   return (
@@ -27,7 +26,7 @@ function TimeLineItem ({ event }: any) {
           {event.eventType == 'travel' ? <Luggage className={styles.travelIcon} /> : <></>}
           {event.eventType == 'other' ? <ContentPaste className={styles.otherIcon} /> : <></>}
         <h3 className={styles.timelineContent}>
-          {event.text}
+          {event.title}
         </h3>
       </div>
     </div>
