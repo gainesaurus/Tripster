@@ -78,20 +78,22 @@ export default function TripPage() {
     title: "Grand Tetons FTW",
     startDate: 'May 3 2023',
     endDate: 'May 9 2023',
-    id:1,
-    pic_url: './yosemite.jpg',
+    _id:1,
+    picUrl: './yosemite.jpg',
     attendees: [
       {
-        id:1,
+        _id:1,
+        uid:234,
         username:'danielle',
         email:'d@test.com',
         profile_pic:'./profile.jpg',
       },
       {
-        id:2,
+        _id:2,
+        uid:235,
         username:'someone',
         email:'',
-        profile_pic:''
+        profile_pic:'',
       }
     ],
     photos: [
@@ -99,6 +101,8 @@ export default function TripPage() {
         src: 'https://res.cloudinary.com/enchanting/q_70,f_auto,c_fit,dpr_2,w_700,h_400/exodus-web/2022/09/Landing-page-walking.jpg',
         width: 20,
         height: 20,
+        _id: 99,
+        tripId: 345678,
       },
     ],
     locations: [
@@ -106,19 +110,25 @@ export default function TripPage() {
         info: 'Tonights Beach Bonfire',
         latLng: '40.6063179, -122.5301481',
         ts: '04/20/2022',
+        _id:100,
+        tripId: 345678,
       },
       {
         info: 'Meet here before site-seeing today!',
         latLng: '34.67, -10.88',
-        ts: '04/20/2022'
+        ts: '04/20/2022',
+        _id:101,
+        tripId: 345678,
       }
     ],
     lodging: [
       {
         title: 'Danielles Place',
         address: '6155 Oracle Rd, Sechelt, BC, Canada',
-        pic_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMmrIA27K-t7Uf9LMW9ZztqY9kb9lGzLKrqw&usqp=CAU',
+        picUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMmrIA27K-t7Uf9LMW9ZztqY9kb9lGzLKrqw&usqp=CAU',
         latLng: '',
+        _id:102,
+        tripId: 345678,
       }
     ]
   }
@@ -132,9 +142,9 @@ export default function TripPage() {
           <Divider />
         </div>
         <div className={styles.tripContainer}>
-          <TripHeader title={trip.title} start={trip.startDate} end={trip.endDate} pic={trip.pic_url} />
+          <TripHeader title={trip.title} start={trip.startDate} end={trip.endDate} pic={trip.picUrl} />
           <AttendeeList attendees={trip.attendees} />
-          <AlbumList photos={trip.photos} id={trip.id} />
+          <AlbumList photos={trip.photos} id={trip._id} />
           <TimeLineList />
           <TripPinDropList pinDrops={trip.locations} />
           <LodgingList lodging={trip.lodging}></LodgingList>

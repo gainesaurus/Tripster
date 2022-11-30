@@ -10,11 +10,11 @@
 }
 
 .formContImage {
-  height: 200px;
+  height: 250px;
   width: 400px;
   background-color: rgb(240, 240, 240);
   border-radius: 8px;
-  padding: 50px 25px 25px;
+  padding: 0px 25px 25px;
   margin-bottom: 25px;
 }
 

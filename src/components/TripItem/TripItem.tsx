@@ -11,10 +11,10 @@ interface TripItemProps {
 const TripItem: FC<TripItemProps> = ({ trip }) => {
 
   return (
-    <Link href='/trip/id' as={`/trip/${trip.id}`}>
+    <Link href='/trip/id' as={`/trip/${trip._id}`}>
     <div className={styles.card}
       style={{
-        backgroundImage: `url(${trip.pic_url})`,
+        backgroundImage: `url(${trip.picUrl})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
       }

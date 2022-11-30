@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import styles from './LodgingItem.module.css';
 import { ILodge } from '../../../Types';
 import Image from 'next/image';
@@ -13,7 +13,7 @@ const LodgingItem: FC<LodgingItemProps> = ({ lodge }) => {
 
   return (
     <div className={styles.lodgingContainer}>
-      <Image src={lodge.pic_url} alt='lodge photo' width={150} height={120}/>
+      <Image src={lodge.picUrl} alt='lodge photo' width={150} height={120}/>
 
       <div className={styles.lodgingInfo}>
         <section className={styles.title}>

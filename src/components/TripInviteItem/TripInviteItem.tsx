@@ -12,7 +12,7 @@ const TripInviteItem: FC<TripItemProps> = ({ trip }) => {
     <div
       className={styles.card}
       style={{
-        backgroundImage: `url(${trip.pic_url})`,
+        backgroundImage: `url(${trip.picUrl})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
       }}
