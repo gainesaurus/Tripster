@@ -21,6 +21,10 @@
   font-size: 28px;
 }
 
+.addIcon:active {
+  color: #2c4875;
+}
+
 .button {
   background: none;
   border: none;
