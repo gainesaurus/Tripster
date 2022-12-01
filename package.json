@@ -11,6 +11,8 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@googlemaps/js-api-loader": "^1.15.1",
+    "@googlemaps/react-wrapper": "^1.1.35",
     "@mui/icons-material": "^5.10.16",
     "@mui/material": "^5.10.16",
     "@react-google-maps/api": "^2.17.0",
@@ -32,11 +34,13 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-filepond": "^7.1.2",
+    "react-google-autocomplete": "^2.7.0",
     "react-photo-album": "^1.16.1",
     "react-spinners": "^0.13.6",
     "typescript": "4.9.3"
   },
   "devDependencies": {
+    "@types/google.maps": "^3.50.5",
     "@types/lodash": "^4.14.190",
     "@types/luxon": "^3.1.0"
   }
