@@ -1,4 +1,5 @@
 import React from 'react';
+import { Close } from '@mui/icons-material';
 
 import styles from './AddEventForm.module.css';
 
@@ -7,6 +8,7 @@ function AddEventForm ({ closeForm, submitEvent }: any) {
   return (
     <div className={styles.addEventContainer}>
       <form className={styles.infoContainer} onSubmit={submitEvent}>
+        <button className={styles.XButton} onClick={closeForm}><Close /></button>
         <h2>Add an Event</h2>
         <h3 className={styles.formHeading}>Event Title:</h3>
           <input required className={styles.input} name='title' type='text' placeholder="Name of the Event..."/>
@@ -26,8 +28,7 @@ function AddEventForm ({ closeForm, submitEvent }: any) {
         <h3 className={styles.formHeading}>Event Info:</h3>
           <textarea required className={styles.textarea} name='info' placeholder="What do we need to know..." />
         <div className={styles.buttonDiv}>
-          <button className={styles.submitButton} type="submit">Submit</button>
-          <button className={styles.cancelButton} onClick={closeForm}>Cancel</button>
+          <button className={styles.submitButton} type="submit">Save Event</button>
         </div>
       </form>
     </div>

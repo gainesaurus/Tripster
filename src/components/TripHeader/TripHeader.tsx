@@ -26,7 +26,7 @@ const TripHeader: FC<TripHeaderProps> = ({title, start, end, pic}) => {
       </picture> */}
       <div className={styles.tripHeadTitle}>
         <h2 className={styles.tripTitle}>{title}</h2>
-        <h3 className={styles.tripDate}>{start} - {end}</h3>
+        <h3 className={styles.tripTitle}>{start} - {end}</h3>
       </div>
     </div>
   )

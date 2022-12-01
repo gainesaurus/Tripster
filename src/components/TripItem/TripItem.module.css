@@ -4,19 +4,21 @@
   position: relative;
   margin-right: 1em;
   padding: 1rem;
-  border: 1px solid #eaeaea;
+  /* border: 1px solid #eaeaea; */
   border-radius: 10px;
   transition: all .2s ease-in-out;
   min-width: 400px;
   min-height: 250px;
   cursor: pointer;
   box-shadow: 0 5px 10px -5px #2c4875;
+  background-color: #e6e6e6;
 }
 
 .card:hover,
 .card:focus,
 .card:active {
   transform: scale(1.015);
+  box-shadow: 0 5px 15px -5px #2c4875;
 }
 
 .heading {
@@ -24,8 +26,12 @@
   left: 15px;
   bottom: 15px;
   color: white;
+  border-radius: 6px;
+  backdrop-filter: blur(1px);
+  padding: 0 5px 0 5px;
 }
 .headingItem {
   margin: 5px 0px 5px 10px;
+  text-shadow: 1px 1px 1px black;
 }
 

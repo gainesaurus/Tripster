@@ -1,5 +1,5 @@
-import styles from './CreateTripForm.module.css';
 import React, { useState } from 'react';
+import { Close } from '@mui/icons-material';
 
 import { FilePond, registerPlugin } from 'react-filepond';
 
@@ -13,12 +13,15 @@ import { FilePondFile } from 'filepond';
 import { createTrip } from '../../services/apiTrip';
 import { MoonLoader } from 'react-spinners';
 
+import styles from './CreateTripForm.module.css';
+
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 interface Props {
   setTripAdded: React.Dispatch<React.SetStateAction<boolean>>;
+  closeForm:any;
 }
 
-const CreateTripForm = ({ setTripAdded }: Props) => {
+const CreateTripForm = ({ setTripAdded, closeForm }: Props) => {
   const initialState: ITripItem = {
     title: '',
     picUrl: '',
@@ -57,7 +60,10 @@ const CreateTripForm = ({ setTripAdded }: Props) => {
 
   return (
     <div className={styles.formCont}>
-      <h3>Create a new trip</h3>
+      <div className={styles.titleX}>
+        <h3 className={styles.formTitle}>Create a new trip</h3>
+        <button className={styles.XButton} onClick={closeForm}><Close /></button>
+      </div>
       <form className={styles.formInputs}>
         <FilePond
           files={imgFiles.map((fileItem) => fileItem.file)}
