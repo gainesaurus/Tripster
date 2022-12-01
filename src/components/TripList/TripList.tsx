@@ -10,7 +10,6 @@ interface TripListProps {
 }
 
 const TripList: FC<TripListProps> = ({ trips, title }) => {
-  console.log(trips);
   return (
     <section>
       <h3 className={styles.header}>{title}</h3>

@@ -5,9 +5,6 @@ import {
 } from '../../../../controllers/invites';
 import verifyToken from '../../../../middleware/verifyToken';
 
-const handler = nc()
-  .use(verifyToken)
-  .post(inviteToTrip)
-  .patch(resolveInvitation);
+const handler = nc().use(verifyToken).post(inviteToTrip).put(resolveInvitation);
 
 export default handler;

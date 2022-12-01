@@ -15,7 +15,7 @@ export interface ITripItem {
 }
 
 export interface IUser {
-  _id: string;
+  _id?: string;
   uid: string;
   username: string;
   email: string;

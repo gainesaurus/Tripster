@@ -1,24 +1,23 @@
-import styles from './CreateTripForm.module.css';
 import React, { useState } from 'react';
+import styles from './CreateTripForm.module.css';
 
 import { FilePond, registerPlugin } from 'react-filepond';
 
-import 'filepond/dist/filepond.min.css';
+import { FilePondFile } from 'filepond';
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
-import { auth, uploadImage } from '../../firebase';
-import { ITripItem } from '../../../Types';
-import { FilePondFile } from 'filepond';
-import { createTrip } from '../../services/apiTrip';
+import 'filepond/dist/filepond.min.css';
 import { MoonLoader } from 'react-spinners';
+import { ITripItem } from '../../../Types';
+import { useTripsContext } from '../../Contexts/TripsContext';
+import { useUserContext } from '../../Contexts/UserContext';
+import { uploadImage } from '../../firebase';
+import { createTrip } from '../../services/tripService';
 
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
-interface Props {
-  setTripAdded: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
-const CreateTripForm = ({ setTripAdded }: Props) => {
+const CreateTripForm = () => {
   const initialState: ITripItem = {
     title: '',
     picUrl: '',
@@ -26,6 +25,8 @@ const CreateTripForm = ({ setTripAdded }: Props) => {
     endDate: '',
   };
 
+  const context = useTripsContext();
+  const userContext = useUserContext();
   const [imgFiles, setImgFiles] = React.useState<FilePondFile[]>([]);
   const [trip, setTrip] = useState<ITripItem>(initialState);
   const [isLoading, setIsLoading] = useState(false);
@@ -40,8 +41,8 @@ const CreateTripForm = ({ setTripAdded }: Props) => {
   const handleSubmit = async (e: React.MouseEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    const token = await auth.currentUser?.getIdToken();
-    if (token && trip != initialState && imgFiles.length > 0) {
+    const token = userContext.token;
+    if (trip != initialState && imgFiles.length > 0) {
       const uploaded = await uploadPic();
       if (uploaded) {
         await createTrip({ ...trip, picUrl: uploaded.imageUrl }, token);
@@ -52,7 +53,7 @@ const CreateTripForm = ({ setTripAdded }: Props) => {
       alert('All field are required');
     }
     setIsLoading(false);
-    setTripAdded(true);
+    context.setTripAdded(true);
   };
 
   return (

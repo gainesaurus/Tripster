@@ -1,6 +1,8 @@
-import React, { FC } from 'react';
-import styles from './TripInviteItem.module.css';
+import { FC } from 'react';
 import { ITripItem } from '../../../Types';
+import { useUserContext } from '../../Contexts/UserContext';
+import { respondInvite } from '../../services/inviteService';
+import styles from './TripInviteItem.module.css';
 
 interface TripItemProps {
   trip: ITripItem;
@@ -8,6 +10,11 @@ interface TripItemProps {
 
 const TripInviteItem: FC<TripItemProps> = ({ trip }) => {
   const created_by = 'Jane Doe';
+  const context = useUserContext();
+  async function handleResponseInvite(response: boolean) {
+    if (trip._id) respondInvite(trip._id, response, context.token);
+  }
+
   return (
     <div
       className={styles.card}
@@ -31,8 +38,18 @@ const TripInviteItem: FC<TripItemProps> = ({ trip }) => {
         />
         <h5 className={styles.headingItem}>Invited by: {created_by}</h5>
         <div className={styles.buttonsContainer}>
-          <button className={styles.button}>Accept</button>
-          <button className={styles.button}>Decline</button>
+          <button
+            className={styles.button}
+            onClick={async () => await handleResponseInvite(true)}
+          >
+            Accept
+          </button>
+          <button
+            className={styles.button}
+            onClick={async () => await handleResponseInvite(false)}
+          >
+            Decline
+          </button>
         </div>
       </div>
     </div>

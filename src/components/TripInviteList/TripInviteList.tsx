@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import TripInviteItem from '../TripInviteItem/TripInviteItem';
 import styles from './TripInviteList.module.css';
 

@@ -1,4 +1,3 @@
-import { BoyRounded } from '@mui/icons-material';
 import { ITripItem } from '../../Types';
 import { fetchData } from './fetchFactory';
 
@@ -14,11 +13,5 @@ export async function createTrip(trip: ITripItem, token: string) {
 }
 
 export async function getAllTrips(token: string) {
-  return await fetchData<ITripItem[]>(
-    '/trips',
-    {
-      method: 'GET',
-    },
-    token,
-  );
+  return await fetchData<ITripItem[]>('/trips', { method: 'GET' }, token);
 }
