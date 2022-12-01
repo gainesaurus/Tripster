@@ -8,7 +8,7 @@ const EventSchema = new Schema<IEvent>({
   title: {type: String, required: true},
   startTime: {type: String, required: true},
   endTime: {type: String, required: true},
-  type: {type: String, required: true},
+  eventType: {type: String, required: true},
   info: {type: String, required: true},
 
 });
