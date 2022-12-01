@@ -1,29 +1,36 @@
-import React, { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
-import { signIn, signUp } from '../src/firebase';
-import styles from '../styles/login.module.css';
-import { useUser } from '../src/components/AppContext';
+import { useState } from 'react';
 import NavBar from '../src/components/NavBar/NavBar';
+import { useUserContext } from '../src/Contexts/UserContext';
+import { signIn, signUp } from '../src/firebase';
+import { createUser } from '../src/services/userService';
+import styles from '../styles/login.module.css';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLogin, setIsLogin] = useState(true);
-  const userContext = useUser();
+  const context = useUserContext();
   const router = useRouter();
 
   const handleSubmit = () => {
     if (isLogin) {
       signIn(email, password)
-        .then((credential) => {
-          userContext?.setUser({ uid: credential.user.uid });
+        .then(async (credentials) => {
+          const token = await credentials.user.getIdToken();
+          context.setToken(token);
+          context.setUid(credentials.user.uid);
           router.replace('/');
         })
         .catch((error) => console.log('Login error:', error));
     } else {
       signUp(email, password)
-        .then((credential) => {
-          userContext?.setUser({ uid: credential.user.uid });
+        .then(async (credentials) => {
+          const token = await credentials.user.getIdToken();
+          context.setToken(token);
+          context.setUid(credentials.user.uid);
+          credentials.user.email &&
+            (await createUser(token, credentials.user.email));
           router.replace('/');
         })
         .catch((error) => console.log('Register error:', error));
@@ -35,7 +42,7 @@ function Login() {
       <NavBar />
       <div className={styles.input}>
         <div className={styles.selector}>
-          <text
+          <span
             className={[
               styles.selectorText,
               styles.borderRight,
@@ -44,8 +51,8 @@ function Login() {
             onClick={() => setIsLogin(true)}
           >
             Login
-          </text>
-          <text
+          </span>
+          <span
             className={[
               styles.selectorText,
               !isLogin ? styles.selected : null,
@@ -53,7 +60,7 @@ function Login() {
             onClick={() => setIsLogin(false)}
           >
             Register
-          </text>
+          </span>
         </div>
         <form className={styles.formBody}>
           <input

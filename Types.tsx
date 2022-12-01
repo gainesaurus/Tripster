@@ -1,30 +1,30 @@
 export interface ITripItem {
-  _id: number;
+  _id?: string;
   title: string;
   startDate: string;
   endDate: string;
   picUrl: string;
   createdBy?: string;
-  attendees?: { userUid: string; accepted: Boolean }[];
+  attendees?: [string]; // UserUid
   events?: [string]; // eventId
   albums?: [string]; // AlbumId
   polls?: [string]; // PollId
   locations?: [string]; // LocationsId
   lodging?: [string]; // LodgingId
+  invites?: [string]; // UserUid
 }
 
-
 export interface IUser {
-  _id: number;
-  uid: number;
+  _id?: string;
+  uid: string;
   username: string;
   email: string;
   profile_pic: string;
 }
 
 export interface IEvent {
-  _id: number;
-  tripId: number;
+  _id: string;
+  tripId: string;
   title: string;
   startTime: string;
   endTime: string;
@@ -33,24 +33,24 @@ export interface IEvent {
 }
 
 export interface IPhoto {
-  _id: number;
-  tripId: number;
+  _id: string;
+  tripId: string;
   src: string;
   height: number;
   width: number;
 }
 
 export interface ILocation {
-  _id: number;
-  tripId: number;
+  _id: string;
+  tripId: string;
   info: string;
   latLng: string;
   ts: string;
 }
 
 export interface ILodge {
-  _id: number;
-  tripId: number;
+  _id: string;
+  tripId: string;
   title: string;
   address: string;
   picUrl: string;
