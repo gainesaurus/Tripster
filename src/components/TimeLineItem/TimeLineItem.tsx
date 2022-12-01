@@ -12,9 +12,10 @@ import {
 import styles from './TimeLineItem.module.css';
 
 
-function TimeLineItem ({ event }: any) {
+function TimeLineItem ({ event, deleteEvent }: any) {
   const [clicked, setClicked] = useState(false);
-  const dateTime = (DateTime.fromISO(event.ts).toLocaleString(DateTime.TIME_SIMPLE));
+  const dateTime = (DateTime.fromISO(event.startTime).toLocaleString(DateTime.TIME_SIMPLE));
+  const endTime = (DateTime.fromISO(event.endTime).toLocaleString(DateTime.TIME_SIMPLE));
 
   const eventResize = () => {
     if (!clicked) {
@@ -31,7 +32,7 @@ function TimeLineItem ({ event }: any) {
   return (
     <div className={styles.timeline}>
       <div className={styles.timelineItem}>
-        <h4>{dateTime}</h4>
+        <h4 className={styles.time}>{dateTime}</h4>
           {event.eventType == 'food' ? <Restaurant className={styles.restaurantIcon} /> : <></>}
           {event.eventType == 'active' ? <DirectionsRun className={styles.activeIcon} /> : <></>}
           {event.eventType == 'leisure' ? <AirlineSeatReclineExtra className={styles.leisureIcon} /> : <></>}
@@ -41,10 +42,11 @@ function TimeLineItem ({ event }: any) {
         <div id={`${event._id}card`} className={styles.timelineContent} onClick={eventResize}>
           <h3 className={styles.eventTitle}>{event.title}</h3>
           <div id={`${event._id}info`} className={styles.eventInfo}>
+            <p>{dateTime} - {endTime}</p>
             <p>{event.info}</p>
             <div className={styles.buttonDiv}>
               <button className={styles.editButton} type="button">Edit</button>
-              <button className={styles.deleteButton} >Delete</button>
+              <button className={styles.deleteButton} onClick={deleteEvent}>Delete</button>
             </div>
           </div>
         </div>

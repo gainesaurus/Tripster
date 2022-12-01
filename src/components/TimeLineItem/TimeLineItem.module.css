@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.time {
+  font-size: 1.1rem;
+}
+
 .timelineItem {
   display: grid;
   grid-template-columns: 80px 60px 1fr;

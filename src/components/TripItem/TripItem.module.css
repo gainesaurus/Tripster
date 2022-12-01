@@ -2,7 +2,6 @@
   display: flex;
   flex-direction:column;
   position: relative;
-
   margin-right: 1em;
   padding: 1rem;
   border: 1px solid #eaeaea;
@@ -11,6 +10,7 @@
   min-width: 400px;
   min-height: 250px;
   cursor: pointer;
+  box-shadow: 0 5px 10px -5px #2c4875;
 }
 
 .card:hover,
