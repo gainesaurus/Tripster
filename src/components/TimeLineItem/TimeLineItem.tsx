@@ -8,11 +8,16 @@ import {
   Luggage,
   ContentPaste,
 } from '@mui/icons-material';
+import { IEvent } from '../../../Types';
 
 import styles from './TimeLineItem.module.css';
 
+type TimeLineItemProps = {
+  event: IEvent;
+  deleteEvent: any;
+};
 
-function TimeLineItem ({ event, deleteEvent }: any) {
+function TimeLineItem ({ event, deleteEvent }: TimeLineItemProps) {
   const [clicked, setClicked] = useState(false);
   const dateTime = (DateTime.fromISO(event.startTime).toLocaleString(DateTime.TIME_SIMPLE));
   const endTime = (DateTime.fromISO(event.endTime).toLocaleString(DateTime.TIME_SIMPLE));

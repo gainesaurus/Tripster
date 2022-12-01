@@ -19,11 +19,11 @@
 .infoContainer {
   display: flex;
   flex-direction: column;
-  margin: 5%;
+  margin: 1rem;
 }
 
 .formHeading {
-  margin: 5% 0 2% 0;
+  margin: 1rem 0 0.2rem 0;
 }
 
 .input {
@@ -47,7 +47,7 @@
 }
 
 .buttonDiv {
-  margin: 5% 0 5% 0;
+  margin: 1rem 0 1rem 0;
   justify-self: center;
   align-self: center;
 }
@@ -62,20 +62,22 @@
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.4);
 }
 
-.cancelButton {
-  background-color: #ff6361;
-  color: white;
-  margin: 10px 10px 0 10px;
-  padding: 12px 20px 12px 20px;
+.XButton {
+  display: flex;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  color: black;
   border: none;
-  border-radius: 6px;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.4);
 }
 
 .submitButton:active {
   box-shadow: none;
 }
 
-.cancelButton:active {
-  box-shadow: none;
+.XButton:active {
+  background-color: #ff6361;
+  color: white;
+  border-radius: 6px;
 }

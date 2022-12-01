@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './CreateTripForm.module.css';
+import { Close } from '@mui/icons-material';
 
 import { FilePond, registerPlugin } from 'react-filepond';
 
@@ -15,9 +15,14 @@ import { useUserContext } from '../../Contexts/UserContext';
 import { uploadImage } from '../../firebase';
 import { createTrip } from '../../services/tripService';
 
-registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
+import styles from './CreateTripForm.module.css';
 
-const CreateTripForm = () => {
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
+interface Props {
+  closeForm:any;
+}
+
+const CreateTripForm = ({ closeForm }: Props) => {
   const initialState: ITripItem = {
     title: '',
     picUrl: '',
@@ -58,7 +63,10 @@ const CreateTripForm = () => {
 
   return (
     <div className={styles.formCont}>
-      <h3>Create a new trip</h3>
+      <div className={styles.titleX}>
+        <h3 className={styles.formTitle}>Create a new trip</h3>
+        <button className={styles.XButton} onClick={closeForm}><Close /></button>
+      </div>
       <form className={styles.formInputs}>
         <FilePond
           files={imgFiles.map((fileItem) => fileItem.file)}
