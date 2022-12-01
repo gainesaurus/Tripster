@@ -1,84 +1,94 @@
-import React, { useEffect, useState } from 'react';
-import styles from '../styles/profile.module.css';
-import NavBar from '../src/components/NavBar/NavBar';
-import HomeLeft from '../src/components/HomeLeft/HomeLeft';
-import { ITripItem } from '../Types';
+import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from 'react';
 import Divider from '../src/components/Divider/Divider';
-import Image from 'next/image';
-import { auth } from '../src/firebase';
+import HomeLeft from '../src/components/HomeLeft/HomeLeft';
+import NavBar from '../src/components/NavBar/NavBar';
 import TripInviteList from '../src/components/TripInviteList/TripInviteList';
+import { useUserContext } from '../src/Contexts/UserContext';
+import { uploadImage } from '../src/firebase';
+import { getInvites } from '../src/services/inviteService';
+import { getUser, updateUser } from '../src/services/userService';
+import styles from '../styles/profile.module.css';
+import { ITripItem, IUser } from '../Types';
 
 function Profile() {
-  //MOCK DATA
-  const tripItems: ITripItem[] = [
-    {
-      title: 'Yosemite',
-      startDate: 'June 3 2023',
-      endDate: 'June 10 2023',
-      _id: 1,
-      picUrl: './yosemite.jpg',
-    },
-    {
-      title: 'Paris',
-      startDate: 'Nov 30 2022',
-      endDate: 'Dec 12 2022',
-      _id: 2,
-      picUrl: './paris.jpg',
-    },
-    {
-      title: 'Mexico',
-      startDate: 'Sept 22 2019',
-      endDate: 'Sept 28 2019',
-      _id: 3,
-      picUrl: './mexico.webp',
-    },
-  ];
+  const initialState = {
+    _id: '',
+    uid: '',
+    username: '',
+    email: '',
+    profile_pic: '',
+  };
 
-  const [currentTrips, setCurrentTrips] = useState<ITripItem[]>([]);
-  const [pastTrips, setPastTrips] = useState<ITripItem[]>([]);
   const [tripInvites, setTripInvites] = useState<ITripItem[]>([]);
+  const [user, setUser] = useState<IUser>(initialState);
+  const userContext = useUserContext();
+  const inputFile = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    let currentTrips = tripItems.filter(
-      (item) => getTripStatus(item.startDate, item.endDate) === 'upcoming',
-    );
-    setCurrentTrips(currentTrips);
-    let pastTrips = tripItems.filter(
-      (item) => getTripStatus(item.startDate, item.endDate) === 'memories',
-    );
-    setPastTrips(pastTrips);
-    let tripInvites = tripItems.filter((item, index) => index !== 0);
-    setTripInvites(tripInvites);
-  }, []);
+    getInvites(userContext.token).then((invites) => {
+      invites && setTripInvites(invites);
+    });
+    getUser(userContext.uid).then((user) => {
+      user && setUser(user);
+      console.log(user);
+    });
+  }, [userContext]);
 
-  function getTripStatus(startDate: string, endDate: string) {
-    const currentDate = Date.now();
-    const start = new Date(startDate).getTime();
-    const end = new Date(endDate).getTime();
-    let tripDirectory;
-    if (currentDate > start && currentDate < end) tripDirectory = 'upcoming';
-    if (currentDate < start) tripDirectory = 'upcoming';
-    if (currentDate > end) tripDirectory = 'memories';
-    return tripDirectory;
-  }
+  const handleImgChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const newImg = e.target.files[0];
+      const blob = await newImg.arrayBuffer();
+      const img = await uploadImage(blob);
+      if (img) {
+        updateUser(userContext.token, { ...user, profile_pic: img?.imageUrl });
+        setUser({ ...user, profile_pic: img.imageUrl });
+      }
+    }
+  };
+
+  const handleUsernameChange = async (e: MouseEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    updateUser(userContext.token, user);
+  };
 
   return (
     <div className={styles.body}>
       <NavBar />
       <div className={styles.main}>
-        <HomeLeft currentTrips={currentTrips} pastTrips={pastTrips} />
+        <HomeLeft />
         <Divider />
         <div className={styles.profileContainer}>
           <div className={styles.profile}>
+            <input
+              type="file"
+              id="file"
+              ref={inputFile}
+              style={{ display: 'none' }}
+              accept="image/*"
+              multiple={false}
+              onChange={handleImgChange}
+            />
             <img
               alt="profile picture"
-              src="IMG_1640.jpg"
+              src={user.profile_pic}
               className={styles.profileImage}
+              onClick={() => inputFile.current?.click()}
             />
-            <div className={styles.profileInfo}>
-              <p className={styles.profileText}>Danielle</p>
-              <p className={styles.profileText}>{auth.currentUser?.email}</p>
-            </div>
+            <form className={styles.profileInfo}>
+              <input
+                type="text"
+                className={styles.profileText}
+                value={user.username}
+                onChange={(e) => setUser({ ...user, username: e.target.value })}
+                placeholder="Add your username"
+              />
+              <p className={styles.profileText}>{user.email}</p>
+              <input
+                type="submit"
+                value="Save"
+                onClick={handleUsernameChange}
+              />
+            </form>
           </div>
           <div className={styles.invitations}>
             {tripInvites.length > 0 ? (

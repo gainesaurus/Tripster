@@ -1,4 +1,4 @@
-import React from 'react';
+import { useTripsContext } from '../../Contexts/TripsContext';
 import TripList from '../TripList/TripList';
 import { ITripItem } from '../../../Types';
 import { AddBox } from '@mui/icons-material';
@@ -6,16 +6,12 @@ import { AddBox } from '@mui/icons-material';
 import styles from './HomeLeft.module.css';
 
 type HomeLeftProps = {
-  currentTrips: ITripItem[];
-  upcomingTrips: ITripItem[];
-  pastTrips: ITripItem[];
   openForm: any;
 };
 
-function HomeLeft({ currentTrips, upcomingTrips, pastTrips, openForm }: HomeLeftProps) {
-  console.log(currentTrips, pastTrips, upcomingTrips);
-
-
+function HomeLeft({ openForm }: HomeLeftProps) {
+  const context = useTripsContext();
+  
   return (
     <div className={styles.homeLeft}>
       <div className={styles.tripsTitleBox}>
@@ -26,15 +22,15 @@ function HomeLeft({ currentTrips, upcomingTrips, pastTrips, openForm }: HomeLeft
       </div>
       {
         currentTrips && currentTrips.length > 0 ?
-        <TripList trips={currentTrips} title={'Current Trips'} /> : <></>
+        <TripList trips={context.currentTrips} title={'Current Trips'} /> : <></>
       }
       {
         upcomingTrips && upcomingTrips.length > 0 ?
-        <TripList trips={upcomingTrips} title={'Upcoming Trips'} /> : <></>
+        <TripList trips={context.upcomingTrips} title={'Upcoming Trips'} /> : <></>
       }
       {
         pastTrips && pastTrips.length > 0 ?
-        <TripList trips={pastTrips} title={'Memories'} /> : <></>
+        <TripList trips={context.pastTrips} title={'Memories'} /> : <></>
       }
     </div>
   );

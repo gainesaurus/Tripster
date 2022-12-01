@@ -37,9 +37,11 @@
   height: 150px;
   width: 150px;
   border-radius: 50%;
+  object-fit: contain;
 }
 
 .profileText{
   font-size: large;
   margin: 0;
+  font-family: inherit;
 }

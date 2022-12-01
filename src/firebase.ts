@@ -1,16 +1,16 @@
+import { uuidv4 } from '@firebase/util';
 import { initializeApp } from 'firebase/app';
 import {
+  browserLocalPersistence,
   createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
-  UserCredential,
   signOut,
-  browserLocalPersistence,
+  UserCredential,
 } from 'firebase/auth';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
-import { uuidv4 } from '@firebase/util';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_API_KEY,

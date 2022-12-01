@@ -49,20 +49,26 @@ export async function resolveInvitation(
   req: NextApiRequest,
   res: NextApiResponse<ITripItem | { error: unknown }>,
 ) {
-  const id = req.query.id;
-  const uid = req.body.uid;
-  const invites = req.body.invites;
-  const filter = {
-    $and: [{ _id: id }, { invites: req.body.uid }],
-  };
-  const trip = await Trip.findOne<ITripItem>(filter).exec();
-  if (trip) {
-    trip.invites?.splice(trip.invites?.indexOf(uid), 1);
-    if (req.body.accepted) {
-      trip.attendees?.push(uid);
+  try {
+    const id = req.query.id;
+    const uid = req.body.uid;
+    const accepted = req.body.accepted;
+    const filter = {
+      $and: [{ _id: id }, { invites: req.body.uid }],
+    };
+    const trip = await Trip.findOne<ITripItem>(filter).exec();
+    if (trip) {
+      trip.invites?.splice(trip.invites?.indexOf(uid), 1);
+      if (accepted) {
+        trip.attendees?.push(uid);
+      }
+      await Trip.findByIdAndUpdate(trip._id, trip);
+      res.status(200).json(trip);
+    } else {
+      res.status(401).json({ error: 'Cannot edit trips you are not part of' });
     }
-    await Trip.findByIdAndUpdate(trip._id, trip);
-    res.status(200).json(trip);
-  } else
-    res.status(401).json({ error: 'Cannot edit trips you are not part of' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 }
