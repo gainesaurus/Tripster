@@ -28,7 +28,8 @@ export async function addNewTrip(
   res: NextApiResponse<ITripItem | { error: unknown }>,
 ) {
   try {
-    if (req.body.attendees && !req.body.attendees.includes(req.body.uid))
+    if (!req.body.attendees) req.body.attendees = [];
+    if (!req.body.attendees.includes(req.body.uid))
       req.body.attendees.push(req.body.uid);
     const trip = new Trip({
       title: req.body.title,
