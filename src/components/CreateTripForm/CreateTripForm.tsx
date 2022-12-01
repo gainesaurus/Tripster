@@ -14,8 +14,11 @@ import { createTrip } from '../../services/apiTrip';
 import { MoonLoader } from 'react-spinners';
 
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
+interface Props {
+  setTripAdded: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const CreateTripForm = () => {
+const CreateTripForm = ({ setTripAdded }: Props) => {
   const initialState: ITripItem = {
     title: '',
     picUrl: '',
@@ -49,6 +52,7 @@ const CreateTripForm = () => {
       alert('All field are required');
     }
     setIsLoading(false);
+    setTripAdded(true);
   };
 
   return (
