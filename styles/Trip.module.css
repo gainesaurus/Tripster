@@ -7,7 +7,6 @@
   flex: 1;
   height: 100vh;
   overflow-y: scroll;
-  /* transition: ease-in display 0.5s; */
 }
 
 .tripContainer {

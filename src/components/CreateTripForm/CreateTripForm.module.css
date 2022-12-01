@@ -1,12 +1,46 @@
 .formCont {
   display: flex;
   flex-direction: column;
+  background-color: white;
+  border: 2px solid #00202e;
+  border-radius: 6px;
+  height: fit-content;
+  width: 50%;
+  min-width: 400px;
+  max-width: 600px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.5);
+}
+
+.titleX {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.formTitle {
+  margin: 1em;
+}
+
+.XButton {
+  display: flex;
+  background: none;
+  color: black;
+  border: none;
+  margin: 5px 5px 0 0;
+  height: fit-content;
+  padding: 0;
+}
+
+.XButton:active {
+  background-color: #ff6361;
+  color: white;
+  border-radius: 6px;
 }
 
 .formInputs {
   display: flex;
   flex-direction: column;
-  margin-top: 1em;
+  margin: 1em;
 }
 
 .formContImage {
@@ -61,4 +95,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media screen and (min-width: 750px) {
+  button.XButton {
+    display: none;
+  }
 }

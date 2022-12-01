@@ -18,7 +18,7 @@
 .addIcon {
   display: flex;
   color: #003f5c;
-  font-size: 28px;
+  font-size: 2rem;
 }
 
 .addIcon:active {
@@ -44,5 +44,5 @@
   background-color: #ff6361;
   padding: 5px 10px 5px 10px;
   border-radius: 4px;
-  text-shadow: 1px 1px #00202e;
+  text-shadow: 1px 1px 1px black;
 }

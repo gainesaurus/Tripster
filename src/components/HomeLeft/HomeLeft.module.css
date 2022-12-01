@@ -1,7 +1,44 @@
 .homeLeft {
   display: flex;
   flex-direction: column;
-  padding: 2em 0em 1em 4em;
+  padding: 1em 0em 1em 1em;
   flex: 1;
   overflow-x: hidden;
+}
+
+.tripsTitleBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tripsTitle {
+  display: flex;
+  margin: 0;
+}
+
+.addTripBtn {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin: 0 2em 0 0;
+  background: none;
+  color: #003f5c;
+  border: none;
+  border-radius: 6px;
+}
+
+.addIcon {
+  font-size: 2rem;
+}
+
+.addIcon:active {
+  color: #2c4875;
+}
+
+@media screen and (max-width: 750px) {
+  button.addTripBtn {
+    display: flex;
+  }
 }

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import styles from '../styles/Home.module.css';
 import { useState } from 'react';
 import { ITripItem } from '../Types';
 
@@ -10,6 +9,8 @@ import Divider from '../src/components/Divider/Divider';
 import { getAllTrips } from '../src/services/apiTrip';
 import { auth } from '../src/firebase';
 import { useRouter } from 'next/router';
+
+import styles from '../styles/Home.module.css';
 
 export default function Home() {
   const [currentTrips, setCurrentTrips] = useState<ITripItem[]>([]);
@@ -22,6 +23,7 @@ export default function Home() {
     if (auth.currentUser) {
       auth.currentUser.getIdToken().then((token) => {
         getAllTrips(token).then((tripItems) => {
+          console.log(tripItems)
           if (tripItems) {
             let currentTrips = tripItems.filter(
               (item) =>
@@ -56,18 +58,30 @@ export default function Home() {
     return tripDirectory;
   }
 
+  const openForm = () => {
+    document.getElementById('createTripForm')!.style.display = 'flex';
+    document.getElementById('createTripForm')!.style.position = 'absolute';
+  }
+
+  const closeForm = () => {
+    document.getElementById('createTripForm')!.style.display = 'none';
+  }
+
   return (
     <div>
       <NavBar />
       <div className={styles.main}>
-        <HomeLeft
-          currentTrips={currentTrips}
-          upcomingTrips={upcomingTrips}
-          pastTrips={pastTrips}
-        />
+        <div className={styles.homeLeft}>
+          <HomeLeft
+            currentTrips={currentTrips}
+            upcomingTrips={upcomingTrips}
+            pastTrips={pastTrips}
+            openForm={openForm}
+          />
+        </div>
         <Divider />
-        <div className={styles.homeRight}>
-          <CreateTripForm setTripAdded={setTripAdded} />
+        <div className={styles.homeRight} id='createTripForm'>
+          <CreateTripForm setTripAdded={setTripAdded} closeForm={closeForm} />
         </div>
       </div>
     </div>
