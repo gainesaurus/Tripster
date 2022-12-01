@@ -1,4 +1,4 @@
-const BASEurl = '';
+const BASEurl = '/api';
 import { IEvent } from "../../Types";
 
 export const getEventsByTripId = async (tripId:string) => {
