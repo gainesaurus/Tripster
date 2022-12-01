@@ -42,7 +42,7 @@ function TimeLineList ({ tripId }:any) {
 
   const submitEvent = (e:any) => {
     e.preventDefault();
-    // createEvent(tripId).then((events:any) => {setAllEvents(events)})
+    createEvent(tripId).then((events:any) => {setAllEvents(events)})
     console.log('submitEvent called');
     e.currentTarget.reset()
     closeForm();
