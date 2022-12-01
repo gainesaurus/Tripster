@@ -12,3 +12,13 @@ export async function createTrip(trip: ITripItem, token: string) {
     token,
   );
 }
+
+export async function getAllTrips(token: string) {
+  return await fetchData<ITripItem[]>(
+    '/trips',
+    {
+      method: 'GET',
+    },
+    token,
+  );
+}
