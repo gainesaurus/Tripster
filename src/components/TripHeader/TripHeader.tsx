@@ -1,15 +1,20 @@
 import React, { FC } from 'react';
+import { DateTime } from "luxon";
 
 import styles from './TripHeader.module.css';
 
 interface TripHeaderProps {
   title: string,
-  start: string,
-  end: string,
+  start: any,
+  end: any,
   pic: string
 }
 
 const TripHeader: FC<TripHeaderProps> = ({title, start, end, pic}) => {
+
+  const eventStart = (DateTime.fromISO(start).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY));
+
+  const eventEnd = (DateTime.fromISO(end).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY));
 
   return (
     <div
@@ -26,7 +31,7 @@ const TripHeader: FC<TripHeaderProps> = ({title, start, end, pic}) => {
       </picture> */}
       <div className={styles.tripHeadTitle}>
         <h2 className={styles.tripTitle}>{title}</h2>
-        <h3 className={styles.tripTitle}>{start} - {end}</h3>
+        <h3 className={styles.tripTitle}><>{eventStart} - {eventEnd}</></h3>
       </div>
     </div>
   )
