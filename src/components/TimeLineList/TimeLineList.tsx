@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, FC } from 'react';
 import _ from 'lodash';
 import { DateTime } from "luxon";
 
@@ -10,8 +10,10 @@ import { IEvent } from '../../../Types';
 import { getEventsByTripId, createEvent, updateEvent, removeEvent } from '../../services/eventService';
 
 import styles from './TimeLineList.module.css';
-
-function TimeLineList ({ tripId }:any) {
+interface TimeLineListProps {
+  tripId: any;
+}
+function TimeLineList({ tripId }:TimeLineListProps) {
 
   const mockEvents = [
     {_id: 12, startTime: "2022-09-16T12:20:46.587Z", endTime: "2022-09-16T12:21:46.587Z", title: 'Pickup Scott at the Airport', eventType: 'travel', info: 'Delta Flight# AZ235979. Meet him at Terminal #2!'},
