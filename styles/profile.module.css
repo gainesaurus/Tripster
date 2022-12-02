@@ -13,35 +13,30 @@
   color:rgb(33, 33, 33);
 }
 
+.leftSide{
+  width: 50%;
+  display: flex;
+  padding: 2%;
+  max-width: 50%;
+}
+
 .profileContainer{
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 2em 0em 1em 4em;
+  padding-top: 2em;
 }
 
-.profile{
+.invitations{
   display: flex;
-  flex-direction: row;
-  padding-left: 1em;
 }
 
-.profileInfo{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 1em;
-}
-
-.profileImage {
-  height: 150px;
-  width: 150px;
-  border-radius: 50%;
-  object-fit: contain;
-}
-
-.profileText{
-  font-size: large;
-  margin: 0;
-  font-family: inherit;
+@media screen and (max-width:750px) {
+  .leftSide{
+    display: none;
+  }
+  .profileContainer{
+    padding: 2%;
+  }
+  
 }

@@ -32,9 +32,8 @@ export function TripsProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    console.log('Updating trip lists');
-    if (userContext.token !== '') {
-      getAllTrips(userContext.token).then((tripItems) => {
+    if (userContext.authUser && userContext.authUser?.token !== '') {
+      getAllTrips(userContext.authUser.token).then((tripItems) => {
         if (tripItems) {
           let currentTrips = tripItems.filter(
             (item) => getTripStatus(item.startDate, item.endDate) === 'current',
@@ -54,7 +53,7 @@ export function TripsProvider({ children }: { children: ReactNode }) {
       });
     }
     setTripAdded(false);
-  }, [userContext.token, tripAdded]);
+  }, [userContext.authUser, tripAdded]);
 
   function getTripStatus(startDate: string, endDate: string) {
     const currentDate = Date.now();

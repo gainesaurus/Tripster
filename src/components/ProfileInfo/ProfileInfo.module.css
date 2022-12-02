@@ -1,0 +1,50 @@
+.profile{
+  display: flex;
+  flex-direction: row;
+}
+
+.profileInfo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profileImage {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.profileText{
+  border: 1px solid #00202e;
+  margin: 5px;
+  padding: 5px;
+  font-size: large;
+  font-family: inherit;
+  border-radius: 5px;
+}
+
+.save{
+  border: 0px;
+  margin: 5px;
+  padding: 5px;
+  width: 60%;
+  background-color: #00202e;
+  color:white;
+  border-radius: 5px;
+  align-self: center;
+  font-family: inherit;
+  font-size: large;
+}
+
+@media screen and (max-width:750px) {
+  .profileImage{
+    height: 100px;
+    width: 100px;
+  }
+  .profileText{
+    font-size: medium;
+  }
+  
+}

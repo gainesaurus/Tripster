@@ -16,10 +16,7 @@ function Login() {
   const handleSubmit = () => {
     if (isLogin) {
       signIn(email, password)
-        .then(async (credentials) => {
-          const token = await credentials.user.getIdToken();
-          context.setToken(token);
-          context.setUid(credentials.user.uid);
+        .then(() => {
           router.replace('/');
         })
         .catch((error) => console.log('Login error:', error));
@@ -27,8 +24,6 @@ function Login() {
       signUp(email, password)
         .then(async (credentials) => {
           const token = await credentials.user.getIdToken();
-          context.setToken(token);
-          context.setUid(credentials.user.uid);
           credentials.user.email &&
             (await createUser(token, credentials.user.email));
           router.replace('/');

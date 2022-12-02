@@ -10,7 +10,6 @@ export async function respondInvite(
   accepted: boolean,
   token: string,
 ) {
-  console.log(JSON.stringify({ accepted }));
   return await fetchData<ITripItem>(
     `/trips/${tripId}/invites`,
     { method: 'PUT', body: JSON.stringify({ accepted }) },
