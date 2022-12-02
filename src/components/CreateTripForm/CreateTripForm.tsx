@@ -2,7 +2,6 @@ import { Close } from '@mui/icons-material';
 import React, { useState } from 'react';
 
 import { FilePond, registerPlugin } from 'react-filepond';
-
 import { FilePondFile } from 'filepond';
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
@@ -18,10 +17,10 @@ import { createTrip } from '../../services/tripService';
 import styles from './CreateTripForm.module.css';
 
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
+
 interface Props {
   closeForm: any;
 }
-
 const CreateTripForm = ({ closeForm }: Props) => {
   const initialState: ITripItem = {
     title: '',
