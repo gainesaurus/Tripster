@@ -1,5 +1,5 @@
 import mongoose from '../database';
-import { ITripItem } from '../Types';
+import { ITripItem, IPhoto } from '../Types';
 
 const Schema = mongoose.Schema;
 const tripSchema = new Schema<ITripItem>({
@@ -10,7 +10,13 @@ const tripSchema = new Schema<ITripItem>({
   createdBy: { type: String, required: true }, // userUid
   attendees: [String], // userUid
   events: [String], // eventId
-  albums: [String], // AlbumId
+  photos: {IPhoto:{
+    _id: String,
+    tripId: String,
+    src: String,
+    height: Number,
+    width: Number,
+  }}, // AlbumId
   polls: [String], // PollId
   locations: [String], // LocationsId
   lodging: [String], // LodgingId

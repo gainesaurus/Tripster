@@ -7,7 +7,7 @@ export interface ITripItem {
   createdBy?: string;
   attendees?: [string]; // UserUid
   events?: [string]; // eventId
-  albums?: [string]; // AlbumId
+  photos?: [IPhoto]; // AlbumId
   polls?: [string]; // PollId
   locations?: [string]; // LocationsId
   lodging?: [string]; // LodgingId
