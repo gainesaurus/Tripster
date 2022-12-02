@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { Close } from '@mui/icons-material';
+import React, { useState } from 'react';
 
 import { FilePond, registerPlugin } from 'react-filepond';
 
@@ -19,7 +19,7 @@ import styles from './CreateTripForm.module.css';
 
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 interface Props {
-  closeForm:any;
+  closeForm: any;
 }
 
 const CreateTripForm = ({ closeForm }: Props) => {
@@ -46,8 +46,8 @@ const CreateTripForm = ({ closeForm }: Props) => {
   const handleSubmit = async (e: React.MouseEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    const token = userContext.token;
-    if (trip != initialState && imgFiles.length > 0) {
+    const token = userContext.authUser?.token;
+    if (trip != initialState && token && imgFiles.length > 0) {
       const uploaded = await uploadPic();
       if (uploaded) {
         await createTrip({ ...trip, picUrl: uploaded.imageUrl }, token);
@@ -55,7 +55,7 @@ const CreateTripForm = ({ closeForm }: Props) => {
         setImgFiles([]);
       }
     } else {
-      alert('All field are required');
+      alert('All fields are required');
     }
     setIsLoading(false);
     context.setTripAdded(true);
@@ -65,7 +65,9 @@ const CreateTripForm = ({ closeForm }: Props) => {
     <div className={styles.formCont}>
       <div className={styles.titleX}>
         <h3 className={styles.formTitle}>Create a new trip</h3>
-        <button className={styles.XButton} onClick={closeForm}><Close /></button>
+        <button className={styles.XButton} onClick={closeForm}>
+          <Close />
+        </button>
       </div>
       <form className={styles.formInputs}>
         <FilePond

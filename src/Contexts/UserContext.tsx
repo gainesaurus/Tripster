@@ -1,4 +1,18 @@
-import React, { createContext, ReactNode, useContext, useState } from 'react';
+import { User } from 'firebase/auth';
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+import { auth } from '../firebase';
+
+interface AuthUser {
+  uid: string;
+  email: string | null;
+  token: string;
+}
 
 const UserContext = createContext<Context | undefined>(undefined);
 
@@ -9,22 +23,48 @@ export function useUserContext() {
 }
 
 export function UserProvider({ children }: { children: ReactNode }) {
-  const [token, setToken] = useState('');
-  const [uid, setUid] = useState('');
+  const [authUser, setAuthUser] = useState<AuthUser | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  const formatAuthUser = async (user: User) => {
+    const token = await user.getIdToken();
+    const authUser: AuthUser = {
+      uid: user.uid,
+      email: user.email,
+      token,
+    };
+    return authUser;
+  };
+
+  const authStateChanged = async (authState: User | null) => {
+    if (!authState) {
+      setAuthUser(null);
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+    const formated = await formatAuthUser(authState);
+    setAuthUser(formated);
+    setLoading(false);
+    console.log('AuthUser', authUser);
+  };
+
+  // listen for Firebase state change
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(authStateChanged);
+    return () => unsubscribe();
+  }, []);
 
   const value = {
-    token,
-    setToken,
-    uid,
-    setUid,
+    authUser,
+    loading,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
 
 type Context = {
-  token: string;
-  setToken: React.Dispatch<React.SetStateAction<string>>;
-  uid: string;
-  setUid: React.Dispatch<React.SetStateAction<string>>;
+  authUser: AuthUser | null;
+  loading: boolean;
 };
