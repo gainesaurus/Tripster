@@ -8,7 +8,6 @@ export async function getUser(
 ) {
   try {
     const uid = req.query.uid;
-    console.log(uid);
     const user = await User.findOne<IUser>({ uid }).exec();
     if (user) res.status(200).json(user);
     else throw new Error("Couldn't find user");
@@ -23,7 +22,6 @@ export async function postUser(
   res: NextApiResponse<IUser | { error: unknown }>,
 ) {
   try {
-    console.log('aa');
     const user = new User<IUser>({
       email: req.body.email,
       profile_pic: 'add_photo.png',

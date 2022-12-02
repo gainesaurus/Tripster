@@ -19,8 +19,8 @@ export default function TripPage() {
   //Mock Data
   let trip = {
     title: 'Grand Tetons FTW',
-    startDate: 'May 3 2023',
-    endDate: 'May 9 2023',
+    startDate: '2023-05-03T07:00:00.000Z',
+    endDate: '2023-05-09T07:00:00.000Z',
     _id: '1',
     picUrl: './yosemite.jpg',
     attendees: [
@@ -85,6 +85,8 @@ export default function TripPage() {
       },
     ],
   };
+
+
 
   return (
     <div className={styles.page}>

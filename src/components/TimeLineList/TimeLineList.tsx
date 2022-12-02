@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import _ from 'lodash';
 import { DateTime } from "luxon";
 
@@ -7,6 +7,7 @@ import TimeLineItem from '../TimeLineItem/TimeLineItem';
 import AddEventForm from '../AddEventForm/AddEventForm';
 import { IEvent } from '../../../Types';
 
+import { useUserContext } from '../../Contexts/UserContext';
 import { getEventsByTripId, createEvent, updateEvent, removeEvent } from '../../services/eventService';
 
 import styles from './TimeLineList.module.css';
@@ -14,6 +15,9 @@ interface TimeLineListProps {
   tripId: any;
 }
 function TimeLineList({ tripId }:TimeLineListProps) {
+  const user = useUserContext();
+  const [tripEvent, setTripEvent] = useState<IEvent>();
+
 
   const mockEvents = [
     {_id: 12, startTime: "2022-09-16T12:20:46.587Z", endTime: "2022-09-16T12:21:46.587Z", title: 'Pickup Scott at the Airport', eventType: 'travel', info: 'Delta Flight# AZ235979. Meet him at Terminal #2!'},
@@ -26,9 +30,9 @@ function TimeLineList({ tripId }:TimeLineListProps) {
 
   const [allEvents, setAllEvents] = useState(mockEvents);
 
-  //  useEffect(() => {
-  //   getEventsByTripId(tripId).then((events:any) => {setAllEvents(events)})
-  // }, []);
+   useEffect(() => {
+    user.authUser && getEventsByTripId(user.authUser.token, tripId).then((events:any) => { console.log(events);setAllEvents(events)})
+  }, [user.authUser, tripId]);
 
   const eventDay = (item: any) => (DateTime.fromISO(item.startTime).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY));
 
@@ -44,15 +48,15 @@ function TimeLineList({ tripId }:TimeLineListProps) {
 
   const submitEvent = (e:any) => {
     e.preventDefault();
-    createEvent(tripId).then((events:any) => {setAllEvents(events)})
+    user.authUser && tripEvent && createEvent(user.authUser.token, tripEvent, tripId).then((events:any) => {setAllEvents(events)})
     console.log('submitEvent called');
-    e.reset()
+    e.target.reset()
     closeForm();
   }
 
-  const deleteEvent = (id:string) => {
+  const deleteEvent = (event:IEvent) => {
     console.log('deleteEvent called');
-    // removeEvent(id).then((events:any) => {setAllEvents(events)})
+    user.authUser && removeEvent(user.authUser.token, event, tripId).then((events:any) => {setAllEvents(events)})
   }
 
   return (
@@ -64,12 +68,12 @@ function TimeLineList({ tripId }:TimeLineListProps) {
         </button>
       </div>
       <div id='addEventForm' className={styles.addEventForm}>
-        <AddEventForm closeForm={closeForm} submitEvent={submitEvent}/>
+        <AddEventForm tripEvent={tripEvent} setTripEvent={setTripEvent} closeForm={closeForm} submitEvent={submitEvent}/>
       </div>
       {Object.entries(result).map(([day, events]) => ([
         <h4 key={day} className={styles.timelineDate}>{day}</h4>,
         events.map((event: any) =>
-        <TimeLineItem key={event.startTime} event={event} deleteEvent={deleteEvent} />
+        <TimeLineItem key={event._id} event={event} deleteEvent={deleteEvent} />
       )]))}
     </div>
   )

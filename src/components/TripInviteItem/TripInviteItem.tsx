@@ -10,9 +10,10 @@ interface TripItemProps {
 
 const TripInviteItem: FC<TripItemProps> = ({ trip }) => {
   const created_by = 'Jane Doe';
-  const context = useUserContext();
+  const userContext = useUserContext();
   async function handleResponseInvite(response: boolean) {
-    if (trip._id) respondInvite(trip._id, response, context.token);
+    if (userContext.authUser && trip._id)
+      respondInvite(trip._id, response, userContext.authUser.token);
   }
 
   return (

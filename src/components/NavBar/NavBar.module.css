@@ -12,7 +12,7 @@
 }
 
 .spacer {
-  height: 100px;
+  height: 90px;
 }
 
 .para {
@@ -23,7 +23,7 @@
 
 .logo{
   cursor: pointer;
-  height: 70px;
+  height: 60px;
 }
 
 .userInfo {
@@ -36,21 +36,27 @@
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  margin: 0px 15px;
+  margin: 0 1em 0 1em;
   cursor: pointer;
 }
 
 .logout {
-  margin: 0px 15px;
+  margin: 0 1em 0 0;
   padding: 8px 12px;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   background-color: white;
   cursor: pointer;
 }
 
 @media screen and (max-width: 750px) {
   p.para {
+    display: none;
+  }
+}
+
+@media screen and (max-width:380px) {
+  .profile{
     display: none;
   }
 }
