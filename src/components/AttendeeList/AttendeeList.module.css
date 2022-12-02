@@ -4,9 +4,36 @@
   margin: 5% 2% 0 2%;
 }
 
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
 .attendeeTitle {
   margin: 0;
   font-size: 1.5rem;
+}
+
+.button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.addIcon {
+  display: flex;
+  color: #003f5c;
+  font-size: 2rem;
+}
+
+.addIcon:active {
+  color: #2c4875;
+}
+
+.addAttendeeForm {
+  display: none;
 }
 
 .attendeeList {
@@ -15,13 +42,4 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-}
-
-.profilePic {
-  display: flex;
-  height: 4rem;
-  border-radius: 50%;
-  aspect-ratio: 1;
-  margin: 5px;
-  box-shadow: 0 5px 10px -5px #2c4875;
 }
