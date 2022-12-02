@@ -40,6 +40,11 @@
   cursor: pointer;
 }
 
+.blankProfile {
+  color: white;
+  margin: 0 1em 0 1em;
+}
+
 .logout {
   margin: 0 1em 0 0;
   padding: 8px 12px;

@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { logout } from '../../firebase';
 import styles from './NavBar.module.css';
+import { AccountCircle } from '@mui/icons-material';
 
 const NavBar = () => {
   //MOCKDATA
@@ -8,7 +9,7 @@ const NavBar = () => {
     name: 'Danielle',
     user: 'daniellestroscher',
     email: 'd@test.com',
-    profile_pic: 'url...',
+    profile_pic: '',
   };
 
   const router = useRouter();
@@ -39,12 +40,12 @@ const NavBar = () => {
           {router.pathname !== '/login' ? (
             <section className={styles.userInfo}>
               <p className={styles.para}>Welcome back {user.name}!</p>
-              <img
-                src="IMG_1640.jpg"
+              {user.profile_pic ? <img
+                src={user.profile_pic}
                 alt="profile pic"
                 className={styles.profile}
                 onClick={goToProfile}
-              />
+              /> : <AccountCircle className={styles.blankProfile} fontSize='large' />}
               <button className={styles.logout} onClick={handleLogout}>
                 Logout
               </button>

@@ -3,7 +3,7 @@
   position: relative;
   justify-content: center;
   align-items: center;
-  height: 20vh;
+  height: 25vh;
   min-height: 150px;
   width: 100%;
   border-radius: 6px;
@@ -23,6 +23,7 @@
   position: absolute;
   bottom: 5px;
   left: 5px;
+  font-size: 20px;
   color: white;
   border-radius: 6px;
   backdrop-filter: blur(1px);
@@ -33,4 +34,11 @@
   display: flex;
   margin: 0;
   text-shadow: 1px 1px 1px black;
+}
+
+@media screen and (max-width:750px) {
+  .tripHeadTitle
+  {
+    font-size: 16px;
+  }
 }

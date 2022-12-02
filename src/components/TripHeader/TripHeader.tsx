@@ -23,6 +23,7 @@ const TripHeader: FC<TripHeaderProps> = ({title, start, end, pic}) => {
       backgroundImage: `url(${pic})`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
+      backgroundPosition: 'center'
     }}
     >
       {/* <picture className={styles.tripHeadImage} >
