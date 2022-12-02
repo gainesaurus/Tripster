@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import LodgingItem from '../LodgingItem/LodgingItem';
 import AddLodgingForm from '../AddLodgingForm/AddLodgingForm';
 import { ILodge } from '../../../Types';
@@ -6,11 +6,27 @@ import { ILodge } from '../../../Types';
 import styles from './LodgingList.module.css';
 import { AddBox } from '@mui/icons-material';
 
-interface LodgingListProps{
-  lodging: Array<ILodge>
-}
 
-const  LodgingList: FC<LodgingListProps> = ({ lodging }) => {
+// interface LodgingListProps{
+//   lodging: Array<ILodge>
+// }
+
+const  LodgingList = () => {
+  const [allLodging, setAllLodging] = useState<ILodge[]>([{
+    title: 'Danielles Place',
+    address: '6155 Oracle Rd, Sechelt, BC',
+    latLng: {
+      lat: 1,
+      lng: -2,
+    },
+    _id: '102',
+    tripId: '1',
+  }],);
+
+  useEffect(()=> {
+    setAllLodging(allLodging);
+
+  }, [allLodging])
 
   const openForm = () => {
     document.getElementById('addLodgingForm')!.style.display = 'flex';
@@ -29,11 +45,11 @@ const  LodgingList: FC<LodgingListProps> = ({ lodging }) => {
         </button>
       </div>
       <div id='addLodgingForm' className={styles.addLodgingForm}>
-        <AddLodgingForm closeForm={closeForm}/>
+        <AddLodgingForm closeForm={closeForm} setAllLodging={setAllLodging} allLodging={allLodging}/>
       </div>
       <div className={styles.LodgeListContainer}>
         {
-          lodging.map((lodge:ILodge, i)=> {
+          allLodging.map((lodge:ILodge, i)=> {
             return  <LodgingItem key={i + 1} lodge={lodge} />
           })
         }

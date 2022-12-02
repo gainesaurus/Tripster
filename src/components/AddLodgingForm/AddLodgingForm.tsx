@@ -1,16 +1,31 @@
 import React, { useState, useRef } from 'react';
 
-import { Loader } from '@googlemaps/js-api-loader';
 import styles from './AddLodgingForm.module.css';
-
+import { Close } from '@mui/icons-material';
+import { createLodging } from '../../services/lodgingService';
+import { Loader } from '@googlemaps/js-api-loader';
+import { useRouter } from 'next/router';
+import { useUserContext } from '../../Contexts/UserContext';
+import { ILodge } from '../../../Types';
 
 const libraries = ["places"] as any;
 
-function AddLodgingForm ({ closeForm }: any) {
+interface AddLodgingProps {
+  closeForm: () => void
+  setAllLodging: any
+  allLodging: ILodge[]
+}
+
+function AddLodgingForm ({ closeForm, setAllLodging, allLodging }:AddLodgingProps) {
+  const user = useUserContext();
   let autoCompleteRef = useRef<any>();
   let inputRef = useRef<any>();
   const [latLng, setLatLng] = useState<google.maps.LatLng>();
+  const [formattedAddress, setFormattedAddress] = useState<string>();
+  const [title, setTitle] = useState<string>();
 
+  const router = useRouter()
+  const tripId = router.query.id;
 
   const loader = new Loader({
     apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
@@ -31,6 +46,7 @@ function AddLodgingForm ({ closeForm }: any) {
       let lat = place.geometry.location.lat()
       let lng = place.geometry.location.lng()
       setLatLng({lat, lng} as google.maps.LatLng);
+      setFormattedAddress(place.name);
     });
 
     let map = new google.maps.Map(document.getElementById('map-display') as HTMLElement, {
@@ -50,37 +66,65 @@ function AddLodgingForm ({ closeForm }: any) {
   })
   .catch((e) => console.log(e));
 
+  //HANDLE SUBMIT
+  const handleSubmit = (e:any) => {
+    e.preventDefault();
+
+    const lodge = {
+      tripId: tripId as string,
+      title: title as string,
+      address: formattedAddress as string,
+      latLng: latLng as any,
+    }
+    console.log(lodge)
+    user.authUser && lodge && createLodging(user.authUser.token, lodge).then((lodge:ILodge) => {setAllLodging({...allLodging, lodge})})
+
+    // setTitle('');
+    // setFormattedAddress();
+    // setLatLng(null);
+
+    closeForm();
+  }
+
   return (
-    <div className={styles.addEventContainer}>
-      <div className={styles.infoContainer}>
-        <h2>Share where you're staying!</h2>
+    <div className={styles.addLodgingContainer}>
+      <form onSubmit={handleSubmit} className={styles.addLodgingContainer}>
+      <button className={styles.XButton} onClick={closeForm}><Close /></button>
+        <div className={styles.infoContainer}>
+          <h2>Share where you're staying!</h2>
           <input
-          id='search-place'
-          ref={inputRef}
-          type="text"
-          placeholder="Search for your place."
-          className={styles.lodgingSearchInput}
-          ></input>
+            placeholder="What do you want to call this place?"
+            className={styles.lodgingSearchInput}
+            value={title}
+            onChange={(e)=>setTitle(e.target.value)}
+            ></input>
 
-      </div>
-      {
-        latLng?
-        <div className={styles.mapDisplay} id='map-display'>
+            <input
+            id='search-place'
+            ref={inputRef}
+            type="text"
+            placeholder="Search for your place."
+            className={styles.lodgingSearchInput}
+            ></input>
+
         </div>
-        : <></>
-      }
-      <input
-      className={styles.lodgingSearchInput}
-      type='text-box'
-      placeholder='anything else you want to share?'
-      >
+        {
+          latLng?
+          <div className={styles.mapDisplay} id='map-display'>
+          </div>
+          : <></>
+        }
 
-      </input>
-
-      <div className={styles.buttonDiv}>
-        <button className={styles.submitButton}>Submit</button>
-        <button className={styles.cancelButton} onClick={closeForm}>Cancel</button>
-      </div>
+        <div className={styles.buttonDiv}>
+          <button
+            type='submit'
+            className={styles.submitButton}
+            onClick={async (e) => handleSubmit(e)}
+          >
+            Submit
+          </button>
+        </div>
+      </form>
     </div>
 
   )

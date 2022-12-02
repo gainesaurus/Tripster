@@ -19,7 +19,7 @@ export default function TripPage() {
   const router = useRouter();
   const { id }:any = router.query;
   const user = useUserContext();
- 
+
 
   //Mock Data
   // let mockTrip = {
@@ -108,8 +108,8 @@ export default function TripPage() {
           <AttendeeList attendees={trip.attendees} />
           {/* <AlbumList photos={trip.photos} id={trip._id} /> */}
           <TimeLineList tripId={id} />
-          <TripPinDropList pinDrops={trip.locations} />
-          <LodgingList lodging={trip.lodging}></LodgingList>
+          <TripPinDropList pinDrops={trip.locations}/>
+          <LodgingList></LodgingList>
         </div>
       </div>
     </div>

@@ -3,27 +3,43 @@
   flex-direction: row;
   padding: 10px;
   overflow: hidden;
-  width: 300px;
+  width: 270px;
   height: 140px;
   margin-right: 4%;
   box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
   border-radius: 6px;
-  position: relative
+  position: relative;
+  border: 2px solid #ffd380;
 }
 .lodgeLink {
   position: absolute;
+  bottom: 20px;
+  left: 18px;
   display: flex;
   font-size: 12px;
-  bottom: 15px;
+  border: 3px solid #ff8531;
+  border-radius: 6px;
+  background-color: #ff6361;
+  color:white;
+  padding: 5px;
+
 }
 .lodgingInfo {
   margin: 10px 0px 0px 10px;
   font-size: 15px;
-
 }
 .title {
   font-weight: 600;
+  z-index: 100;
 }
 .address {
   font-size: 12px;
+  z-index: 100;
+}
+.cottage {
+  font-size: 110px;
+  padding: 10px;
+  color: #2c4875;
+  opacity: .7;
+  z-index: 0;
 }

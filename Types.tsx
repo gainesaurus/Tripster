@@ -44,15 +44,22 @@ export interface ILocation {
   _id: string;
   tripId: string;
   info: string;
-  latLng: string;
-  ts: string;
+  latLng: {
+    lat: number;
+    lng: number;
+  };
+  ts?: string;
+  uid?: string;
 }
 
 export interface ILodge {
-  _id: string;
+  _id?: string;
   tripId: string;
   title: string;
   address: string;
-  picUrl: string;
-  latLng: string;
+  latLng: {
+    lat: number;
+    lng: number;
+  };
+  uid?: string;
 }

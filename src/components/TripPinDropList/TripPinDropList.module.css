@@ -25,5 +25,22 @@
   display: none;
 }
 
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
+.button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 
+.addIcon {
+  color: #003f5c;
+  font-size: 28px;
+}
+.addPinDropForm {
+  display: none;
+}
