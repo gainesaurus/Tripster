@@ -1,12 +1,11 @@
 import mongoose from '../database';
-import { ILodge } from '../Types';
+import { ILocation } from '../Types';
 
 const Schema = mongoose.Schema;
-const LodgingSchema = new Schema<ILodge>({
+const LocationSchema = new Schema<ILocation>({
 
   tripId: {type: String, required: true},
-  title: {type: String, required: true},
-  address: {type: String, required: true},
+  info: {type: String, required: true},
   latLng: {
     type: {
       lat: {type: Number, required: true},
@@ -16,6 +15,6 @@ const LodgingSchema = new Schema<ILodge>({
 
 });
 
-const Lodging =
-  mongoose.models.Lodging || mongoose.model<ILodge>('Lodging', LodgingSchema);
-export default Lodging;
+const Location =
+  mongoose.models.Location || mongoose.model<ILocation>('Lodging', LocationSchema);
+export default Location;

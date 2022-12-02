@@ -51,14 +51,20 @@ export default function TripPage() {
     locations: [
       {
         info: 'Tonights Beach Bonfire',
-        latLng: '40.6063179, -122.5301481',
+        latLng:{
+          lat: 40.6063179,
+          lng: -122.5301481,
+        },
         ts: '04/20/2022',
         _id: '100',
         tripId: '345678',
       },
       {
         info: 'Meet here before site-seeing today!',
-        latLng: '34.67, -10.88',
+        latLng: {
+          lat: 1,
+          lng: -2,
+        },
         ts: '04/20/2022',
         _id: '101',
         tripId: '345678',
@@ -70,7 +76,10 @@ export default function TripPage() {
         address: '6155 Oracle Rd, Sechelt, BC, Canada',
         picUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMmrIA27K-t7Uf9LMW9ZztqY9kb9lGzLKrqw&usqp=CAU',
-        latLng: '',
+        latLng: {
+          lat: 1,
+          lng: -2,
+        },
         _id: '102',
         tripId: '345678',
       },
@@ -95,7 +104,7 @@ export default function TripPage() {
           <AttendeeList attendees={trip.attendees} />
           <AlbumList photos={trip.photos} id={trip._id} />
           <TimeLineList tripId={id} />
-          <TripPinDropList pinDrops={trip.locations} />
+          <TripPinDropList pinDrops={trip.locations}/>
           <LodgingList lodging={trip.lodging}></LodgingList>
         </div>
       </div>

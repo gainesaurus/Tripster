@@ -6,6 +6,7 @@ import { ILodge } from '../../../Types';
 import styles from './LodgingList.module.css';
 import { AddBox } from '@mui/icons-material';
 
+
 interface LodgingListProps{
   lodging: Array<ILodge>
 }
