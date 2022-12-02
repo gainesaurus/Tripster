@@ -16,9 +16,9 @@
   background-color: white;
   border: 2px solid #00202e;
   border-radius: 6px;
-  height: 50%;
+  height: 60%;
   width: 50%;
-  min-width: 350px;
+  min-width: 270px;
   max-width: 600px;
   margin: 0 auto;
   top: 130px;
@@ -28,21 +28,14 @@
 }
 
 .logoCont {
-  position: relative;
-  height: 28%;
+  display: flex;
+  height: 25%;
 }
 
 .logo {
-  height: 80%;
-}
-
-.slogan {
-  position: absolute;
-  bottom: 0;
-  left: 45px;
-  font-size: 20px;
-  color: #003f5c;
-  text-shadow: 1px 1px 3px #ffd380;
+  display: flex;
+  height: 70%;
+  margin: 0 0 20px 0;
 }
 
 .formBody{
