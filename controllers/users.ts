@@ -17,6 +17,20 @@ export async function getUser(
   }
 }
 
+export async function getUsers(
+  req: NextApiRequest,
+  res: NextApiResponse<IUser[] | { error: unknown }>,
+) {
+  try {
+    const users = await User.find<IUser>().exec();
+    if (users) res.status(200).json(users);
+    else throw new Error("Couldn't get users");
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error });
+  }
+}
+
 export async function postUser(
   req: NextApiRequest,
   res: NextApiResponse<IUser | { error: unknown }>,

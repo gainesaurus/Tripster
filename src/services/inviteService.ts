@@ -16,3 +16,11 @@ export async function respondInvite(
     token,
   );
 }
+
+export async function inviteToTrip(uid: string, tripId: string, token: string) {
+  return await fetchData<ITripItem>(
+    `/invites/${tripId}`,
+    { method: 'POST', body: JSON.stringify({ invite: uid }) },
+    token,
+  );
+}
