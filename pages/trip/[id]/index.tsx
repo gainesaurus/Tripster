@@ -8,16 +8,21 @@ import AlbumList from '../../../src/components/PhotoAlbumList/AlbumList';
 import TimeLineList from '../../../src/components/TimeLineList/TimeLineList';
 import TripHeader from '../../../src/components/TripHeader/TripHeader';
 import TripPinDropList from '../../../src/components/TripPinDropList/TripPinDropList';
-
 import NavBar from '../../../src/components/NavBar/NavBar';
+import { useUserContext } from '../../../src/Contexts/UserContext';
+import { getTripById } from '../../../src/services/tripService';
+import { useEffect, useState } from 'react';
 import styles from '../../../styles/Trip.module.css';
+import { ITripItem } from '../../../Types';
 
 export default function TripPage() {
   const router = useRouter();
-  const { id } = router.query;
+  const { id }:any = router.query;
+  const user = useUserContext();
+ 
 
   //Mock Data
-  let trip = {
+  let mockTrip = {
     title: 'Grand Tetons FTW',
     startDate: '2023-05-03T07:00:00.000Z',
     endDate: '2023-05-09T07:00:00.000Z',
@@ -77,9 +82,15 @@ export default function TripPage() {
     ],
   };
 
+  const [trip, setTrip] = useState<any>(mockTrip);
+
+  useEffect(() => {
+    user.authUser && id && getTripById(user.authUser.token, id).then((thisTrip:any) => {setTrip(thisTrip)})
+  }, [user.authUser, id]);
 
 
   return (
+    trip &&
     <div className={styles.page}>
       <NavBar />
       <div className={styles.pageContainer}>
@@ -95,7 +106,7 @@ export default function TripPage() {
             pic={trip.picUrl}
           />
           <AttendeeList attendees={trip.attendees} />
-          <AlbumList photos={trip.photos} id={trip._id} />
+          {/* <AlbumList photos={trip.photos} id={trip._id} /> */}
           <TimeLineList tripId={id} />
           <TripPinDropList pinDrops={trip.locations} />
           <LodgingList lodging={trip.lodging}></LodgingList>
