@@ -74,8 +74,6 @@ export default function TripPage() {
       {
         title: 'Danielles Place',
         address: '6155 Oracle Rd, Sechelt, BC, Canada',
-        picUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMmrIA27K-t7Uf9LMW9ZztqY9kb9lGzLKrqw&usqp=CAU',
         latLng: {
           lat: 1,
           lng: -2,
@@ -107,7 +105,7 @@ export default function TripPage() {
           <AlbumList photos={trip.photos} id={trip._id} />
           <TimeLineList tripId={id} />
           <TripPinDropList pinDrops={trip.locations}/>
-          <LodgingList lodging={trip.lodging}></LodgingList>
+          <LodgingList></LodgingList>
         </div>
       </div>
     </div>

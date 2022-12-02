@@ -13,7 +13,7 @@ export const getLodgingsByTripId = async (tripId:string) => {
   }
 }
 
-export const createLodging = async (lodge: ILodge) => {
+export const createLodging = async (token: string, lodge: ILodge) => {
   try {
     const result = await fetch(`${BASEurl}/lodging`, {
       method: 'POST',

@@ -53,7 +53,7 @@ export interface ILocation {
 }
 
 export interface ILodge {
-  _id: string;
+  _id?: string;
   tripId: string;
   title: string;
   address: string;

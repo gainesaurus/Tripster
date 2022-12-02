@@ -2,19 +2,22 @@ import React, { useState, useRef } from 'react';
 
 import styles from './AddLodgingForm.module.css';
 import { Close } from '@mui/icons-material';
-
 import { createLodging } from '../../services/lodgingService';
-
 import { Loader } from '@googlemaps/js-api-loader';
 import { useRouter } from 'next/router';
+import { useUserContext } from '../../Contexts/UserContext';
+import { ILodge } from '../../../Types';
 
 const libraries = ["places"] as any;
 
 interface AddLodgingProps {
   closeForm: () => void
+  setAllLodging: any
+  allLodging: ILodge[]
 }
 
-function AddLodgingForm ({ closeForm }:AddLodgingProps) {
+function AddLodgingForm ({ closeForm, setAllLodging, allLodging }:AddLodgingProps) {
+  const user = useUserContext();
   let autoCompleteRef = useRef<any>();
   let inputRef = useRef<any>();
   const [latLng, setLatLng] = useState<google.maps.LatLng>();
@@ -68,13 +71,13 @@ function AddLodgingForm ({ closeForm }:AddLodgingProps) {
     e.preventDefault();
 
     const lodge = {
-      tripId: tripId,
-      title: title,
-      address: formattedAddress,
-      latLng: latLng,
+      tripId: tripId as string,
+      title: title as string,
+      address: formattedAddress as string,
+      latLng: latLng as any,
     }
     console.log(lodge)
-    //createLodging(lodge);
+    user.authUser && lodge && createLodging(user.authUser.token, lodge).then((lodge:ILodge) => {setAllLodging({...allLodging, lodge})})
 
     // setTitle('');
     // setFormattedAddress();
