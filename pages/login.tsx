@@ -41,6 +41,11 @@ function Login() {
     <div className={styles.container}>
       <NavBar />
       <div className={styles.input}>
+        <div className={styles.logoCont}>
+          <img className={styles.logo} src='https://static.wixstatic.com/media/3dbed1_550db7f924204c39b795fb469389b157~mv2.png/v1/fill/w_425,h_149,al_c,q_85,enc_auto/3dbed1_550db7f924204c39b795fb469389b157~mv2.png'
+            alt='vakay logo' />
+          <p className={styles.slogan}>you&apos;re invited!</p>
+        </div>
         <div className={styles.selector}>
           <span
             className={[
