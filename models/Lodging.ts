@@ -8,10 +8,9 @@ const LodgingSchema = new Schema<ILodge>({
   title: {type: String, required: true},
   address: {type: String, required: true},
   latLng: {
-    type: {
-      lat: {type: Number, required: true},
-      lng: {type: Number, required: true},
-    }, required: true},
+    lat: {type: Number, required: true},
+    lng: {type: Number, required: true},
+  },
   uid: {type: String},
 
 });

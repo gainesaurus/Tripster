@@ -7,7 +7,7 @@ export interface ITripItem {
   createdBy?: string;
   attendees?: [string]; // UserUid
   events?: [string]; // eventId
-  photos?: [IPhoto]; // AlbumId
+  photos?: [object]; // AlbumId
   polls?: [string]; // PollId
   locations?: [string]; // LocationsId
   lodging?: [string]; // LodgingId
@@ -41,7 +41,7 @@ export interface IPhoto {
 }
 
 export interface ILocation {
-  _id: string;
+  _id?: string;
   tripId: string;
   info: string;
   latLng: {
@@ -57,9 +57,10 @@ export interface ILodge {
   tripId: string;
   title: string;
   address: string;
-  latLng: {
-    lat: number;
-    lng: number;
-  };
+  latLng: ILatLng
   uid?: string;
+}
+export interface ILatLng {
+  lat: number;
+  lng: number;
 }

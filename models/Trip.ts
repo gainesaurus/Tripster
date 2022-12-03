@@ -10,13 +10,7 @@ const tripSchema = new Schema<ITripItem>({
   createdBy: { type: String, required: true }, // userUid
   attendees: [String], // userUid
   events: [String], // eventId
-  photos: {IPhoto:{
-    _id: String,
-    tripId: String,
-    src: String,
-    height: Number,
-    width: Number,
-  }}, // AlbumId
+  photos: [Object], // AlbumId
   polls: [String], // PollId
   locations: [String], // LocationsId
   lodging: [String], // LodgingId

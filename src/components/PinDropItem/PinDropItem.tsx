@@ -5,8 +5,6 @@ import { ILocation } from '../../../Types';
 
 import { GoogleMap, Marker } from '@react-google-maps/api';
 
-import { Loader } from '@googlemaps/js-api-loader';
-
 const libraries = ["places"] as any;
 
 interface PinDropItemProps {
@@ -14,14 +12,6 @@ interface PinDropItemProps {
 }
 const PinDropItem: FC<PinDropItemProps> =({ location }) => {
   const ref = useRef<any>();
-
-  // const latLng = location.latLng.split(',');
-  // const center = {
-  //   lat: Number(latLng[0]),
-  //   lng: Number(latLng[1])
-  // };
-  const center = location.latLng;
-
 
   const mapStyle = {
     height: '130%',
@@ -35,31 +25,33 @@ const PinDropItem: FC<PinDropItemProps> =({ location }) => {
     <div className={styles.pinDropContainer}>
 
       <div className={styles.mapBox} id='map-box' ref={ref}>
-
         {
+          location &&
           <GoogleMap
           mapContainerStyle={mapStyle}
-          center={center}
+          center={location.latLng}
           zoom={12}
           options={options}
           >
             <Marker
-            position={center}
+            position={location.latLng}
             />
           </GoogleMap>
         }
       </div>
 
-
       <div className={styles.pinDropInfo}>
-        {location.info + ' '}
+        {location && location.info}
       </div>
+      {
+        location &&
         <a
         className={styles.mapLink}
         href={`https://www.google.com/maps/search/?api=1&query=${location.latLng.lat}%2C${location.latLng.lng}`}>
           Get directions
         </a>
-      <div className={styles.ts}>{location.ts + ' '}</div>
+      }
+      <div className={styles.ts}>{location && location.ts && location.ts}</div>
       <Image className={styles.profilePic} width={30} height={30} src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMmrIA27K-t7Uf9LMW9ZztqY9kb9lGzLKrqw&usqp=CAU`} alt={'user profile pic'} />
 
     </div>
