@@ -13,13 +13,15 @@ import { useUserContext } from '../../Contexts/UserContext';
 import { removeEvent } from '../../services/eventService';
 
 import styles from './TimeLineItem.module.css';
+import Events from '../../../models/Events';
 
 type TimeLineItemProps = {
   event: IEvent;
+  allEvents: IEvent[];
   setAllEvents:any;
 };
 
-function TimeLineItem ({ event, setAllEvents }: TimeLineItemProps) {
+function TimeLineItem ({ event, allEvents, setAllEvents }: TimeLineItemProps) {
   const user = useUserContext();
   const [clicked, setClicked] = useState(false);
   const dateTime = (DateTime.fromISO(event.startTime).toLocaleString(DateTime.TIME_SIMPLE));
@@ -37,8 +39,9 @@ function TimeLineItem ({ event, setAllEvents }: TimeLineItemProps) {
     }
   }
 
+  let arr;
   const deleteEvent = async () => {
-    user.authUser && removeEvent(user.authUser.token, event).then((events:any) => {setAllEvents(events)})
+    user.authUser && removeEvent(user.authUser.token, event).then(setAllEvents(allEvents.filter((e) => e._id !== event._id)))
   }
 
   return (

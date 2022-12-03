@@ -46,15 +46,16 @@ export async function deleteEvent(
   res: NextApiResponse<IEvent | { error: unknown }>,
 ) {
   try {
-    const trip = await Trip.findOne<ITripItem>({
+    const trip:any = await Trip.findOne<ITripItem>({
       _id: req.body.tripId
     }).exec();
-    let res:any = trip!.events?.indexOf(req.body._id)
-    trip!.events?.splice(res, 1);
+    let result:any = trip!.events?.indexOf(req.body._id);
+    if(result > (-1)) trip!.events?.splice(result, 1);
+    await trip!.save();
     const event = await Events.findOneAndDelete<IEvent>({
-      _id: req.body.eventId,
+      _id: req.body._id,
     }).exec();
-    res.status(200);  
+    res.status(200).json(event!);  
   } catch (error) {
     console.log(error)
     res.status(500).json({ error });
