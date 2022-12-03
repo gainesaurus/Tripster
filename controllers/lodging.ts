@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import Lodging from '../models/Lodging';
 import Trip from '../models/Trip';
-import { ILodge } from '../Types';
-import { ITripItem } from '../Types';
+import { ILodge, ITripItem } from '../Types';
 
 export async function getAllLodging(
   req: NextApiRequest,

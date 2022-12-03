@@ -33,7 +33,7 @@ export interface IEvent {
 }
 
 export interface IPhoto {
-  _id: string;
+  _id?: string;
   tripId: string;
   src: string;
   height: number;

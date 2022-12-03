@@ -1,0 +1,83 @@
+.addAttendeeContainer {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  z-index: 150;
+  background-color: white;
+  border: 2px solid #00202e;
+  border-radius: 6px;
+  width: 50%;
+  min-width: 350px;
+  max-width: 600px;
+  margin: 0 auto;
+  top: 130px;
+  left: 0;
+  right: 0;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.5);
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.formHeading {
+  margin: 1rem 0 0.2rem 0;
+}
+
+.input {
+  font-size: 1rem;
+  padding: 0.2rem;
+}
+
+.textarea {
+  font-size: 1rem;
+  padding: 0.2rem;
+  height: 5rem;
+}
+
+.dateDiv {
+  display: flex;
+  justify-content: space-between;
+}
+
+.select {
+  padding: 0.2rem;
+}
+
+.buttonDiv {
+  margin: 1rem 0 1rem 0;
+  justify-self: center;
+  align-self: center;
+}
+
+.submitButton {
+  background-color: #8a508f;
+  color: white;
+  margin: 10px 10px 0 10px;
+  padding: 12px 20px 12px 20px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.4);
+}
+
+.XButton {
+  display: flex;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  color: black;
+  border: none;
+}
+
+.submitButton:active {
+  box-shadow: none;
+}
+
+.XButton:active {
+  background-color: #ff6361;
+  color: white;
+  border-radius: 6px;
+}

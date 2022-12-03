@@ -7,12 +7,14 @@ import styles from './LodgingList.module.css';
 import { AddBox } from '@mui/icons-material';
 import { getLodgingsByTripId } from '../../services/lodgingService';
 import { useUserContext } from '../../Contexts/UserContext';
-import { useRouter } from 'next/router';
 
-const  LodgingList = () => {
+
+interface LodgingListProps {
+  tripId: string
+}
+
+const  LodgingList = ({tripId}: LodgingListProps) => {
   const user = useUserContext();
-  const router = useRouter();
-  const tripId = router.query.id
   const [allLodging, setAllLodging] = useState<ILodge[]>([]);
 
   useEffect(()=>{

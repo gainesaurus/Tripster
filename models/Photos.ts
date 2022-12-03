@@ -12,5 +12,5 @@ const PhotoSchema = new Schema<IPhoto | IPhoto[]>({
 });
 
 const Photos =
-  mongoose.models.Photos || mongoose.model<IPhoto | IPhoto[]>('Lodging', PhotoSchema);
+  mongoose.models.Photos || mongoose.model<IPhoto | IPhoto[]>('Photos', PhotoSchema);
 export default Photos;

@@ -43,3 +43,25 @@
   height: 100%;
   cursor: pointer;
 }
+
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+.addIcon {
+  color: #003f5c;
+  font-size: 28px;
+}
+.addPhotosForm {
+  display: none;
+}

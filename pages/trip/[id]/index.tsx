@@ -106,10 +106,10 @@ export default function TripPage() {
             pic={trip.picUrl}
           />
           <AttendeeList attendees={trip.attendees} />
-          {/* <AlbumList photos={trip.photos} id={trip._id} /> */}
+          <AlbumList tripId={id} />
           <TimeLineList tripId={id} />
-          <TripPinDropList pinDrops={trip.locations}/>
-          <LodgingList></LodgingList>
+          <TripPinDropList tripId={id} />
+          <LodgingList tripId={id} />
         </div>
       </div>
     </div>
