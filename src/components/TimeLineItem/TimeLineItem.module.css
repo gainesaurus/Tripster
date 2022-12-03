@@ -80,7 +80,6 @@
 .restaurantIcon {
   background-color: #8a508f;
   display: flex;
-  font-size: 35px;
   margin: 0;
   padding: 4px;
   justify-self: center;
@@ -92,7 +91,6 @@
 .activeIcon {
   background-color: #ff8531;
   display: flex;
-  font-size: 35px;
   margin: 0;
   padding: 4px;
   justify-self: center;
@@ -104,7 +102,6 @@
 .leisureIcon {
   background-color: #2c4875;
   display: flex;
-  font-size: 35px;
   margin: 0;
   padding: 4px;
   justify-self: center;
@@ -116,7 +113,6 @@
 .shopIcon {
   background-color: #ffd380;
   display: flex;
-  font-size: 35px;
   margin: 0;
   padding: 4px;
   justify-self: center;
@@ -128,7 +124,6 @@
 .travelIcon {
   background-color: #003f5c;
   display: flex;
-  font-size: 35px;
   margin: 0;
   padding: 4px;
   justify-self: center;
@@ -140,7 +135,6 @@
 .otherIcon {
   background-color: #ff8531;
   display: flex;
-  font-size: 35px;
   margin: 0;
   padding: 4px;
   justify-self: center;

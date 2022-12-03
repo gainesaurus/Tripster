@@ -28,7 +28,8 @@ function TimeLineList({ tripId }:TimeLineListProps) {
     {_id: 17, startTime: "2022-09-17T12:22:46.587Z", endTime: "2022-09-17T12:23:46.587Z", title: "Breakfast at Curly's Diner", eventType: 'food', info: 'No reservation, just a typical diner. Grab your own table when we get there. PS try the chilaquiles!'},
   ];
 
-  const [allEvents, setAllEvents] = useState(mockEvents);
+  const [allEvents, setAllEvents] = useState<IEvent[]>([]);
+  
 
    useEffect(() => {
     user.authUser && getEventsByTripId(user.authUser.token, tripId).then((events:any) => {setAllEvents(events)})
@@ -46,18 +47,9 @@ function TimeLineList({ tripId }:TimeLineListProps) {
     document.getElementById('addEventForm')!.style.display = 'none';
   }
 
-  const submitEvent = (e:any) => {
-    e.preventDefault();
-    user.authUser && tripEvent && createEvent(user.authUser.token, tripEvent, tripId).then((events:any) => {setAllEvents(events)})
-    console.log('submitEvent called');
-    e.target.reset()
-    closeForm();
-  }
+  
 
-  const deleteEvent = (event:IEvent) => {
-    console.log('deleteEvent called');
-    user.authUser && removeEvent(user.authUser.token, event, tripId).then((events:any) => {setAllEvents(events)})
-  }
+  
 
   return (
     <div className={styles.timelineContainer}>
@@ -68,12 +60,12 @@ function TimeLineList({ tripId }:TimeLineListProps) {
         </button>
       </div>
       <div id='addEventForm' className={styles.addEventForm}>
-        <AddEventForm tripEvent={tripEvent} setTripEvent={setTripEvent} closeForm={closeForm} submitEvent={submitEvent}/>
+        <AddEventForm tripId={tripId} tripEvent={tripEvent} setTripEvent={setTripEvent} allEvents={allEvents} setAllEvents={setAllEvents} closeForm={closeForm} />
       </div>
       {Object.entries(result).map(([day, events]) => ([
         <h4 key={day} className={styles.timelineDate}>{day}</h4>,
         events.map((event: any) =>
-        <TimeLineItem key={event._id} event={event} deleteEvent={deleteEvent} />
+        <TimeLineItem key={event._id} event={event} setAllEvents={setAllEvents}/>
       )]))}
     </div>
   )

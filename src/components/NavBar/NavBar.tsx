@@ -45,7 +45,7 @@ const NavBar = () => {
                 alt="profile pic"
                 className={styles.profile}
                 onClick={goToProfile}
-              /> : <AccountCircle className={styles.blankProfile} fontSize='large' />}
+              /> : <AccountCircle className={styles.blankProfile} fontSize='large' onClick={goToProfile}/>}
               <button className={styles.logout} onClick={handleLogout}>
                 Logout
               </button>
