@@ -3,18 +3,29 @@ import React, { useState, useRef } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import styles from './AddPinDropForm.module.css';
 import { Close } from '@mui/icons-material';
+import { ILocation } from '../../../Types';
+import { ILatLng } from '../../../Types';
+import { useRouter } from 'next/router';
+import { createLocation } from '../../services/locationService';
+import { useUserContext } from '../../Contexts/UserContext';
 
 
 const libraries = ["places"] as any;
 
 interface AddPinDropProps {
   closeForm: () => void
+  setAllLocations: any
+  allLocations: ILocation[]
 }
-function AddPinDropForm ({closeForm}:AddPinDropProps) {
+function AddPinDropForm ({closeForm, setAllLocations, allLocations}:AddPinDropProps) {
   const inputRef = useRef<any>();
   const autoCompleteRef = useRef<any>();
   const [info, setInfo] = useState<string>();
-  const [latLng, setLatLng] = useState<google.maps.LatLng>();
+  const [latLng, setLatLng] = useState<ILatLng>();
+
+  const router = useRouter()
+  const tripId = router.query.id;
+  const user = useUserContext();
 
   const loader = new Loader({
     apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
@@ -33,7 +44,7 @@ function AddPinDropForm ({closeForm}:AddPinDropProps) {
       console.log({ place });
       let lat = place.geometry.location.lat()
       let lng = place.geometry.location.lng()
-      setLatLng({lat, lng} as google.maps.LatLng);
+      setLatLng({lat, lng});
     });
     if (latLng) {
       new google.maps.Map(document.getElementById('map-display') as HTMLElement, {
@@ -46,12 +57,24 @@ function AddPinDropForm ({closeForm}:AddPinDropProps) {
 
   const handleSubmit = (e:any) => {
     e.preventDefault();
+    const location = {
+      tripId: tripId as string,
+      info: info as string,
+      latLng: latLng as ILatLng,
+    }
+    user.authUser && location && createLocation(user.authUser.token, location).then((location:ILocation | void) => {setAllLocations([...allLocations, location])})
+    console.log(location);
+
+    setInfo('');
+    setLatLng(undefined);
+    closeForm();
+    inputRef.current.value = '';
   }
 
   return (
     <div className={styles.addPinDropContainer}>
-      <form onSubmit={handleSubmit} className={styles.addPinDropContainer}>
       <button className={styles.XButton} onClick={closeForm}><Close /></button>
+      <form onSubmit={handleSubmit} className={styles.addPinDropContainer}>
         <div className={styles.infoContainer}>
           <h2>Share a location!</h2>
           <input
@@ -80,7 +103,6 @@ function AddPinDropForm ({closeForm}:AddPinDropProps) {
           <button
             type='submit'
             className={styles.submitButton}
-            onClick={async (e) => handleSubmit(e)}
           >
             Submit
           </button>

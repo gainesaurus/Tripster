@@ -1,20 +1,15 @@
-const BASEurl = '/api';
 import { ILocation } from "../../Types";
+import { fetchData } from "./fetchFactory";
 
-export const getLocationsByTripId = async (tripId:string) => {
-  try {
-    const result = await fetch(`${BASEurl}/locations/${tripId}`, {
-      method: 'GET',
-      mode: 'cors',
-    });
-    return result.json();
-  } catch (err) {
-    console.error(err);
-  }
+export const getLocationsByTripId = async (token:string, tripId:string) => {
+  return await fetchData<ILocation[]>(`/locations/${tripId}`, { method: 'GET'}, token,
+  );
 }
 
-export const createLocation = async () => {
-
+export const createLocation = async (token:string, location:ILocation) => {
+  return await fetchData<ILocation>(
+    '/locations', {method: 'POST', body: JSON.stringify(location)}, token,
+  );
 }
 
 export const updateLodging = async () => {

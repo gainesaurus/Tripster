@@ -5,28 +5,26 @@ import { ILodge } from '../../../Types';
 
 import styles from './LodgingList.module.css';
 import { AddBox } from '@mui/icons-material';
-
-
-// interface LodgingListProps{
-//   lodging: Array<ILodge>
-// }
+import { getLodgingsByTripId } from '../../services/lodgingService';
+import { useUserContext } from '../../Contexts/UserContext';
+import { useRouter } from 'next/router';
 
 const  LodgingList = () => {
-  const [allLodging, setAllLodging] = useState<ILodge[]>([{
-    title: 'Danielles Place',
-    address: '6155 Oracle Rd, Sechelt, BC',
-    latLng: {
-      lat: 1,
-      lng: -2,
-    },
-    _id: '102',
-    tripId: '1',
-  }],);
+  const user = useUserContext();
+  const router = useRouter();
+  const tripId = router.query.id
+  const [allLodging, setAllLodging] = useState<ILodge[]>([]);
 
-  useEffect(()=> {
-    setAllLodging(allLodging);
+  useEffect(()=>{
+    getLodging();
+  }, []);
 
-  }, [allLodging])
+  const getLodging = async () => {
+    const lodgings = await getLodgingsByTripId(user.authUser!.token, tripId as string);
+    if (lodgings) {
+      setAllLodging(lodgings);
+    }
+  }
 
   const openForm = () => {
     document.getElementById('addLodgingForm')!.style.display = 'flex';

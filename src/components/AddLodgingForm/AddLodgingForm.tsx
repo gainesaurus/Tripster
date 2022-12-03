@@ -7,6 +7,7 @@ import { Loader } from '@googlemaps/js-api-loader';
 import { useRouter } from 'next/router';
 import { useUserContext } from '../../Contexts/UserContext';
 import { ILodge } from '../../../Types';
+import { ILatLng } from '../../../Types';
 
 const libraries = ["places"] as any;
 
@@ -18,11 +19,11 @@ interface AddLodgingProps {
 
 function AddLodgingForm ({ closeForm, setAllLodging, allLodging }:AddLodgingProps) {
   const user = useUserContext();
-  let autoCompleteRef = useRef<any>();
-  let inputRef = useRef<any>();
-  const [latLng, setLatLng] = useState<google.maps.LatLng>();
-  const [formattedAddress, setFormattedAddress] = useState<string>();
-  const [title, setTitle] = useState<string>();
+  let autoCompleteRef = useRef<any>(null);
+  let inputRef = useRef<any>(null);
+  const [latLng, setLatLng] = useState<ILatLng>();
+  const [formattedAddress, setFormattedAddress] = useState<string>('');
+  const [title, setTitle] = useState<string>('');
 
   const router = useRouter()
   const tripId = router.query.id;
@@ -45,7 +46,7 @@ function AddLodgingForm ({ closeForm, setAllLodging, allLodging }:AddLodgingProp
       console.log({ place });
       let lat = place.geometry.location.lat()
       let lng = place.geometry.location.lng()
-      setLatLng({lat, lng} as google.maps.LatLng);
+      setLatLng({lat, lng});
       setFormattedAddress(place.name);
     });
 
@@ -74,22 +75,20 @@ function AddLodgingForm ({ closeForm, setAllLodging, allLodging }:AddLodgingProp
       tripId: tripId as string,
       title: title as string,
       address: formattedAddress as string,
-      latLng: latLng as any,
+      latLng: latLng as ILatLng,
     }
-    console.log(lodge)
-    user.authUser && lodge && createLodging(user.authUser.token, lodge).then((lodge:ILodge) => {setAllLodging({...allLodging, lodge})})
+    user.authUser && lodge && createLodging(user.authUser.token, lodge).then((lodge:ILodge | void) => {setAllLodging([...allLodging, lodge])})
 
-    // setTitle('');
-    // setFormattedAddress();
-    // setLatLng(null);
-
+    setTitle('');
+    setLatLng(undefined);
     closeForm();
+    inputRef.current.value = '';
   }
 
   return (
     <div className={styles.addLodgingContainer}>
-      <form onSubmit={handleSubmit} className={styles.addLodgingContainer}>
       <button className={styles.XButton} onClick={closeForm}><Close /></button>
+      <form onSubmit={handleSubmit} className={styles.addLodgingContainer}>
         <div className={styles.infoContainer}>
           <h2>Share where you're staying!</h2>
           <input
@@ -119,7 +118,6 @@ function AddLodgingForm ({ closeForm, setAllLodging, allLodging }:AddLodgingProp
           <button
             type='submit'
             className={styles.submitButton}
-            onClick={async (e) => handleSubmit(e)}
           >
             Submit
           </button>
