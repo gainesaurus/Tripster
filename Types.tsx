@@ -50,6 +50,7 @@ export interface ILocation {
   };
   ts?: string;
   uid?: string;
+  profile_pic?: string;
 }
 
 export interface ILodge {

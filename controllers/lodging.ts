@@ -31,7 +31,8 @@ export async function createLodging(
         latLng: {
           lat: req.body.latLng.lat,
           lng: req.body.latLng.lng,
-        }
+        },
+        uid: req.body.uid,
       });
       trip!.lodging?.push(lodge._id);
       await Trip.findByIdAndUpdate(req.body.tripId, trip).exec();

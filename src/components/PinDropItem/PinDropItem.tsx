@@ -1,7 +1,8 @@
-import React, { FC, useEffect, useRef } from 'react';
+import React, { FC, useEffect, useState, useRef } from 'react';
 import styles from './PinDropItem.module.css';
 import Image from 'next/image';
-import { ILocation } from '../../../Types';
+import { ILocation, IUser } from '../../../Types';
+import { getUser } from '../../services/userService';
 
 import { GoogleMap, Marker } from '@react-google-maps/api';
 
@@ -12,6 +13,17 @@ interface PinDropItemProps {
 }
 const PinDropItem: FC<PinDropItemProps> =({ location }) => {
   const ref = useRef<any>();
+  const [user, setUser] = useState<IUser>();
+  useEffect(()=> {
+    retrieveUser()
+  }, []);
+  const retrieveUser = async () => {
+    const user = await getUser(location.uid as string);
+    if (user?.profile_pic === 'add_photo.png') {
+      user.profile_pic = '/profileDefault.png';
+    }
+    setUser(user as IUser);
+  }
 
   const mapStyle = {
     height: '130%',
@@ -20,7 +32,6 @@ const PinDropItem: FC<PinDropItemProps> =({ location }) => {
   const options = {
     fullscreenControl: false
   }
-
   return (
     <div className={styles.pinDropContainer}>
 
@@ -52,7 +63,10 @@ const PinDropItem: FC<PinDropItemProps> =({ location }) => {
         </a>
       }
       <div className={styles.ts}>{location && location.ts && location.ts}</div>
-      <Image className={styles.profilePic} width={30} height={30} src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMmrIA27K-t7Uf9LMW9ZztqY9kb9lGzLKrqw&usqp=CAU`} alt={'user profile pic'} />
+      {
+        user &&
+        <Image className={styles.profilePic} width={30} height={30} src={`${user.profile_pic}`} alt={'user profile pic'} />
+      }
 
     </div>
   )
