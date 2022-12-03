@@ -1,9 +1,19 @@
 import React from 'react';
 import { Close } from '@mui/icons-material';
+import { useUserContext } from '../../Contexts/UserContext';
+import { createEvent } from '../../services/eventService';
 
 import styles from './AddEventForm.module.css';
 
-function AddEventForm ({ closeForm, submitEvent, tripEvent, setTripEvent }: any) {
+function AddEventForm ({ tripId, closeForm, tripEvent, setTripEvent, allEvents, setAllEvents }: any) {
+  const user = useUserContext();
+
+  const submitEvent = (e:any) => {
+    e.preventDefault();
+    user.authUser && tripEvent && createEvent(user.authUser.token, tripEvent, tripId).then((event) => {setAllEvents([...allEvents, event])})
+    e.target.reset()
+    closeForm();
+  }
 
   return (
     <div className={styles.addEventContainer}>

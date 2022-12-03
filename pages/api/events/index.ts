@@ -1,7 +1,7 @@
 import nc from 'next-connect';
-import { getAllEvents, addNewEvent } from '../../../controllers/events';
+import { addNewEvent, deleteEvent } from '../../../controllers/events';
 import verifyToken from '../../../middleware/verifyToken';
 
-const handler = nc().use(verifyToken).post(addNewEvent);
+const handler = nc().use(verifyToken).post(addNewEvent).delete(deleteEvent);
 
 export default handler;
