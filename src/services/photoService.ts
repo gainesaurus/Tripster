@@ -6,8 +6,8 @@ export const getPhotosByTripId = async (token: string, tripId:string) => {
   );
 }
 
-export const addPhotos = async (token: string, photos:IPhoto[]) => {
-  return await fetchData<IPhoto[]>(
+export const addPhotos = async (token: string, photos:IPhoto) => {
+  return await fetchData<IPhoto>(
     '/photos', {method: 'POST', body: JSON.stringify(photos)}, token,
   );
 }

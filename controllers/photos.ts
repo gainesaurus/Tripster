@@ -3,21 +3,20 @@ import Trip from '../models/Trip';
 import Photos from '../models/Photos';
 import { IPhoto, ITripItem } from '../Types';
 
-export const getAllPhotos = async (
+export async function getAllPhotos (
   req: NextApiRequest,
   res: NextApiResponse<IPhoto[]>,
-) => {
+) {
   const photos = await Photos.find<IPhoto>({
     tripId: req.query.tripId,
   }).exec();
   res.status(200).json(photos);
-
 }
 
-export const addPhotos = async (
+export async function addPhotos (
   req: NextApiRequest,
-  res: NextApiResponse<IPhoto[] | { error: unknown }>,
-) => {
+  res: NextApiResponse<IPhoto | { error: unknown }>,
+) {
   try {
     const trip = await Trip.findOne<ITripItem>({
       $and: [{ _id: req.body.tripId }, { attendees: req.body.uid }],

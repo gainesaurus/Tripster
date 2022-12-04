@@ -31,12 +31,16 @@
   display: flex;
   border-radius: 6px;
   height: 100%;
+  width: auto;
   margin-right: 1%;
 }
 
 .viewAll {
   display: flex;
-  border: 1px solid black;
+  border: 5px solid #bc5090;
+  background-color: #ff6361;
+  color:white;
+  font-weight: 600;
   border-radius: 6px;
   padding: 1em;
   align-items: center;

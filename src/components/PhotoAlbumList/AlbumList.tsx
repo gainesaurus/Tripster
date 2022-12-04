@@ -8,6 +8,7 @@ import { getPhotosByTripId } from '../../services/photoService';
 import { useUserContext } from '../../Contexts/UserContext';
 import AddPhotosForm from '../AddPhotosForm/addPhotosForm';
 import { AddBox } from '@mui/icons-material';
+import GridViewIcon from '@mui/icons-material/GridView';
 
 interface AlbumListProps {
   tripId: string;
@@ -47,11 +48,12 @@ const  AlbumList = ({ tripId }:AlbumListProps) => {
       </div>
       <div className={styles.albumList}>
         {allPhotos.length? allPhotos.map((photo: IPhoto, i) => {
-          return <Image key={i + 1} src={photo.src} width={200} height={150} alt='shared photo' className={styles.image}/>
+          return <Image key={i + 1} src={photo.src} width={photo.width} height={photo.height} alt='shared photo' className={styles.image}/>
         }) : <></>}
         <Link href='[id]/photo-album' as={`${tripId}/photo-album`}>
           <div className={styles.viewAll}>
-            View All...
+            View all
+            <GridViewIcon></GridViewIcon>
           </div>
         </Link>
       </div>
