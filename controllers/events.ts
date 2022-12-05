@@ -21,7 +21,6 @@ export async function addNewEvent(
     const trip = await Trip.findOne<ITripItem>({
       $and: [{ _id: req.body.tripId }, { attendees: req.body.uid }],
     }).exec();
-    console.log(trip)
     if(trip) {
       const event = new Events({
         tripId: req.body.tripId,
@@ -41,3 +40,24 @@ export async function addNewEvent(
     res.status(500).json({ error });
   }
 }
+
+export async function deleteEvent(
+  req: NextApiRequest,
+  res: NextApiResponse<IEvent | { error: unknown }>,
+) {
+  try {
+    const trip:any = await Trip.findOne<ITripItem>({
+      _id: req.body.tripId
+    }).exec();
+    let result:any = trip!.events?.indexOf(req.body._id);
+    if(result > (-1)) trip!.events?.splice(result, 1);
+    await trip!.save();
+    const event = await Events.findOneAndDelete<IEvent>({
+      _id: req.body._id,
+    }).exec();
+    res.status(200).json(event!);  
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error });
+  }
+} 

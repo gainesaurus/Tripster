@@ -1,20 +1,20 @@
 import React, { FC } from 'react';
 import styles from './LodgingItem.module.css';
 import { ILodge } from '../../../Types';
-import Image from 'next/image';
+import CottageIcon from '@mui/icons-material/Cottage';
+import { Cottage } from '@mui/icons-material';
 
 
 interface LodgingItemProps{
   lodge: ILodge
 }
 const LodgingItem: FC<LodgingItemProps> = ({ lodge }) => {
-  const latLng = lodge.latLng.split(',');
-
 
   return (
     <div className={styles.lodgingContainer}>
-      <Image src={lodge.picUrl} alt='lodge photo' width={150} height={120}/>
-
+      <div className={styles.iconWrapper}>
+        <Cottage className={styles.cottageIcon} fontSize='inherit'></Cottage>
+      </div>
       <div className={styles.lodgingInfo}>
         <section className={styles.title}>
           {lodge.title}
@@ -22,9 +22,13 @@ const LodgingItem: FC<LodgingItemProps> = ({ lodge }) => {
         <section className={styles.address}>
           {lodge.address}
         </section>
-        <a
-        className={styles.lodgeLink}
-        href={`https://www.google.com/maps/search/?api=1&query=${latLng[0]}%2C${latLng[1]}`}>Get directions</a>
+        {
+          lodge.latLng &&
+          <a
+          className={styles.lodgeLink}
+          href={`https://www.google.com/maps/search/?api=1&query=${lodge.latLng.lat}%2C${lodge.latLng.lng}`}>
+          Get directions</a>
+        }
       </div>
     </div>
   )

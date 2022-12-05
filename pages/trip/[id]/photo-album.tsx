@@ -1,23 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import styles from '../../../styles/photo-album.module.css';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import NavBar from '../../../src/components/NavBar/NavBar';
+import { useUserContext } from '../../../src/Contexts/UserContext';
 
+import Link from 'next/link';
 import { PhotoAlbum } from 'react-photo-album';
+import { IPhoto } from '../../../Types';
+import { getPhotosByTripId } from '../../../src/services/photoService';
+import { useRouter } from 'next/router';
 
 
 export default function Photos() {
-  //MOCK DATA
-  let photos = [
-    {
-      src: 'https://res.cloudinary.com/enchanting/q_70,f_auto,c_fit,dpr_2,w_700,h_400/exodus-web/2022/09/Landing-page-walking.jpg',
-      width: 15,
-      height: 10,
-    },
-  ];
+  const [allPhotos, setPhotos] = useState<IPhoto[]>([]);
+  const user = useUserContext();
+  const router = useRouter();
+  const tripId = router.query.id;
+
+  useEffect(() => {
+    console.log(tripId);
+    getTripPhotos()
+  }, [setPhotos]);
+
+  const getTripPhotos = async () => {
+    const photos = await getPhotosByTripId(user.authUser!.token, tripId as string)
+    if (photos) {
+      setPhotos(photos);
+    }
+  }
 
   return (
-    <div>
-      <h1>Photos</h1>
-      <PhotoAlbum layout='rows' photos={photos}/>
-    </div>
+    <>
+      <NavBar />
+      <div className={styles.album}>
+        <Link href='[id]/' as={`${tripId}`} >
+          <ArrowBackIcon/>
+        </Link>
+        <PhotoAlbum layout='rows' photos={allPhotos}/>
+      </div>
+    </>
   )
 }
 

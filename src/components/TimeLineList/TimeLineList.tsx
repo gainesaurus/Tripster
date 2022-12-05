@@ -17,21 +17,10 @@ interface TimeLineListProps {
 function TimeLineList({ tripId }:TimeLineListProps) {
   const user = useUserContext();
   const [tripEvent, setTripEvent] = useState<IEvent>();
-
-
-  const mockEvents = [
-    {_id: 12, startTime: "2022-09-16T12:20:46.587Z", endTime: "2022-09-16T12:21:46.587Z", title: 'Pickup Scott at the Airport', eventType: 'travel', info: 'Delta Flight# AZ235979. Meet him at Terminal #2!'},
-    {_id: 13, startTime: "2022-09-17T12:20:46.587Z", endTime: "2022-09-17T12:21:46.587Z", title: 'Margs on the Patio', eventType: 'other', info: 'Our table is reserved. Ask for the Gainey party.'},
-    {_id: 14, startTime: "2022-09-17T12:21:46.587Z", endTime: "2022-09-17T12:22:46.587Z", title: "Cruise on Lake Geneva", eventType: 'leisure', info: 'No swimming gear needed. Just a relaxing cruise!'},
-    {_id: 15, startTime: "2022-09-16T12:21:46.587Z", endTime: "2022-09-16T12:22:46.587Z", title: "Skiing Windy Gap", eventType: 'active', info: 'Uncle John has ski equipment enough for everyone, no need to rent!'},
-    {_id: 16, startTime: "2022-09-16T12:22:46.587Z", endTime: "2022-09-16T12:23:46.587Z", title: 'Hit the Outlets', eventType: 'shopping', info: 'We have three cars of people going. Contact either Ann, Jim, or William to get a ride!'},
-    {_id: 17, startTime: "2022-09-17T12:22:46.587Z", endTime: "2022-09-17T12:23:46.587Z", title: "Breakfast at Curly's Diner", eventType: 'food', info: 'No reservation, just a typical diner. Grab your own table when we get there. PS try the chilaquiles!'},
-  ];
-
-  const [allEvents, setAllEvents] = useState(mockEvents);
-
-   useEffect(() => {
-    user.authUser && getEventsByTripId(user.authUser.token, tripId).then((events:any) => { console.log(events);setAllEvents(events)})
+  const [allEvents, setAllEvents] = useState<IEvent[]>([]);
+  
+  useEffect(() => {
+    user.authUser && getEventsByTripId(user.authUser.token, tripId).then((events:any) => {setAllEvents(events)})
   }, [user.authUser, tripId]);
 
   const eventDay = (item: any) => (DateTime.fromISO(item.startTime).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY));
@@ -46,19 +35,6 @@ function TimeLineList({ tripId }:TimeLineListProps) {
     document.getElementById('addEventForm')!.style.display = 'none';
   }
 
-  const submitEvent = (e:any) => {
-    e.preventDefault();
-    user.authUser && tripEvent && createEvent(user.authUser.token, tripEvent, tripId).then((events:any) => {setAllEvents(events)})
-    console.log('submitEvent called');
-    e.target.reset()
-    closeForm();
-  }
-
-  const deleteEvent = (event:IEvent) => {
-    console.log('deleteEvent called');
-    user.authUser && removeEvent(user.authUser.token, event, tripId).then((events:any) => {setAllEvents(events)})
-  }
-
   return (
     <div className={styles.timelineContainer}>
       <div className={styles.titleContainer}>
@@ -68,12 +44,12 @@ function TimeLineList({ tripId }:TimeLineListProps) {
         </button>
       </div>
       <div id='addEventForm' className={styles.addEventForm}>
-        <AddEventForm tripEvent={tripEvent} setTripEvent={setTripEvent} closeForm={closeForm} submitEvent={submitEvent}/>
+        <AddEventForm tripId={tripId} tripEvent={tripEvent} setTripEvent={setTripEvent} allEvents={allEvents} setAllEvents={setAllEvents} closeForm={closeForm} />
       </div>
       {Object.entries(result).map(([day, events]) => ([
         <h4 key={day} className={styles.timelineDate}>{day}</h4>,
-        events.map((event: any) =>
-        <TimeLineItem key={event._id} event={event} deleteEvent={deleteEvent} />
+        events.map((event: IEvent) =>
+        <TimeLineItem key={event._id} event={event} allEvents={allEvents} setAllEvents={setAllEvents}/>
       )]))}
     </div>
   )

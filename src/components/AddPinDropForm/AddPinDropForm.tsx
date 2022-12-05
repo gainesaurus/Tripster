@@ -1,41 +1,39 @@
 import React, { useState, useRef } from 'react';
 
-import styles from './AddLodgingForm.module.css';
-import { Close } from '@mui/icons-material';
-import { createLodging } from '../../services/lodgingService';
 import { Loader } from '@googlemaps/js-api-loader';
-import { useRouter } from 'next/router';
-import { useUserContext } from '../../Contexts/UserContext';
-import { ILodge } from '../../../Types';
+import styles from './AddPinDropForm.module.css';
+import { Close } from '@mui/icons-material';
+import { ILocation } from '../../../Types';
 import { ILatLng } from '../../../Types';
+import { useRouter } from 'next/router';
+import { createLocation } from '../../services/locationService';
+import { useUserContext } from '../../Contexts/UserContext';
+
 
 const libraries = ["places"] as any;
 
-interface AddLodgingProps {
+interface AddPinDropProps {
   closeForm: () => void
-  setAllLodging: any
-  allLodging: ILodge[]
+  setAllLocations: any
+  allLocations: ILocation[]
 }
-
-function AddLodgingForm ({ closeForm, setAllLodging, allLodging }:AddLodgingProps) {
-  const user = useUserContext();
-  let autoCompleteRef = useRef<any>(null);
-  let inputRef = useRef<any>(null);
+function AddPinDropForm ({closeForm, setAllLocations, allLocations}:AddPinDropProps) {
+  const inputRef = useRef<any>();
+  const autoCompleteRef = useRef<any>();
+  const [info, setInfo] = useState<string>();
   const [latLng, setLatLng] = useState<ILatLng>();
-  const [formattedAddress, setFormattedAddress] = useState<string>('');
-  const [title, setTitle] = useState<string>('');
 
   const router = useRouter()
   const tripId = router.query.id;
+  const user = useUserContext();
 
   const loader = new Loader({
     apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
     version: "weekly",
     libraries: libraries
   });
-
   loader.load()
-  .then((google) => {
+  .then(()=> {
     autoCompleteRef.current = new google.maps.places.Autocomplete(
       inputRef.current as HTMLInputElement, {
         fields: ["address_components", "geometry", "icon", "name"]
@@ -47,63 +45,51 @@ function AddLodgingForm ({ closeForm, setAllLodging, allLodging }:AddLodgingProp
       let lat = place.geometry.location.lat()
       let lng = place.geometry.location.lng()
       setLatLng({lat, lng});
-      setFormattedAddress(place.name);
     });
-
-    let map = new google.maps.Map(document.getElementById('map-display') as HTMLElement, {
-      center: latLng,
-      zoom: 10
-    });
-    let panorama = new google.maps.StreetViewPanorama(
-      document.getElementById('map-display') as HTMLElement, {
-        position: latLng,
-        pov: {
-          heading: 180,
-          pitch: 10,
-        }
-      });
-    map.setStreetView(panorama);
-
+    if (latLng) {
+      new google.maps.Map(document.getElementById('map-display') as HTMLElement, {
+        center: latLng,
+        zoom: 12
+      })
+    }
   })
-  .catch((e) => console.log(e));
 
-  //HANDLE SUBMIT
   const handleSubmit = (e:any) => {
     e.preventDefault();
-
-    const lodge = {
+    const location = {
       tripId: tripId as string,
-      title: title as string,
-      address: formattedAddress as string,
+      info: info as string,
       latLng: latLng as ILatLng,
+      // profile_pic: user.
     }
-    user.authUser && lodge && createLodging(user.authUser.token, lodge).then((lodge:ILodge | void) => {setAllLodging([...allLodging, lodge])})
+    user.authUser && location && createLocation(user.authUser.token, location).then((location:ILocation | void) => {setAllLocations([...allLocations, location])})
+    console.log(location);
 
-    setTitle('');
+    setInfo('');
     setLatLng(undefined);
     closeForm();
     inputRef.current.value = '';
   }
 
   return (
-    <div className={styles.addLodgingContainer}>
+    <div className={styles.addPinDropContainer}>
       <button className={styles.XButton} onClick={closeForm}><Close /></button>
-      <form onSubmit={handleSubmit} className={styles.addLodgingContainer}>
+      <form onSubmit={handleSubmit} className={styles.addPinDropContainer}>
         <div className={styles.infoContainer}>
-          <h2>Share where you're staying!</h2>
+          <h2>Share a location!</h2>
           <input
-            placeholder="What do you want to call this place?"
-            className={styles.lodgingSearchInput}
-            value={title}
-            onChange={(e)=>setTitle(e.target.value)}
+            placeholder="Add some info..."
+            className={styles.locationSearchInput}
+            value={info}
+            onChange={(e)=>setInfo(e.target.value)}
             ></input>
 
             <input
             id='search-place'
             ref={inputRef}
             type="text"
-            placeholder="Search for your place."
-            className={styles.lodgingSearchInput}
+            placeholder="Where is it?"
+            className={styles.locationSearchInput}
             ></input>
 
         </div>
@@ -113,7 +99,6 @@ function AddLodgingForm ({ closeForm, setAllLodging, allLodging }:AddLodgingProp
           </div>
           : <></>
         }
-
         <div className={styles.buttonDiv}>
           <button
             type='submit'
@@ -124,8 +109,6 @@ function AddLodgingForm ({ closeForm, setAllLodging, allLodging }:AddLodgingProp
         </div>
       </form>
     </div>
-
   )
 }
-
-export default AddLodgingForm;
+export default AddPinDropForm;

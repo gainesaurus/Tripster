@@ -60,4 +60,16 @@ const uploadImage = async (blob: ArrayBuffer) => {
   }
 };
 
-export { auth, provider, storage, signIn, signUp, logout, uploadImage };
+const uploadPhotosToAlbum = async (blob: ArrayBuffer) => {
+  try {
+    const uuid = uuidv4();
+    const fileRef = ref(storage, 'trips/photo_album/' + uuid);
+    await uploadBytes(fileRef, blob);
+    return { imageUuid: uuid, imageUrl: await getDownloadURL(fileRef) };
+  } catch (error) {
+    console.log('Error saving the image, please try again later');
+    console.log(error);
+  }
+};
+
+export { auth, provider, storage, signIn, signUp, logout, uploadImage, uploadPhotosToAlbum };

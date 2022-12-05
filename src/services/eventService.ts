@@ -17,15 +17,15 @@ export async function createEvent(token: string, event:IEvent, tripId:string) {
 
 export async function updateEvent(token: string, event:IEvent, tripId:string) {
   return await fetchData<IEvent>(
-    '/events',
+    '/events/',
     { method: 'PUT', body: JSON.stringify({...event, tripId}) },
     token,
   );
 }
 
-export async function removeEvent(token: string, event:IEvent, tripId:string) {
+export async function removeEvent(token: string, event:IEvent) {
   return await fetchData<IEvent>(
-    '/events',
-    { method: 'DELETE', body: JSON.stringify({...event, tripId}) }, token,
+    '/events/',
+    { method: 'DELETE', body: JSON.stringify(event) }, token,
   );
 }

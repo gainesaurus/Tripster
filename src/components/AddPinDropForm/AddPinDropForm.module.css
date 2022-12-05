@@ -1,4 +1,4 @@
-.addLodgingContainer {
+.addPinDropContainer {
   display: flex;
   position: absolute;
   flex-direction: column;
@@ -38,7 +38,7 @@
   margin: 5% 0 2% 0;
 }
 
-.lodgingSearchInput {
+.locationSearchInput {
 
   width: 350px;
   height: 32px;

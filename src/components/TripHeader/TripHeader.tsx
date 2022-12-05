@@ -20,9 +20,10 @@ const TripHeader: FC<TripHeaderProps> = ({title, start, end, pic}) => {
     <div
     className={styles.tripHeadContainer}
     style={{
-      backgroundImage: `url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cm9hZCUyMHRyaXB8ZW58MHx8MHx8&w=1000&q=80')`,
+      backgroundImage: `url(${pic})`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
+      backgroundPosition: 'center'
     }}
     >
       {/* <picture className={styles.tripHeadImage} >
