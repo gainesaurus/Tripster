@@ -38,7 +38,7 @@ export async function postUser(
   try {
     const user = new User<IUser>({
       email: req.body.email,
-      profile_pic: 'add_photo.png',
+      profile_pic: '/add_photo.png',
       uid: req.body.uid,
       username: '',
     });
