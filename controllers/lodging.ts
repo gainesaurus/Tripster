@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import Lodging from '../models/Lodging';
 import Trip from '../models/Trip';
-import { ILodge } from '../Types';
-import { ITripItem } from '../Types';
+import { ILodge, ITripItem } from '../Types';
 
 export async function getAllLodging(
   req: NextApiRequest,
@@ -31,7 +30,8 @@ export async function createLodging(
         latLng: {
           lat: req.body.latLng.lat,
           lng: req.body.latLng.lng,
-        }
+        },
+        uid: req.body.uid,
       });
       trip!.lodging?.push(lodge._id);
       await Trip.findByIdAndUpdate(req.body.tripId, trip).exec();

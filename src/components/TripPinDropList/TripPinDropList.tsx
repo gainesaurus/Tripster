@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PinDropItem from '../PinDropItem/PinDropItem';
 import { ILocation } from '../../../Types';
 import styles from './TripPinDropList.module.css';
@@ -7,17 +7,15 @@ import AddPinDropForm from '../AddPinDropForm/AddPinDropForm';
 import { getLocationsByTripId } from '../../services/locationService';
 import { Wrapper } from '@googlemaps/react-wrapper';
 import { useUserContext } from '../../Contexts/UserContext';
-import { useRouter } from 'next/router';
 
 
 interface TripPinDropsProps{
-  pinDrops: Array<ILocation>
+  tripId: string
 }
 
-const  TripPinDropList: FC<TripPinDropsProps> = ({ pinDrops }) => {
+const  TripPinDropList = ({ tripId }:TripPinDropsProps) => {
   const user = useUserContext()
-  const router = useRouter();
-  const tripId = router.query.id
+
   const [allLocations, setAllLocations] = useState<ILocation[]>([]);
   useEffect(()=> {
     getLocations()

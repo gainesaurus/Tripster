@@ -33,7 +33,7 @@ export interface IEvent {
 }
 
 export interface IPhoto {
-  _id: string;
+  _id?: string;
   tripId: string;
   src: string;
   height: number;
@@ -50,6 +50,7 @@ export interface ILocation {
   };
   ts?: string;
   uid?: string;
+  profile_pic?: string;
 }
 
 export interface ILodge {

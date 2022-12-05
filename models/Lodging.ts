@@ -11,7 +11,7 @@ const LodgingSchema = new Schema<ILodge>({
     lat: {type: Number, required: true},
     lng: {type: Number, required: true},
   },
-  uid: {type: String},
+  uid: {type: String, required: true},
 
 });
 
