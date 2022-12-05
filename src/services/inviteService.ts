@@ -17,10 +17,17 @@ export async function respondInvite(
   );
 }
 
-export async function inviteToTrip(uid: string, tripId: string, token: string) {
+export async function inviteToTrip(
+  uid: string | string[],
+  tripId: string,
+  token: string,
+) {
   return await fetchData<ITripItem>(
-    `/invites/${tripId}`,
-    { method: 'POST', body: JSON.stringify({ invite: uid }) },
+    `/trips/${tripId}/invites`,
+    {
+      method: 'POST',
+      body: JSON.stringify({ invites: uid.toString().split(',') }),
+    },
     token,
   );
 }

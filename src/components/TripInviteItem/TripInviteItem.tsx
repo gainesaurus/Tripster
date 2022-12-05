@@ -1,19 +1,25 @@
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { ITripItem } from '../../../Types';
+import { useTripsContext } from '../../Contexts/TripsContext';
 import { useUserContext } from '../../Contexts/UserContext';
 import { respondInvite } from '../../services/inviteService';
 import styles from './TripInviteItem.module.css';
 
 interface TripItemProps {
   trip: ITripItem;
+  setUpdateTrips: Dispatch<SetStateAction<boolean>>;
 }
 
-const TripInviteItem: FC<TripItemProps> = ({ trip }) => {
+const TripInviteItem: FC<TripItemProps> = ({ trip, setUpdateTrips }) => {
+  const tripsContext = useTripsContext();
   const created_by = 'Jane Doe';
   const userContext = useUserContext();
   async function handleResponseInvite(response: boolean) {
     if (userContext.authUser && trip._id)
-      respondInvite(trip._id, response, userContext.authUser.token);
+      respondInvite(trip._id, response, userContext.authUser.token).then(() => {
+        tripsContext.setTripAdded(true);
+        setUpdateTrips((state) => !state);
+      });
   }
 
   return (

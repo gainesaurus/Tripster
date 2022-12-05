@@ -32,10 +32,6 @@
   color: #2c4875;
 }
 
-.addAttendeeForm {
-  display: none;
-}
-
 .attendeeList {
   height: 100%;
   display: flex;

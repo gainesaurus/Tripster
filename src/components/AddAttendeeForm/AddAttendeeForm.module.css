@@ -1,3 +1,7 @@
+.addAttendeeForm {
+  display: none;
+}
+
 .addAttendeeContainer {
   display: flex;
   position: absolute;
