@@ -8,23 +8,27 @@ import AlbumList from '../../../src/components/PhotoAlbumList/AlbumList';
 import TimeLineList from '../../../src/components/TimeLineList/TimeLineList';
 import TripHeader from '../../../src/components/TripHeader/TripHeader';
 import TripPinDropList from '../../../src/components/TripPinDropList/TripPinDropList';
+
+import { useEffect, useState } from 'react';
 import NavBar from '../../../src/components/NavBar/NavBar';
 import { useUserContext } from '../../../src/Contexts/UserContext';
 import { getTripById } from '../../../src/services/tripService';
-import { useEffect, useState } from 'react';
 import styles from '../../../styles/Trip.module.css';
+import { ITripItem } from '../../../Types';
 
 export default function TripPage() {
   const router = useRouter();
-  const { id }:any = router.query;
-  const user = useUserContext();
-
-  const [trip, setTrip] = useState<any>();
+  const { id } = router.query;
+  const userContext = useUserContext();
+  const [trip, setTrip] = useState<ITripItem>();
 
   useEffect(() => {
-    user.authUser && id && getTripById(user.authUser.token, id).then((thisTrip:any) => {setTrip(thisTrip)})
-  }, [user.authUser, id]);
-
+    userContext.authUser &&
+      id &&
+      getTripById(id.toString(), userContext.authUser.token).then((trip) => {
+        trip && setTrip(trip);
+      });
+  }, [userContext.authUser, id]);
 
   return (
     trip &&
@@ -42,8 +46,8 @@ export default function TripPage() {
             end={trip.endDate}
             pic={trip.picUrl}
           />
-          <AttendeeList attendees={trip.attendees} />
-          <AlbumList tripId={id} />
+          <AttendeeList attendees={trip.attendees} invites={trip.invites} />
+          <AlbumList id={id} />
           <TimeLineList tripId={id} />
           <TripPinDropList tripId={id} />
           <LodgingList tripId={id} />

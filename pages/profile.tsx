@@ -11,6 +11,7 @@ import { ITripItem } from '../Types';
 
 function Profile() {
   const [tripInvites, setTripInvites] = useState<ITripItem[]>([]);
+  const [updateTrips, setUpdateTrips] = useState(false);
   const userContext = useUserContext();
 
   useEffect(() => {
@@ -18,7 +19,7 @@ function Profile() {
       getInvites(userContext.authUser.token).then((invites) => {
         invites && setTripInvites(invites);
       });
-  }, [userContext]);
+  }, [userContext, updateTrips]);
 
   return (
     <div className={styles.body}>
@@ -32,7 +33,11 @@ function Profile() {
           <ProfileInfo />
           <div className={styles.invitations}>
             {tripInvites.length > 0 ? (
-              <TripInviteList title="Invitations" trips={tripInvites} />
+              <TripInviteList
+                title="Invitations"
+                trips={tripInvites}
+                setUpdateTrips={setUpdateTrips}
+              />
             ) : (
               <h2>No invites yet!</h2>
             )}

@@ -4,7 +4,7 @@ export interface ITripItem {
   startDate: string;
   endDate: string;
   picUrl: string;
-  createdBy?: string;
+  createdBy?: string
   attendees?: [string]; // UserUid
   events?: [string]; // eventId
   photos?: [object]; // AlbumId

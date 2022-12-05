@@ -16,8 +16,10 @@ export async function getAllTrips(token: string) {
   return await fetchData<ITripItem[]>('/trips', { method: 'GET' }, token);
 }
 
-export async function getTripById(token: string, tripId: string) {
+export async function getTripById(tripId: string, token: string) {
   return await fetchData<ITripItem>(
-    `/trips/${tripId}`, { method: 'GET' }, token
-  )
+    `/trips/${tripId}`,
+    { method: 'GET' },
+    token,
+  );
 }
