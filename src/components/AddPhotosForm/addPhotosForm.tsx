@@ -15,7 +15,6 @@ import { uploadPhotosToAlbum } from '../../firebase';
 import { useUserContext } from '../../Contexts/UserContext';
 import { addPhotos } from '../../services/photoService';
 import { useRouter } from 'next/router';
-import { getImageSize } from 'next/dist/server/image-optimizer';
 
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
@@ -75,7 +74,6 @@ function AddPhotosForm ({ closeForm, setPhotos, allPhotos }:AddPhotosProps) {
       alert('All fields are required');
     }
   }
-  console.log(imgFiles);
 
   return(
     <div className={styles.addAttendeeContainer}>
