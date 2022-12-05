@@ -33,9 +33,9 @@ export default function Photos() {
     <>
       <NavBar />
       <div className={styles.album}>
-        <Link href='[id]/' as={`${tripId}`} >
+        <div onClick={()=>{router.back()}}>
           <ArrowBackIcon/>
-        </Link>
+        </div>
         <PhotoAlbum layout='rows' photos={allPhotos}/>
       </div>
     </>

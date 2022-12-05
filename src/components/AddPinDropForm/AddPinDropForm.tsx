@@ -47,10 +47,29 @@ function AddPinDropForm ({closeForm, setAllLocations, allLocations}:AddPinDropPr
       setLatLng({lat, lng});
     });
     if (latLng) {
-      new google.maps.Map(document.getElementById('map-display') as HTMLElement, {
+      let map = new google.maps.Map(document.getElementById('map-display') as HTMLElement, {
         center: latLng,
-        zoom: 12
+        zoom: 13
       })
+      let marker = new google.maps.Marker({
+        position: latLng,
+        map: map,
+      })
+
+      google.maps.event.addListener(map, 'click', function(event:any) {
+          placeMarker(event.latLng)
+      });
+
+      const placeMarker = (location: ILatLng) => {
+        if(marker) {
+          marker.setMap(null);
+          marker = new google.maps.Marker({
+            position: location,
+            map: map
+          })
+          setLatLng(location)
+        }
+      }
     }
   })
 

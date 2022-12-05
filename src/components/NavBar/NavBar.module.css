@@ -41,7 +41,7 @@
   border-radius: 50%;
   aspect-ratio: 1.1;
   overflow: hidden;
-  background-color: rgb(61, 61, 61);
+  background-color:#ffd380;
   margin: 0 1em 0 1em;
 }
 .profile {

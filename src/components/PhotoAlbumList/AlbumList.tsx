@@ -45,7 +45,18 @@ const  AlbumList = ({ tripId }:AlbumListProps) => {
   return (
     <div className={styles.albumContainer}>
       <div className={styles.title}>
-        <h1 className={styles.albumListTitle}>Shared Photos</h1>
+        <div className={styles.photoTitleViewAll}>
+          <h1 className={styles.albumListTitle}>Shared Photos</h1>
+          {
+            displayPhotos.length ?
+            <Link href='[id]/photo-album' as={`${tripId}/photo-album`}>
+            <div className={styles.viewAll}>
+              See All
+            </div>
+            </Link>
+            : <></>
+          }
+        </div>
         <button onClick={openForm} className={styles.button}>
             <AddBox className={styles.addIcon}/>
         </button>
@@ -59,16 +70,6 @@ const  AlbumList = ({ tripId }:AlbumListProps) => {
           displayPhotos.map((photo: IPhoto, i) => {
           return <Image key={i + 1} src={photo.src} width={photo.width} height={photo.height} alt='shared photo' loading={'lazy'} className={styles.image}/>
           })
-          : <></>
-        }
-        {
-          displayPhotos.length ?
-          <Link href='[id]/photo-album' as={`${tripId}/photo-album`}>
-          <div className={styles.viewAll}>
-            View all
-            <GridViewIcon></GridViewIcon>
-          </div>
-          </Link>
           : <></>
         }
       </div>
