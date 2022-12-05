@@ -9,12 +9,27 @@ import TimeLineList from '../../../src/components/TimeLineList/TimeLineList';
 import TripHeader from '../../../src/components/TripHeader/TripHeader';
 import TripPinDropList from '../../../src/components/TripPinDropList/TripPinDropList';
 
+import { useEffect, useState } from 'react';
 import NavBar from '../../../src/components/NavBar/NavBar';
+import { useUserContext } from '../../../src/Contexts/UserContext';
+import { getTripById } from '../../../src/services/tripService';
 import styles from '../../../styles/Trip.module.css';
 
 export default function TripPage() {
   const router = useRouter();
   const { id } = router.query;
+  const userContext = useUserContext();
+  const [attendees, setAttendees] = useState<string[]>([]);
+  const [invites, setInvites] = useState<string[]>([]);
+
+  useEffect(() => {
+    userContext.authUser &&
+      id &&
+      getTripById(id.toString(), userContext.authUser.token).then((trip) => {
+        trip && trip.attendees && setAttendees(trip.attendees);
+        trip && trip.invites && setInvites(trip.invites);
+      });
+  }, [userContext.authUser, id]);
 
   //Mock Data
   let trip = {
@@ -77,8 +92,6 @@ export default function TripPage() {
     ],
   };
 
-
-
   return (
     <div className={styles.page}>
       <NavBar />
@@ -94,7 +107,7 @@ export default function TripPage() {
             end={trip.endDate}
             pic={trip.picUrl}
           />
-          <AttendeeList attendees={trip.attendees} />
+          <AttendeeList attendees={attendees} invites={invites} />
           <AlbumList photos={trip.photos} id={trip._id} />
           <TimeLineList tripId={id} />
           <TripPinDropList pinDrops={trip.locations} />
@@ -104,3 +117,72 @@ export default function TripPage() {
     </div>
   );
 }
+
+// import { useRouter } from 'next/router';
+
+// import AttendeeList from '../../../src/components/AttendeeList/AttendeeList';
+// import Divider from '../../../src/components/Divider/Divider';
+// import HomeLeft from '../../../src/components/HomeLeft/HomeLeft';
+// import LodgingList from '../../../src/components/LodgingList/LodgingList';
+// import AlbumList from '../../../src/components/PhotoAlbumList/AlbumList';
+// import TimeLineList from '../../../src/components/TimeLineList/TimeLineList';
+// import TripHeader from '../../../src/components/TripHeader/TripHeader';
+// import TripPinDropList from '../../../src/components/TripPinDropList/TripPinDropList';
+
+// import { useEffect, useState } from 'react';
+// import NavBar from '../../../src/components/NavBar/NavBar';
+// import { useUserContext } from '../../../src/Contexts/UserContext';
+// import { getTripById } from '../../../src/services/tripService';
+// import styles from '../../../styles/Trip.module.css';
+// import { ITripItem } from '../../../Types';
+
+// export default function TripPage() {
+//   const initialState: ITripItem = {
+//     _id: '',
+//     title: '',
+//     picUrl: '',
+//     startDate: '',
+//     endDate: '',
+//     attendees: [],
+//     photos: [],
+//     locations: [],
+//     lodging: [],
+//   };
+//   const router = useRouter();
+//   const { id } = router.query;
+//   const userContext = useUserContext();
+//   const [trip, setTrip] = useState<ITripItem>(initialState);
+
+//   useEffect(() => {
+//     userContext.authUser &&
+//       id &&
+//       getTripById(id.toString(), userContext.authUser.token).then((trip) => {
+//         trip && setTrip(trip);
+//       });
+//   }, [userContext.authUser, id]);
+
+//   return (
+//     <div className={styles.page}>
+//       <NavBar />
+//       <div className={styles.pageContainer}>
+//         <div className={styles.homeContainer}>
+//           <HomeLeft />
+//           <Divider />
+//         </div>
+//         <div className={styles.tripContainer}>
+//           <TripHeader
+//             title={trip.title}
+//             start={trip.startDate}
+//             end={trip.endDate}
+//             pic={trip.picUrl}
+//           />
+//           {trip.attendees && <AttendeeList attendees={trip.attendees} />}
+//           {trip.photos && <AlbumList photos={trip.photos} id={trip._id} />}
+//           <TimeLineList tripId={id} />
+//           {trip.locations && <TripPinDropList pinDrops={trip.locations} />}
+//           {trip.lodging && <LodgingList lodging={trip.lodging}></LodgingList>}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
