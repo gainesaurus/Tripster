@@ -32,27 +32,29 @@ export default function TripPage() {
 
   return (
     trip &&
-    <div className={styles.page}>
-      <NavBar />
-      <div className={styles.pageContainer}>
-        <div className={styles.homeContainer}>
-          <HomeLeft />
-          <Divider />
-        </div>
-        <div className={styles.tripContainer}>
-          <TripHeader
-            title={trip.title}
-            start={trip.startDate}
-            end={trip.endDate}
-            pic={trip.picUrl}
-          />
-          <AttendeeList attendees={trip.attendees} invites={trip.invites} />
-          <AlbumList id={id} />
-          <TimeLineList tripId={id} />
-          <TripPinDropList tripId={id} />
-          <LodgingList tripId={id} />
+    id && (
+      <div className={styles.page}>
+        <NavBar />
+        <div className={styles.pageContainer}>
+          <div className={styles.homeContainer}>
+            <HomeLeft />
+            <Divider />
+          </div>
+          <div className={styles.tripContainer}>
+            <TripHeader
+              title={trip.title}
+              start={trip.startDate}
+              end={trip.endDate}
+              pic={trip.picUrl}
+            />
+            <AttendeeList attendees={trip.attendees} invites={trip.invites} />
+            <AlbumList tripId={id.toString()} />
+            <TimeLineList tripId={id.toString()} />
+            <TripPinDropList tripId={id.toString()} />
+            <LodgingList tripId={id.toString()} />
+          </div>
         </div>
       </div>
-    </div>
+    )
   );
 }

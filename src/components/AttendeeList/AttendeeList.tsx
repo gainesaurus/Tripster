@@ -9,8 +9,8 @@ import User from '../UserIcon/UserIcon';
 import styles from './AttendeeList.module.css';
 
 interface AttendeeListProps {
-  attendees: string[];
-  invites: string[];
+  attendees?: string[];
+  invites?: string[];
 }
 
 const AttendeeList: FC<AttendeeListProps> = ({ attendees, invites }) => {
@@ -21,10 +21,11 @@ const AttendeeList: FC<AttendeeListProps> = ({ attendees, invites }) => {
   const tripId = router.query.id;
 
   useEffect(() => {
-    attendees.forEach(async (uid) => {
-      const user = await getUser(uid);
-      user && setAttendeesList((attendees) => [...attendees, user]);
-    });
+    attendees &&
+      attendees.forEach(async (uid) => {
+        const user = await getUser(uid);
+        user && setAttendeesList((attendees) => [...attendees, user]);
+      });
   }, [attendees]);
 
   const openForm = () => {
