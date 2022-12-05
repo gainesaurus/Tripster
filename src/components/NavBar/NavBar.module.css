@@ -32,12 +32,23 @@
   align-items: center;
 }
 
-.profile {
-  height: 50px;
-  width: 50px;
+.profileBox {
+  display: flex;
+  height: 3rem;
+  margin: 5px;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+  border: 2px solid white;
   border-radius: 50%;
+  aspect-ratio: 1.1;
+  overflow: hidden;
+  background-color: rgb(61, 61, 61);
   margin: 0 1em 0 1em;
+}
+.profile {
   cursor: pointer;
+  object-fit: cover;
+  height: 3rem;
+  width: auto;
 }
 
 .blankProfile {

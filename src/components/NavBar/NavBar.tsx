@@ -1,19 +1,31 @@
+import React, { useEffect, useState } from 'react';
+
 import { useRouter } from 'next/router';
 import { logout } from '../../firebase';
 import styles from './NavBar.module.css';
 import { AccountCircle } from '@mui/icons-material';
+import { useUserContext } from '../../Contexts/UserContext';
+import { IUser } from '../../../Types';
+import { getUser } from '../../services/userService';
 
 const NavBar = () => {
-  //MOCKDATA
-  const user = {
-    name: 'Danielle',
-    user: 'daniellestroscher',
-    email: 'd@test.com',
-    profile_pic: '',
-  };
+  const userContext = useUserContext()
+  const [user, setUser] = useState<IUser>();
+
+  useEffect(()=> {
+    retrieveUser()
+  }, []);
+
+  const retrieveUser = async () => {
+    const user = await getUser(userContext.authUser?.uid as string);
+    if (user?.profile_pic === 'add_photo.png') {
+      user.profile_pic = '/profileDefault.png';
+    }
+    setUser(user as IUser);
+  }
+  console.log(user);
 
   const router = useRouter();
-
   const goToProfile = () => {
     router.pathname !== '/profile' && router.push('/profile');
   };
@@ -39,13 +51,21 @@ const NavBar = () => {
         <div>
           {router.pathname !== '/login' ? (
             <section className={styles.userInfo}>
-              <p className={styles.para}>Welcome back {user.name}!</p>
-              {user.profile_pic ? <img
-                src={user.profile_pic}
-                alt="profile pic"
-                className={styles.profile}
-                onClick={goToProfile}
-              /> : <AccountCircle className={styles.blankProfile} fontSize='large' onClick={goToProfile}/>}
+              {
+                user?
+                <p className={styles.para}>Welcome back {user?.username}!</p>
+                : <p>Welcome back!</p>
+              }
+              {user && user.profile_pic ?
+                <div className={styles.profileBox}>
+                <img
+                  src={user.profile_pic}
+                  alt="profile pic"
+                  className={styles.profile}
+                  onClick={goToProfile}
+                />
+                </div> : <AccountCircle className={styles.blankProfile} fontSize='large' onClick={goToProfile}/>
+              }
               <button className={styles.logout} onClick={handleLogout}>
                 Logout
               </button>

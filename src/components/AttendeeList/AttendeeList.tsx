@@ -35,7 +35,7 @@ const AttendeeList: FC<AttendeeListProps> = ({ attendees, invites }) => {
   return (
     <div className={styles.attendeeContainer}>
       <div className={styles.titleContainer}>
-        <h1 className={styles.attendeeTitle}>Attendees:</h1>
+        <h1 className={styles.attendeeTitle}>Attendees</h1>
         <button
           onClick={openForm}
           className={styles.button}
