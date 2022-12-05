@@ -19,6 +19,5 @@ describe('LodgingItem Component', () => {
     expect(screen.getByText('Get directions')).toBeDefined();
     expect(screen.getByText('testTitle')).toBeDefined();
     expect(screen.getByText('testAddress')).toBeDefined();
-
   });
 });
