@@ -18,7 +18,7 @@ function TimeLineList({ tripId }:TimeLineListProps) {
   const user = useUserContext();
   const [tripEvent, setTripEvent] = useState<IEvent>();
   const [allEvents, setAllEvents] = useState<IEvent[]>([]);
-  
+
   useEffect(() => {
     user.authUser && getEventsByTripId(user.authUser.token, tripId).then((events:any) => {setAllEvents(events)})
   }, [user.authUser, tripId]);
@@ -38,7 +38,7 @@ function TimeLineList({ tripId }:TimeLineListProps) {
   return (
     <div className={styles.timelineContainer}>
       <div className={styles.titleContainer}>
-        <h1 className={styles.timelineTitle}>Events Timeline:</h1>
+        <h1 className={styles.timelineTitle}>Events Timeline</h1>
         <button onClick={openForm} className={styles.button} title="Add Event">
           <AddBox className={styles.addIcon}/>
         </button>

@@ -45,7 +45,7 @@ const  AlbumList = ({ tripId }:AlbumListProps) => {
   return (
     <div className={styles.albumContainer}>
       <div className={styles.title}>
-        <h1 className={styles.albumListTitle}>Shared Photos:</h1>
+        <h1 className={styles.albumListTitle}>Shared Photos</h1>
         <button onClick={openForm} className={styles.button}>
             <AddBox className={styles.addIcon}/>
         </button>

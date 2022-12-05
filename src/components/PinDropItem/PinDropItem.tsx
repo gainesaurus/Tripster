@@ -65,7 +65,9 @@ const PinDropItem: FC<PinDropItemProps> =({ location }) => {
       <div className={styles.ts}>{location && location.ts && location.ts}</div>
       {
         user &&
-        <Image className={styles.profilePic} width={30} height={30} src={`${user.profile_pic}`} alt={'user profile pic'} />
+        <div className={styles.profileBox}>
+          <Image className={styles.profilePic} width={500} height={500} src={`${user.profile_pic}`} alt={'profile pic'} />
+        </div>
       }
 
     </div>
