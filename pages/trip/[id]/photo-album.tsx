@@ -33,7 +33,7 @@ export default function Photos() {
     <>
       <NavBar />
       <div className={styles.album}>
-        <div onClick={()=>{router.back()}}>
+        <div onClick={()=>{router.back()}} className={styles.cursor}>
           <ArrowBackIcon/>
         </div>
         <PhotoAlbum layout='rows' photos={allPhotos}/>

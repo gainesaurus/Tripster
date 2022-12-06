@@ -56,12 +56,14 @@ function ProfileInfo() {
         multiple={false}
         onChange={handleImgChange}
       />
-      <img
-        alt="profile picture"
-        src={user.profile_pic}
-        className={styles.profileImage}
-        onClick={() => inputFile.current?.click()}
-      />
+      <div className={styles.profileImgBox}>
+        <img
+          alt="profile picture"
+          src={user.profile_pic}
+          className={styles.profileImage}
+          onClick={() => inputFile.current?.click()}
+        />
+      </div>
       <form className={styles.profileInfo}>
         <input
           type="text"

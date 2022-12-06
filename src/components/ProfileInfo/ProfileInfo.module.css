@@ -8,12 +8,21 @@
   flex-direction: column;
   justify-content: center;
 }
+.profileImgBox {
+  height: 150px;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+  border: 3px solid white;
+  border-radius: 50%;
+  aspect-ratio: 1.1;
+  overflow: hidden;
+  background-color:#ffd380;
+  margin: 0 1em 0 1em;
+}
 
 .profileImage {
   height: 150px;
-  width: 150px;
-  border-radius: 50%;
-  object-fit: contain;
+  width: auto;
+  object-fit: fill;
 }
 
 .profileText{
@@ -40,11 +49,11 @@
 
 @media screen and (max-width:750px) {
   .profileImage{
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: auto;
   }
   .profileText{
     font-size: medium;
   }
-  
+
 }
