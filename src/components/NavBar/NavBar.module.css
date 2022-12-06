@@ -47,8 +47,7 @@
 .profile {
   cursor: pointer;
   object-fit: cover;
-  height: 3rem;
-  width: auto;
+  flex: 1;
 }
 
 .blankProfile {

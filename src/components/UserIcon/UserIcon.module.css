@@ -1,7 +1,7 @@
 .profilePic {
   object-fit: cover;
-  height: 4rem;
-  width: auto;
+  height: 100%;
+  width: 100%;
 }
 .profilePicCont {
   display: flex;
@@ -14,3 +14,4 @@
   overflow: hidden;
   background-color:#ffd380;
 }
+

@@ -1,3 +1,6 @@
 .album {
   padding: 1rem;
 }
+.cursor {
+  cursor: pointer;
+}
