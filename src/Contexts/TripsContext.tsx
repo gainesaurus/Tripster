@@ -35,19 +35,19 @@ export function TripsProvider({ children }: { children: ReactNode }) {
     if (userContext.authUser && userContext.authUser?.token !== '') {
       getAllTrips(userContext.authUser.token).then((tripItems) => {
         if (tripItems) {
-          let currentTrips = tripItems.filter(
+          const currentTrips = tripItems.filter(
             (item) => getTripStatus(item.startDate, item.endDate) === 'current',
-          );
+          ) as ITripItem[];
           setCurrentTrips(currentTrips);
-          let upcomingTrips = tripItems.filter(
+          const upcomingTrips = tripItems.filter(
             (item) =>
               getTripStatus(item.startDate, item.endDate) === 'upcoming',
-          );
+          ) as ITripItem[];
           setUpcomingTrips(upcomingTrips);
-          let pastTrips = tripItems.filter(
+          const pastTrips = tripItems.filter(
             (item) =>
               getTripStatus(item.startDate, item.endDate) === 'memories',
-          );
+          ) as ITripItem[];
           setPastTrips(pastTrips);
         }
       });

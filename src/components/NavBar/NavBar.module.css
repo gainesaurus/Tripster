@@ -39,16 +39,17 @@
   box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
   border: 2px solid white;
   border-radius: 50%;
-  aspect-ratio: 1.1;
+  aspect-ratio: 1;
   overflow: hidden;
   background-color:#ffd380;
   margin: 0 1em 0 1em;
+  justify-content: center;
+  align-self: center;
 }
 .profile {
   cursor: pointer;
   object-fit: cover;
-  height: 3rem;
-  width: auto;
+  flex: 1;
 }
 
 .blankProfile {

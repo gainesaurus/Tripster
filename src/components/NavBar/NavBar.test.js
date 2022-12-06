@@ -1,18 +1,28 @@
 import NavBar from './NavBar';
 import { render, screen } from "@testing-library/react";
 import { expect } from '@jest/globals';
+import { UserProvider } from '../../Contexts/UserContext';
 
 describe('NavBar component', () => {
   test('it should render a logout button when logged in', () => {
+
     render (
-      <NavBar/>
+      <UserProvider>
+        <NavBar />
+      </UserProvider>
     )
     expect(screen.getByText('Logout')).toBeDefined();
   })
   // test('it should render the VaKay logo', () => {
-  //   render (
-  //     <NavBar />
-  //   )
-  //})
+  //   const userContext {
+
+  //   }
+
+  //   // render (
+  //   //   <UserContext.Provider value={{ userContext }}>
+  //   //     <NavBar />
+  //   //   </UserContext.Provider>
+  //   // )
+  // })
 
 })

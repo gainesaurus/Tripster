@@ -12,11 +12,3 @@ export const createLodging = async (token: string, lodge: ILodge) => {
     '/lodging', {method: 'POST', body: JSON.stringify(lodge)}, token,
   );
 }
-
-export const updateLodging = async () => {
-
-}
-
-export const deleteLodging = async () => {
-
-}

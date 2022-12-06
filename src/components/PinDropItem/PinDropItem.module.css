@@ -58,6 +58,12 @@
 
 .profilePic {
   object-fit: cover;
-  height: 30px;
-  width: auto;
+  height: 100%;
+  width: 100%;
+}
+.userEmail{
+  position: absolute;
+  bottom: 0px;
+  right: 5px;
+  font-size: 10px;
 }

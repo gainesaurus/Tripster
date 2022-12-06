@@ -54,7 +54,7 @@ const  AlbumList = ({ tripId }:AlbumListProps) => {
               See All
             </div>
             </Link>
-            : <></>
+            : null
           }
         </div>
         <button onClick={openForm} className={styles.button}>
@@ -70,7 +70,7 @@ const  AlbumList = ({ tripId }:AlbumListProps) => {
           displayPhotos.map((photo: IPhoto, i) => {
           return <Image key={i + 1} src={photo.src} width={photo.width} height={photo.height} alt='shared photo' loading={'lazy'} className={styles.image}/>
           })
-          : <></>
+          : null
         }
       </div>
     </div>
