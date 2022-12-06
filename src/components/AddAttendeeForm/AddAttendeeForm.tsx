@@ -44,7 +44,7 @@ function AddAttendeeForm({
   return (
     <div id="addAttendeeForm" className={styles.addAttendeeForm}>
       <div className={styles.addAttendeeContainer}>
-        <form className={styles.infoContainer}>
+        <div className={styles.infoContainer}>
           <button className={styles.XButton} onClick={closeForm}>
             <Close />
           </button>
@@ -61,7 +61,7 @@ function AddAttendeeForm({
           >
             Invite friends
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );
