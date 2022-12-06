@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import { UserProvider } from '../../Contexts/UserContext';
-import AddEventForm from './AddEventForm';
+import { UserProvider } from '../src/Contexts/UserContext';
+import AddEventForm from '../src/components/AddEventForm/AddEventForm';
 
 
 describe('Add Event Form', () => {
