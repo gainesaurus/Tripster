@@ -54,13 +54,13 @@ const NavBar = () => {
               }
               {user && user.profile_pic !== '/add_photo.png' ?
                 <div className={styles.profileBox}>
-                <img
-                  src={user.profile_pic}
-                  alt="profile pic"
-                  className={styles.profile}
-                  onClick={goToProfile}
-                />
-                </div> : <AccountCircle className={styles.blankProfile} fontSize='large' onClick={goToProfile}/>
+                  <img
+                    src={user.profile_pic}
+                    alt="profile pic"
+                    className={styles.profile}
+                    onClick={goToProfile}
+                  />
+                </div> : <AccountCircle className={styles.blankProfile} fontSize='large'  data-testid="default-profile" onClick={goToProfile}/>
               }
               <button className={styles.logout} onClick={handleLogout}>
                 Logout

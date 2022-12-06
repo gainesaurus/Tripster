@@ -17,7 +17,7 @@ describe('NavBar component', () => {
     nextRouter.useRouter.mockReturnValue({
       push: pushMock,
     })
-    render (
+    render(
       <UserProvider>
         <NavBar />
       </UserProvider>
@@ -65,22 +65,22 @@ describe('NavBar component', () => {
       expect(nextRouter.useRouter).toHaveBeenCalled();
     })
   })
-  it('should render a user provided profile pic when available', () => {
-    const userContext = {
-      authUser: {
-        profile_pic: '/anImage.png',
-        uid:1,
-        token:2
-      },
-      isLoading: false,
-    }
-    render (
-      <UserProvider user={{userContext}}>
-        <NavBar />
-      </UserProvider>
-    )
-      const defaultLogo = screen.getByTestId('default-profile');
-      expect(defaultLogo).toBeDefined();
-      //THIS SHOULD FAIL
-  })
+  // it('should render a user provided profile pic when available', () => {
+  //   const userContext = {
+  //     authUser: {
+  //       profile_pic: '/anImage.png',
+  //       uid:1,
+  //       token:2
+  //     },
+  //     isLoading: false,
+  //   }
+  //   render (
+  //     <UserProvider user={{userContext}}>
+  //       <NavBar />
+  //     </UserProvider>
+  //   )
+  //     const defaultLogo = screen.getByTestId('default-profile');
+  //     expect(defaultLogo).toBeDefined();
+  //     //THIS SHOULD FAIL
+  // })
 })

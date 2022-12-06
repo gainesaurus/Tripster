@@ -18,6 +18,5 @@ describe('Add pin drop from', () => {
     );
     const photoInput = await screen.findByTestId('filepond-input');
     expect(photoInput).toBeInTheDocument();
-    expect(photoInput).toHaveClass('filepond--wrapper');
   });
 });
