@@ -48,14 +48,14 @@ function TimeLineItem ({ event, allEvents, setAllEvents }: TimeLineItemProps) {
     <div className={styles.timeline}>
       <div className={styles.timelineItem}>
         <h4 className={styles.time}>{dateTime}</h4>
-          {event.eventType == 'food' ? <Restaurant className={styles.restaurantIcon} fontSize='large' /> : <></>}
-          {event.eventType == 'active' ? <DirectionsRun className={styles.activeIcon} fontSize='large' /> : <></>}
-          {event.eventType == 'leisure' ? <AirlineSeatReclineExtra className={styles.leisureIcon} fontSize='large' /> : <></>}
-          {event.eventType == 'shopping' ? <AttachMoney className={styles.shopIcon} fontSize='large' /> : <></>}
-          {event.eventType == 'travel' ? <Luggage className={styles.travelIcon} fontSize='large' /> : <></>}
-          {event.eventType == 'other' ? <ContentPaste className={styles.otherIcon} fontSize='large' /> : <></>}
+          {event.eventType == 'food' ? <Restaurant className={styles.restaurantIcon} fontSize='large' /> : null}
+          {event.eventType == 'active' ? <DirectionsRun className={styles.activeIcon} fontSize='large' /> : null}
+          {event.eventType == 'leisure' ? <AirlineSeatReclineExtra className={styles.leisureIcon} fontSize='large' /> : null}
+          {event.eventType == 'shopping' ? <AttachMoney className={styles.shopIcon} fontSize='large' /> : null}
+          {event.eventType == 'travel' ? <Luggage className={styles.travelIcon} fontSize='large' /> : null}
+          {event.eventType == 'other' ? <ContentPaste className={styles.otherIcon} fontSize='large' /> : null}
         <div id={`${event._id}card`} className={styles.timelineContent} onClick={eventResize}>
-          <h3 className={styles.eventTitle}>{event.title}</h3>
+          <h3 className={styles.eventTitle} data-testid="eventTitle">{event.title}</h3>
           <div id={`${event._id}info`} className={styles.eventInfo}>
             <p>{dateTime} - {endTime}</p>
             <p>{event.info}</p>
