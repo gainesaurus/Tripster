@@ -9,20 +9,21 @@
   justify-content: center;
 }
 .profileImgBox {
+  display: flex;
+  overflow: hidden;
   height: 150px;
+  aspect-ratio: 1.1;
+  margin: 1em;
   box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
   border: 3px solid white;
   border-radius: 50%;
-  aspect-ratio: 1.1;
-  overflow: hidden;
   background-color:#ffd380;
-  margin: 0 1em 0 1em;
+
 }
 
 .profileImage {
-  height: 150px;
-  width: auto;
-  object-fit: fill;
+  object-fit: cover;
+  flex: 1;
 }
 
 .profileText{
@@ -45,6 +46,14 @@
   align-self: center;
   font-family: inherit;
   font-size: large;
+  box-shadow: 0 10px 10px -5px rgba(0,0,0,0.5);
+
+}
+.save:hover {
+  background-color: #8a508f;
+}
+.save:active {
+  box-shadow: none;
 }
 
 @media screen and (max-width:750px) {

@@ -5,12 +5,12 @@ import { useUserContext } from '../../Contexts/UserContext';
 
 describe('NavBar component', () => {
   test('it should render a logout button when logged in', () => {
-    const userContext = useUserContext();
+    // const userContext = useUserContext();
 
     render (
-      <UserProvider.Provider userContext={{ userContext }}>
+      // <UserProvider.Provider userContext={{ userContext }}>
         <NavBar />
-      </UserProvider.Provider>
+      // </UserProvider.Provider>
     )
     expect(screen.getByText('Logout')).toBeDefined();
   })

@@ -17,8 +17,8 @@ const NavBar = () => {
   }, []);
 
   const retrieveUser = async () => {
-    const user = await getUser(userContext.authUser?.uid as string);
-    if (user?.profile_pic === 'add_photo.png') {
+    const user = await getUser(userContext.authUser?.uid as string) as IUser;
+    if (user.profile_pic === '/add_photo.png') {
       user.profile_pic = '/profileDefault.png';
     }
     setUser(user as IUser);

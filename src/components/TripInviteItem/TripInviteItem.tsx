@@ -3,6 +3,7 @@ import { ITripItem } from '../../../Types';
 import { useTripsContext } from '../../Contexts/TripsContext';
 import { useUserContext } from '../../Contexts/UserContext';
 import { respondInvite } from '../../services/inviteService';
+import { DateTime } from 'luxon';
 import styles from './TripInviteItem.module.css';
 
 interface TripItemProps {
@@ -21,6 +22,12 @@ const TripInviteItem: FC<TripItemProps> = ({ trip, setUpdateTrips }) => {
         setUpdateTrips((state) => !state);
       });
   }
+  const startDate = DateTime.fromISO(`${trip.startDate}`);
+  const endDate = DateTime.fromISO(`${trip.endDate}`);
+  let start = startDate.toLocaleString(DateTime.DATETIME_MED);
+  start = start.slice(0, 12);
+  let end = endDate.toLocaleString(DateTime.DATETIME_MED);
+  end = end.slice(0, 12);
 
   return (
     <div
@@ -34,7 +41,7 @@ const TripInviteItem: FC<TripItemProps> = ({ trip, setUpdateTrips }) => {
       <div className={styles.heading}>
         <h1 className={styles.headingItem}>{trip.title}</h1>
         <h3 className={styles.headingItem}>
-          {trip.startDate} - {trip.endDate}
+          {start} - {end}
         </h3>
       </div>
       <div className={styles.footer}>
