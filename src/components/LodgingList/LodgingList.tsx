@@ -7,17 +7,24 @@ import styles from './LodgingList.module.css';
 import { AddBox } from '@mui/icons-material';
 import { getLodgingsByTripId } from '../../services/lodgingService';
 import { useUserContext } from '../../Contexts/UserContext';
+import { useRouter } from 'next/router';
+import { GetServerSideProps } from 'next'
+import { InferGetServerSidePropsType } from 'next';
+import { ParsedUrlQuery } from 'querystring';
 
-
+// InferGetServerSidePropsType<typeof getServerSideProps>
 interface LodgingListProps {
+  lodgings: ILodge[]
   tripId: string
 }
 
-const  LodgingList = ({tripId}: LodgingListProps) => {
+const  LodgingList = ({ lodgings, tripId }: LodgingListProps) => {
   const user = useUserContext();
   const [allLodging, setAllLodging] = useState<ILodge[]>([]);
+  console.log(lodgings);
 
   useEffect(()=>{
+    // setAllLodging(lodgings);
     getLodging();
   }, []);
 
@@ -57,5 +64,13 @@ const  LodgingList = ({tripId}: LodgingListProps) => {
     </div>
   )
 }
+
+// export const getServerSideProps: GetServerSideProps<{lodgings: ILodge[]}> = async (context) => {
+//   const router = useRouter();
+//   const tripId = router.query.id;
+//   const user = useUserContext();
+//   const lodgings = await getLodgingsByTripId(user.authUser!.token, tripId as string) as ILodge[];
+//   return { props: { lodgings } }
+// }
 
 export default LodgingList;

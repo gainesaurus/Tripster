@@ -14,12 +14,12 @@ const libraries = ["places"] as any;
 
 interface AddPinDropProps {
   closeForm: () => void
-  setAllLocations: any
+  setAllLocations: (arg:ILocation[]) => void
   allLocations: ILocation[]
 }
 function AddPinDropForm ({closeForm, setAllLocations, allLocations}:AddPinDropProps) {
-  const inputRef = useRef<any>();
-  const autoCompleteRef = useRef<any>();
+  const inputRef = useRef() as React.RefObject<HTMLInputElement>;
+  const autoCompleteRef = useRef() as any;
   const [info, setInfo] = useState<string>();
   const [latLng, setLatLng] = useState<ILatLng>();
 
@@ -32,6 +32,7 @@ function AddPinDropForm ({closeForm, setAllLocations, allLocations}:AddPinDropPr
     version: "weekly",
     libraries: libraries
   });
+
   loader.load()
   .then(()=> {
     autoCompleteRef.current = new google.maps.places.Autocomplete(
@@ -73,21 +74,23 @@ function AddPinDropForm ({closeForm, setAllLocations, allLocations}:AddPinDropPr
     }
   })
 
-  const handleSubmit = (e:any) => {
-    e.preventDefault();
+  const handleSubmit = (event:React.FormEvent) => {
+    event.preventDefault();
     const location = {
       tripId: tripId as string,
       info: info as string,
       latLng: latLng as ILatLng,
       // profile_pic: user.
     }
-    user.authUser && location && createLocation(user.authUser.token, location).then((location:ILocation | void) => {setAllLocations([...allLocations, location])})
+    user.authUser && location && createLocation(user.authUser.token, location).then((location:ILocation | void) => {setAllLocations([...allLocations, location] as ILocation[])})
     console.log(location);
 
     setInfo('');
     setLatLng(undefined);
     closeForm();
-    inputRef.current.value = '';
+    if (inputRef.current) {
+      inputRef.current.value = '';
+    }
   }
 
   return (

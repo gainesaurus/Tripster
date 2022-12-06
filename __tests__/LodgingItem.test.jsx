@@ -1,9 +1,10 @@
-import LodgingItem from './LodgingItem';
+import '@testing-library/jest-dom';
+import LodgingItem from '../src/components/LodgingItem/LodgingItem';
 import { render, screen } from "@testing-library/react";
 import { expect } from '@jest/globals';
 
 describe('LodgingItem Component', () => {
-  test('it should render a get directions button and lodging info', () => {
+  it('it should render a get directions button and lodging info', () => {
     const lodge = {
       title: 'testTitle',
       address: 'testAddress',
@@ -11,7 +12,6 @@ describe('LodgingItem Component', () => {
         lat: 10,
         lng: -10,
       }
-
     }
     render(
       <LodgingItem lodge={lodge}/>

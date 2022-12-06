@@ -18,12 +18,8 @@ const NavBar = () => {
 
   const retrieveUser = async () => {
     const user = await getUser(userContext.authUser?.uid as string) as IUser;
-    if (user.profile_pic === '/add_photo.png') {
-      user.profile_pic = '/profileDefault.png';
-    }
     setUser(user as IUser);
   }
-  console.log(user);
 
   const router = useRouter();
   const goToProfile = () => {
@@ -56,7 +52,7 @@ const NavBar = () => {
                 <p className={styles.para}>Welcome back {user?.username}!</p>
                 : <p>Welcome back!</p>
               }
-              {user && user.profile_pic ?
+              {user && user.profile_pic !== '/add_photo.png' ?
                 <div className={styles.profileBox}>
                 <img
                   src={user.profile_pic}
