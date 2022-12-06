@@ -83,6 +83,7 @@ function AddPhotosForm ({ closeForm, setPhotos, allPhotos }:AddPhotosProps) {
       <form className={styles.infoContainer} onSubmit={handleSubmit}>
         <h2>Share your photo's!</h2>
         <FilePond
+          data-testid="filepond-input"
           files={imgFiles.map((fileItem) => fileItem.file)}
           onupdatefiles={setImgFiles}
           allowMultiple={true}
