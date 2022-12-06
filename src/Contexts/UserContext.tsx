@@ -14,7 +14,7 @@ interface AuthUser {
   token: string;
 }
 
-const UserContext = createContext<Context | undefined>(undefined);
+export const UserContext = createContext<Context | undefined>(undefined);
 
 export function useUserContext() {
   const context = useContext(UserContext);

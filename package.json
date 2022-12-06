@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch --transformIgnorePatterns"
+    "test": "jest --watchAll --transformIgnorePatterns"
   },
   "dependencies": {
     "@coderosh/image-size": "^2.0.1",

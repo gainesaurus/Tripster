@@ -20,7 +20,6 @@ const NavBar = () => {
     const user = await getUser(userContext.authUser?.uid as string) as IUser;
     setUser(user as IUser);
   }
-  console.log(user);
 
   const router = useRouter();
   const goToProfile = () => {
