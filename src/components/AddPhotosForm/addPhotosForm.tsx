@@ -20,7 +20,7 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 interface AddPhotosProps {
   closeForm: () => void
-  setPhotos: any
+  setPhotos: (arg:IPhoto[]) => void
   allPhotos: IPhoto[]
 }
 
@@ -53,7 +53,7 @@ function AddPhotosForm ({ closeForm, setPhotos, allPhotos }:AddPhotosProps) {
         console.log(photo);
         let returnedPic;
         returnedPic = await addPhotos(token as string, photo as IPhoto)
-        setPhotos({...allPhotos, returnedPic});
+        setPhotos([...allPhotos, returnedPic] as IPhoto[]);
       } else {
         console.log('could not save photo.')
       }
