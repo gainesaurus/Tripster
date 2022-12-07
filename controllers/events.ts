@@ -9,7 +9,7 @@ export async function getAllEvents(
 ) {
   const events = await Events.find<IEvent>({
     tripId: req.query.tripId,
-  }).exec();
+  }).sort([['startTime', 1]]).exec();
   res.status(200).json(events);
 }
 

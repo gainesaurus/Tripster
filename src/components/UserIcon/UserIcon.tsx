@@ -21,7 +21,7 @@ const TripItem: FC<UserProps> = ({ person }) => {
         <div
         className={styles.profilePicCont}
         >
-          <Image className={styles.profilePic} alt={'profile pic'} src={`${person.profile_pic}`} height={500} width={500} />
+          <Image className={styles.profilePic} alt={'profile pic'} src={`${person.profile_pic}`} height={500} width={500} title={person.username} />
         </div>
         :
         <div className={styles.attendeeBox}>

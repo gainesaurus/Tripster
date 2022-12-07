@@ -21,7 +21,7 @@ function TimeLineList({ tripId }:TimeLineListProps) {
 
   useEffect(() => {
     user.authUser && getEventsByTripId(user.authUser.token, tripId).then((events:any) => {setAllEvents(events)})
-  }, [user.authUser, tripId]);
+  }, [user.authUser, tripId, allEvents]);
 
   const eventDay = (item: any) => (DateTime.fromISO(item.startTime).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY));
 
