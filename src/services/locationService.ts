@@ -11,11 +11,3 @@ export const createLocation = async (token:string, location:ILocation) => {
     '/locations', {method: 'POST', body: JSON.stringify(location)}, token,
   );
 }
-
-export const updateLodging = async () => {
-
-}
-
-export const deleteLodging = async () => {
-
-}

@@ -28,7 +28,6 @@ const TripItem: FC<UserProps> = ({ person }) => {
           <div
           className={styles.userIconCont}
           >
-            <AccountCircle className={styles.blankProfile} fontSize='inherit'/>
           </div>
           <p className={styles.name}>{emailStart}</p>
         </div>

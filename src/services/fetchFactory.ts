@@ -1,4 +1,4 @@
-const baseUrl = '/api';
+const baseUrl = 'http://localhost:3001/api';
 
 export async function fetchData<T>(
   route: string,
@@ -17,6 +17,7 @@ export async function fetchData<T>(
   }
   try {
     const res = await fetch(baseUrl + route, options);
+    //return await JSON.parse(JSON.stringify(res));
     return await res.json();
   } catch (e) {
     console.log(e);

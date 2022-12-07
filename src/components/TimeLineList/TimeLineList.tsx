@@ -13,15 +13,12 @@ import { getEventsByTripId, createEvent, updateEvent, removeEvent } from '../../
 import styles from './TimeLineList.module.css';
 interface TimeLineListProps {
   tripId: any;
+  events: IEvent[]
 }
-function TimeLineList({ tripId }:TimeLineListProps) {
+function TimeLineList({ tripId, events }:TimeLineListProps) {
   const user = useUserContext();
   const [tripEvent, setTripEvent] = useState<IEvent>();
-  const [allEvents, setAllEvents] = useState<IEvent[]>([]);
-
-  useEffect(() => {
-    user.authUser && getEventsByTripId(user.authUser.token, tripId).then((events:any) => {setAllEvents(events)})
-  }, [user.authUser, tripId]);
+  const [allEvents, setAllEvents] = useState<IEvent[]>(events);
 
   const eventDay = (item: any) => (DateTime.fromISO(item.startTime).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY));
 

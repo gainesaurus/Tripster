@@ -5,6 +5,8 @@ import React from 'react';
 import { TripsProvider } from '../src/Contexts/TripsContext';
 import { UserProvider } from '../src/Contexts/UserContext';
 import '../styles/globals.css';
+import initAuth from '../initAuth';
+initAuth()
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
