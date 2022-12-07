@@ -8,32 +8,29 @@ import { AddBox } from '@mui/icons-material';
 import { getLodgingsByTripId } from '../../services/lodgingService';
 import { useUserContext } from '../../Contexts/UserContext';
 import { useRouter } from 'next/router';
-import { GetServerSideProps } from 'next'
-import { InferGetServerSidePropsType } from 'next';
-import { ParsedUrlQuery } from 'querystring';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 
-// InferGetServerSidePropsType<typeof getServerSideProps>
+
 interface LodgingListProps {
-  lodgings: ILodge[]
   tripId: string
+  lodgings: ILodge[]
 }
 
-const  LodgingList = ({ lodgings, tripId }: LodgingListProps) => {
-  const user = useUserContext();
+const  LodgingList = ({ lodgings, tripId }: LodgingListProps ) => {
   const [allLodging, setAllLodging] = useState<ILodge[]>([]);
-  console.log(lodgings);
 
   useEffect(()=>{
-    // setAllLodging(lodgings);
-    getLodging();
+    setAllLodging(lodgings);
+    console.log(allLodging);
+    //getLodging();
   }, []);
 
-  const getLodging = async () => {
-    const lodgings = await getLodgingsByTripId(user.authUser!.token, tripId as string);
-    if (lodgings) {
-      setAllLodging(lodgings);
-    }
-  }
+  // const getLodging = async () => {
+  //   const lodgings = await getLodgingsByTripId(user.authUser!.token, tripId as string);
+  //   if (lodgings) {
+  //     setAllLodging(lodgings);
+  //   }
+  // }
 
   const openForm = () => {
     document.getElementById('addLodgingForm')!.style.display = 'flex';
@@ -64,13 +61,5 @@ const  LodgingList = ({ lodgings, tripId }: LodgingListProps) => {
     </div>
   )
 }
-
-// export const getServerSideProps: GetServerSideProps<{lodgings: ILodge[]}> = async (context) => {
-//   const router = useRouter();
-//   const tripId = router.query.id;
-//   const user = useUserContext();
-//   const lodgings = await getLodgingsByTripId(user.authUser!.token, tripId as string) as ILodge[];
-//   return { props: { lodgings } }
-// }
 
 export default LodgingList;

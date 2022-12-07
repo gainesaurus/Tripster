@@ -119,7 +119,7 @@ function AddPinDropForm ({closeForm, setAllLocations, allLocations}:AddPinDropPr
           latLng?
           <div className={styles.mapDisplay} id='map-display'>
           </div>
-          : <></>
+          : null
         }
         <div className={styles.buttonDiv}>
           <button

@@ -9,7 +9,6 @@ import { IPhoto } from '../../../Types';
 import { getPhotosByTripId } from '../../../src/services/photoService';
 import { useRouter } from 'next/router';
 
-
 export default function Photos() {
   const [allPhotos, setPhotos] = useState<IPhoto[]>([]);
   const user = useUserContext();

@@ -13,10 +13,13 @@ import { useEffect, useState } from 'react';
 import NavBar from '../../../src/components/NavBar/NavBar';
 import { useUserContext } from '../../../src/Contexts/UserContext';
 import { getTripById } from '../../../src/services/tripService';
+import { getLodgingsByTripId } from '../../../src/services/lodgingService'
 import styles from '../../../styles/Trip.module.css';
-import { ITripItem } from '../../../Types';
+import { ITripItem, ILodge } from '../../../Types';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 
-export default function TripPage() {
+export default function TripPage({ lodgings }:InferGetServerSidePropsType<typeof getServerSideProps>) {
+  console.log(lodgings);
   const router = useRouter();
   const { id } = router.query;
   const userContext = useUserContext();
@@ -51,10 +54,35 @@ export default function TripPage() {
             <AlbumList tripId={id.toString()} />
             <TimeLineList tripId={id.toString()} />
             <TripPinDropList tripId={id.toString()} />
-            <LodgingList tripId={id.toString()} />
+            <LodgingList tripId={id.toString()} lodgings={lodgings} />
           </div>
         </div>
       </div>
     )
   );
+}
+
+export const getServerSideProps: GetServerSideProps<{lodgings: ILodge[]}> = async ({ params }) => {
+  //const lodgings = await getLodgingsByTripId(token, params?.id as string) as ILodge[];
+  let lodgings = [
+    {
+      _id: 'string',
+  tripId: 'string',
+  title: 'string',
+  address: 'string',
+  latLng: {lat:1,lng:-1},
+  uid: 'string',
+
+  },
+  {
+    _id: 'string',
+  tripId: 'string',
+  title: 'string',
+  address: 'string',
+  latLng: {lat:1,lng:-1},
+  uid: 'string',
+
+  }
+  ];
+  return { props:{ lodgings } }
 }

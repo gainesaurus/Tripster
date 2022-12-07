@@ -111,7 +111,7 @@ function AddLodgingForm ({ closeForm, setAllLodging, allLodging }:AddLodgingProp
           latLng?
           <div className={styles.mapDisplay} id='map-display'>
           </div>
-          : <></>
+          : null
         }
 
         <div className={styles.buttonDiv}>

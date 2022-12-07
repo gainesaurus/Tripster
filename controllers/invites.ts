@@ -29,7 +29,6 @@ export async function inviteToTrip(
     };
     const trip = await Trip.findOne<ITripItem>(filter).exec();
     if (trip) {
-      console.log(trip);
       invites.forEach(
         (invite: string) =>
           !trip.invites?.includes(invite) &&
@@ -58,7 +57,6 @@ export async function resolveInvitation(
       $and: [{ _id: id }],
     };
     const trip = await Trip.findOne<ITripItem>(filter).exec();
-    console.log(req.body, id, trip);
     if (trip) {
       trip.invites?.splice(trip.invites?.indexOf(uid), 1);
       if (accepted) {
