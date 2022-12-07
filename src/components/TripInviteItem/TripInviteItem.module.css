@@ -21,10 +21,13 @@
 .heading {
   color: white;
   flex: 1;
+  backdrop-filter: blur(1px);
 }
 
 .headingItem {
   margin: 5px 0px 5px 10px;
+  text-shadow: 1px 1px 1px black;
+  backdrop-filter: blur(1px);
 }
 
 .footer{
@@ -40,6 +43,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
 }
 
 .buttonsContainer{

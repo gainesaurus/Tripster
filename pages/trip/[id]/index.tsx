@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 import AttendeeList from '../../../src/components/AttendeeList/AttendeeList';
 import Divider from '../../../src/components/Divider/Divider';
@@ -15,6 +16,7 @@ import { useUserContext } from '../../../src/Contexts/UserContext';
 import { getTripById } from '../../../src/services/tripService';
 import styles from '../../../styles/Trip.module.css';
 import { ITripItem } from '../../../Types';
+import { ArrowBack } from '@mui/icons-material';
 
 export default function TripPage() {
   const router = useRouter();
@@ -41,6 +43,9 @@ export default function TripPage() {
             <Divider />
           </div>
           <div className={styles.tripContainer}>
+            <Link href='/'>
+              <ArrowBack />
+            </Link>
             <TripHeader
               title={trip.title}
               start={trip.startDate}

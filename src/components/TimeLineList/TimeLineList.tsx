@@ -13,7 +13,6 @@ import { getEventsByTripId, createEvent, updateEvent, removeEvent } from '../../
 import styles from './TimeLineList.module.css';
 interface TimeLineListProps {
   tripId: any;
-  allEvents: any;
 }
 function TimeLineList({ tripId }:TimeLineListProps) {
   const user = useUserContext();

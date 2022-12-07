@@ -42,6 +42,11 @@
   padding: 0 10px 0 10px;
 }
 
+.eventInfo:active {
+  height: fit-content;
+  visibility: visible;
+}
+
 .buttonDiv {
   display: flex;
   justify-content: flex-end;

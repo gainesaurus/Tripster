@@ -60,7 +60,6 @@ function TimeLineItem ({ event, allEvents, setAllEvents }: TimeLineItemProps) {
             <p>{dateTime} - {endTime}</p>
             <p>{event.info}</p>
             <div className={styles.buttonDiv}>
-              <button className={styles.editButton} type="button">Edit</button>
               <button className={styles.deleteButton} onClick={deleteEvent}>Delete</button>
             </div>
           </div>

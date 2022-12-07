@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <TripsProvider>
         <React.Fragment>
           <Head>
-            <meta name="" />
+            <meta name="Vakay! You're Invited!" />
           </Head>
           <Component {...pageProps} />
         </React.Fragment>
