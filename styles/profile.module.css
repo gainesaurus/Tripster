@@ -16,7 +16,8 @@
 .leftSide{
   width: 50%;
   display: flex;
-  padding: 2%;
+  flex: 1;
+  /* padding: 1%; */
   max-width: 50%;
 }
 
@@ -24,11 +25,18 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding-top: 2em;
+  margin: 2em;
 }
 
 .invitations{
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.noInvites {
+  margin: 1em 0 0 2em;
+  color: #757575;
 }
 
 @media screen and (max-width:750px) {

@@ -70,7 +70,7 @@ function ProfileInfo() {
           className={styles.profileText}
           value={user.username}
           onChange={(e) => setUser({ ...user, username: e.target.value })}
-          placeholder="Add your username"
+          placeholder="Add your username..."
         />
         <input
           className={styles.profileText}
