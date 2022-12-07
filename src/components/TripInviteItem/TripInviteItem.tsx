@@ -1,10 +1,11 @@
-import { Dispatch, FC, SetStateAction } from 'react';
-import { ITripItem } from '../../../Types';
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
+import { ITripItem, IUser } from '../../../Types';
 import { useTripsContext } from '../../Contexts/TripsContext';
 import { useUserContext } from '../../Contexts/UserContext';
 import { respondInvite } from '../../services/inviteService';
 import { DateTime } from 'luxon';
 import styles from './TripInviteItem.module.css';
+import { getUser } from '../../services/userService';
 
 interface TripItemProps {
   trip: ITripItem;
@@ -12,8 +13,9 @@ interface TripItemProps {
 }
 
 const TripInviteItem: FC<TripItemProps> = ({ trip, setUpdateTrips }) => {
+  const [host, setHost]:any = useState('')
   const tripsContext = useTripsContext();
-  const created_by = 'Jane Doe';
+  // const created_by = 'Jane Doe';
   const userContext = useUserContext();
   async function handleResponseInvite(response: boolean) {
     if (userContext.authUser && trip._id)
@@ -22,6 +24,11 @@ const TripInviteItem: FC<TripItemProps> = ({ trip, setUpdateTrips }) => {
         setUpdateTrips((state) => !state);
       });
   }
+
+  useEffect(() => {
+    getUser(trip.createdBy!).then(hostUser => setHost(hostUser)); 
+  }, [])
+
   const startDate = DateTime.fromISO(`${trip.startDate}`);
   const endDate = DateTime.fromISO(`${trip.endDate}`);
   let start = startDate.toLocaleString(DateTime.DATETIME_MED);
@@ -46,11 +53,11 @@ const TripInviteItem: FC<TripItemProps> = ({ trip, setUpdateTrips }) => {
       </div>
       <div className={styles.footer}>
         <img
-          src="https://steinhardt.nyu.edu/sites/default/files/styles/nyu_profile_image/public/2020-10/AlyssaWise-NewSquareProfile.jpg?h=e9176a28&itok=F0T9f1FO"
+          src={host?.profile_pic}
           alt="invite profile picture"
           className={styles.inviteProfileImage}
         />
-        <h5 className={styles.headingItem}>Invited by: {created_by}</h5>
+        <h5 className={styles.headingItem}>Hosted by: {host?.username}</h5>
         <div className={styles.buttonsContainer}>
           <button
             className={styles.button}

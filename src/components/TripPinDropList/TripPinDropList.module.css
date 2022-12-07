@@ -14,8 +14,6 @@
 .pinListContainer {
   display: flex;
   flex-direction: row;
-  padding: 5px;
-  /* margin: 20px 2% 0 1%; */
   overflow-x: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
