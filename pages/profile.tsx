@@ -34,12 +34,12 @@ function Profile() {
           <div className={styles.invitations}>
             {tripInvites.length > 0 ? (
               <TripInviteList
-                title="Invitations"
+                title="My Invitations:"
                 trips={tripInvites}
                 setUpdateTrips={setUpdateTrips}
               />
             ) : (
-              <h2>No invites yet!</h2>
+              <h2 className={styles.noInvites}>No invites yet!</h2>
             )}
           </div>
         </div>

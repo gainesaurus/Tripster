@@ -4,11 +4,10 @@
   position: relative;
   margin-right: 1em;
   padding: 1rem;
-  /* border: 1px solid #eaeaea; */
   border-radius: 10px;
   transition: all .2s ease-in-out;
-  min-width: 400px;
-  min-height: 250px;
+  min-width: 300px;
+  min-height: 200px;
   cursor: pointer;
   box-shadow: 0 5px 10px -5px #2c4875;
   background-color: #e6e6e6;
@@ -30,8 +29,9 @@
   backdrop-filter: blur(1px);
   padding: 0 5px 0 5px;
 }
+
 .headingItem {
-  margin: 5px 0px 5px 10px;
+  margin: 5px 0px 5px 5px;
   text-shadow: 1px 1px 1px black;
 }
 
