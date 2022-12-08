@@ -8,7 +8,7 @@
   border-radius: 6px;
   width: 50%;
   min-width: 400px;
-  max-width: 600px;
+  max-width: 400px;
   margin: auto;
   left: 0;
   right: 0;
@@ -19,7 +19,7 @@
 .infoContainer {
   display: flex;
   flex-direction: column;
-  margin: auto;
+  margin: 1rem;
 }
 
 .XButton {
