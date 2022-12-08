@@ -2,7 +2,7 @@ import { init } from 'next-firebase-auth';
 
 const initAuth = () => {
   init({
-    authPageURL: '/auth',
+    authPageURL: '/login',
     appPageURL: '/',
     loginAPIEndpoint: '/api/login', // required
     logoutAPIEndpoint: '/api/logout', // required
@@ -44,7 +44,7 @@ const initAuth = () => {
       path: '/',
       sameSite: 'strict',
       secure: false, // set this to false in local (non-HTTPS) development
-      signed: false,
+      signed: true,
     },
     onVerifyTokenError: (err) => {
       console.error(err)

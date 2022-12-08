@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3001/api';
+const baseUrl = 'http://localhost:3000/api';
 
 export async function fetchData<T>(
   route: string,
