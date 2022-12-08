@@ -33,7 +33,7 @@ function TimeLineList({ tripId, events }:TimeLineListProps) {
   }
 
   return (
-    <div className={styles.timelineContainer}>
+    <div className={styles.timelineContainer} data-testid='timelineContainer'>
       <div className={styles.titleContainer}>
         <h1 className={styles.timelineTitle}>Events Timeline</h1>
         <button onClick={openForm} className={styles.button} title="Add Event">
@@ -44,7 +44,13 @@ function TimeLineList({ tripId, events }:TimeLineListProps) {
         <AddEventForm tripId={tripId} tripEvent={tripEvent} setTripEvent={setTripEvent} allEvents={allEvents} setAllEvents={setAllEvents} closeForm={closeForm} />
       </div>
       {Object.entries(result).map(([day, events]) => ([
-        <h4 key={day} className={styles.timelineDate}>{day}</h4>,
+        <h4
+          key={day}
+          className={styles.timelineDate}
+          data-testid='eventDay'
+        >
+          {day}
+        </h4>,
         events.map((event: IEvent) =>
         <TimeLineItem key={event._id} event={event} allEvents={allEvents} setAllEvents={setAllEvents}/>
       )]))}

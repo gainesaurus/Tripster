@@ -88,8 +88,8 @@ function AddLodgingForm ({ closeForm, setAllLodging, allLodging }:AddLodgingProp
   return (
     <div className={styles.addLodgingContainer}>
       <button className={styles.XButton} onClick={closeForm}><Close /></button>
-      <form onSubmit={handleSubmit} className={styles.addLodgingContainer}>
-        <div className={styles.infoContainer}>
+      <form onSubmit={handleSubmit} className={styles.infoContainer}>
+        <div>
           <h2>Share where you're staying!</h2>
           <input
             placeholder="What do you want to call this place?"

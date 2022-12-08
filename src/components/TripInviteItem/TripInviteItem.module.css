@@ -1,7 +1,6 @@
 .card {
   display: flex;
   flex-direction: column;
-  margin-right: 1em;
   padding: 1rem;
   border: 1px solid #eaeaea;
   border-radius: 10px;
@@ -10,6 +9,7 @@
   min-height: 150px;
   cursor: pointer;
   margin-bottom: 1em;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
 }
 
 .card:hover,
@@ -21,10 +21,13 @@
 .heading {
   color: white;
   flex: 1;
+  backdrop-filter: blur(1px);
 }
 
 .headingItem {
   margin: 5px 0px 5px 10px;
+  text-shadow: 1px 1px 1px black;
+  backdrop-filter: blur(1px);
 }
 
 .footer{
@@ -33,12 +36,14 @@
   flex-direction: row;
   align-items: flex-end;
   color: white;
+  text-shadow: #000;
 }
 
 .inviteProfileImage{
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
 }
 
 .buttonsContainer{

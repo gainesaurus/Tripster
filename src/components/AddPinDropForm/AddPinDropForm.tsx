@@ -96,8 +96,8 @@ function AddPinDropForm ({closeForm, setAllLocations, allLocations}:AddPinDropPr
   return (
     <div className={styles.addPinDropContainer}>
       <button className={styles.XButton} onClick={closeForm}><Close /></button>
-      <form onSubmit={handleSubmit} className={styles.addPinDropContainer}>
-        <div className={styles.infoContainer}>
+      <form onSubmit={handleSubmit} className={styles.infoContainer}>
+        <div>
           <h2>Share a location!</h2>
           <input
             placeholder="Add some info..."

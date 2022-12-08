@@ -80,10 +80,9 @@ function AddPhotosForm ({ closeForm, setPhotos, allPhotos }:AddPhotosProps) {
       <button className={styles.XButton} onClick={closeForm}>
         <Close />
       </button>
-      <form className={styles.infoContainer} onSubmit={handleSubmit}>
-        <h2>Share your photo's!</h2>
+      <form className={styles.infoContainer} onSubmit={handleSubmit} data-testid="filepond-input">
+        <h2>Share your photos!</h2>
         <FilePond
-          data-testid="filepond-input"
           files={imgFiles.map((fileItem) => fileItem.file)}
           onupdatefiles={setImgFiles}
           allowMultiple={true}

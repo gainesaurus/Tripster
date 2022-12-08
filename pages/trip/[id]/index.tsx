@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 import AttendeeList from '../../../src/components/AttendeeList/AttendeeList';
 import Divider from '../../../src/components/Divider/Divider';
@@ -28,6 +29,7 @@ import { getEventsByTripId } from '../../../src/services/eventService';
 import { getPhotosByTripId } from '../../../src/services/photoService';
 import { Auth } from 'firebase-admin/auth';
 import { getUser } from '../../../src/services/userService';
+import { ArrowBack } from '@mui/icons-material';
 
 function TripPage({ tripItem, attendeesObj, lodgings, locations, events, photos }:InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
@@ -49,6 +51,9 @@ function TripPage({ tripItem, attendeesObj, lodgings, locations, events, photos 
             <Divider />
           </div>
           <div className={styles.tripContainer}>
+            <Link href='/'>
+              <ArrowBack />
+            </Link>
             <TripHeader
               title={trip.title}
               start={trip.startDate}

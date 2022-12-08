@@ -1,6 +1,13 @@
 .profile{
   display: flex;
   flex-direction: row;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+  background-image: linear-gradient(rgb(188, 80, 144, 0.4), rgb(255, 99, 97, 0.4), rgb(255, 133, 49, 0.4), rgb(255, 166, 0, 0.4), rgb(255, 211, 128, 0.4)),
+  url('https://img.freepik.com/free-vector/seamless-pattern-assortment-cachets-hand-stamps-control-offices-from-different-countries_1284-45915.jpg');
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
 }
 
 .profileInfo{
@@ -8,12 +15,13 @@
   flex-direction: column;
   justify-content: center;
 }
+
 .profileImgBox {
   display: flex;
   overflow: hidden;
   height: 150px;
   aspect-ratio: 1;
-  margin: 1em;
+  margin: 1em 1em 1em 0;
   box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
   border: 3px solid white;
   border-radius: 50%;
@@ -32,7 +40,8 @@
   padding: 5px;
   font-size: large;
   font-family: inherit;
-  border-radius: 5px;
+  border-radius: 6px;
+  box-shadow: 0 5px 5px -5px rgba(0,0,0,0.5);
 }
 
 .save{
@@ -47,11 +56,12 @@
   font-family: inherit;
   font-size: large;
   box-shadow: 0 10px 10px -5px rgba(0,0,0,0.5);
-
 }
+
 .save:hover {
   background-color: #8a508f;
 }
+
 .save:active {
   box-shadow: none;
 }

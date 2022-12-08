@@ -33,7 +33,7 @@
 .tripTitle {
   display: flex;
   margin: 0;
-  text-shadow: 1px 1px 1px black;
+  text-shadow: 2px 2px 2px black;
 }
 
 @media screen and (max-width:750px) {

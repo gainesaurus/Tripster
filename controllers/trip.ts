@@ -8,7 +8,7 @@ export async function getAllTrips(
 ) {
   const trips = await Trip.find<ITripItem>({
     attendees: req.body.uid,
-  }).exec();
+  }).sort([['startDate', 1]]).exec();
   res.status(200).json(trips);
 }
 
