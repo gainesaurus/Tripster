@@ -10,7 +10,7 @@ import { createLocation } from '../../services/locationService';
 import { useUserContext } from '../../Contexts/UserContext';
 
 
-const libraries = ["places"] as any;
+const libraries = ["places"] as ("marker" | "places" | "geometry" | "drawing" | "localContext" | "visualization")[];
 
 interface AddPinDropProps {
   closeForm: () => void
@@ -80,7 +80,6 @@ function AddPinDropForm ({closeForm, setAllLocations, allLocations}:AddPinDropPr
       tripId: tripId as string,
       info: info as string,
       latLng: latLng as ILatLng,
-      // profile_pic: user.
     }
     user.authUser && location && createLocation(user.authUser.token, location).then((location:ILocation | void) => {setAllLocations([...allLocations, location] as ILocation[])})
     console.log(location);
@@ -119,7 +118,7 @@ function AddPinDropForm ({closeForm, setAllLocations, allLocations}:AddPinDropPr
           latLng?
           <div className={styles.mapDisplay} id='map-display'>
           </div>
-          : <></>
+          : null
         }
         <div className={styles.buttonDiv}>
           <button

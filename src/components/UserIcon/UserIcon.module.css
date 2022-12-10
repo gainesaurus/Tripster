@@ -39,10 +39,12 @@
   align-self: center;
 }
 .name {
+  display: flex;
   color: #2c4875;
   font-weight: 600;
   font-size: 10px;
-  margin: 0;
+  margin: 0px;
+  padding: 0px;
   justify-content: center;
   align-items: center;
 }

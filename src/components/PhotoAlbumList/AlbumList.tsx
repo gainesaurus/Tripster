@@ -1,34 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import styles from './AlbumList.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IPhoto } from '../../../Types'
-import { getPhotosByTripId } from '../../services/photoService';
-import { useUserContext } from '../../Contexts/UserContext';
 import AddPhotosForm from '../AddPhotosForm/addPhotosForm';
 import { AddBox } from '@mui/icons-material';
-import GridViewIcon from '@mui/icons-material/GridView';
 
 interface AlbumListProps {
   tripId: string;
+  photos: IPhoto[];
 }
 
-const  AlbumList = ({ tripId }:AlbumListProps) => {
-  const [allPhotos, setPhotos] = useState<IPhoto[]>([]);
-  const user = useUserContext();
-
-  useEffect(() => {
-    getTripPhotos()
-  }, [setPhotos]);
-
-  const getTripPhotos = async () => {
-    const photos = await getPhotosByTripId(user.authUser!.token, tripId as string)
-    if (photos) {
-      setPhotos(photos);
-    }
-  }
-
+const  AlbumList = ({ tripId, photos }:AlbumListProps) => {
+  const [allPhotos, setPhotos] = useState<IPhoto[]>(photos);
 
   const openForm = () => {
     document.getElementById('addPhotosForm')!.style.display = 'flex';

@@ -5,6 +5,8 @@ import { useUserContext } from '../src/Contexts/UserContext';
 import { signIn, signUp } from '../src/firebase';
 import { createUser } from '../src/services/userService';
 import styles from '../styles/login.module.css';
+import { withAuthUser, AuthAction } from 'next-firebase-auth';
+import FullPageLoader from '../src/components/FullPageLoader/FullPageLoader';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -88,4 +90,9 @@ function Login() {
   );
 }
 
-export default Login;
+export default withAuthUser({
+  whenAuthed: AuthAction.REDIRECT_TO_APP,
+  whenUnauthedBeforeInit: AuthAction.SHOW_LOADER,
+  whenUnauthedAfterInit: AuthAction.RENDER,
+  LoaderComponent: FullPageLoader,
+})(Login);

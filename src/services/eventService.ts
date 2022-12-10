@@ -1,9 +1,8 @@
-const BASEurl = '/api';
 import { IEvent } from "../../Types";
 import { fetchData } from './fetchFactory';
 
 export async function getEventsByTripId(token: string, tripId:string) {
-  return await fetchData<IEvent>(`/events/${tripId}`, 
+  return await fetchData<IEvent[]>(`/events/${tripId}`,
   { method: 'GET',}, token,
   );
 }

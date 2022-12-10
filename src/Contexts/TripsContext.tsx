@@ -8,6 +8,11 @@ import React, {
 import { ITripItem } from '../../Types';
 import { getAllTrips } from '../services/tripService';
 import { useUserContext } from './UserContext';
+import {
+  useAuthUser,
+  withAuthUser,
+  withAuthUserTokenSSR,
+} from 'next-firebase-auth'
 
 const TripsContext = createContext<Context | undefined>(undefined);
 

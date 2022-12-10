@@ -1,31 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PinDropItem from '../PinDropItem/PinDropItem';
 import { ILocation } from '../../../Types';
 import styles from './TripPinDropList.module.css';
 import { AddBox } from '@mui/icons-material';
 import AddPinDropForm from '../AddPinDropForm/AddPinDropForm';
-import { getLocationsByTripId } from '../../services/locationService';
 import { Wrapper } from '@googlemaps/react-wrapper';
-import { useUserContext } from '../../Contexts/UserContext';
 
 
 interface TripPinDropsProps{
-  tripId: string
+  tripId?: string
+  locations: ILocation[]
 }
 
-const  TripPinDropList = ({ tripId }:TripPinDropsProps) => {
-  const user = useUserContext()
+const  TripPinDropList = ({ locations }:TripPinDropsProps) => {
 
-  const [allLocations, setAllLocations] = useState<ILocation[]>([]);
-  useEffect(()=> {
-    getLocations()
-  }, [])
-  const getLocations = async () => {
-    const fetchedLocations = await getLocationsByTripId(user.authUser!.token, tripId as string)
-    if(fetchedLocations) {
-      setAllLocations(fetchedLocations);
-    }
-  }
+  const [allLocations, setAllLocations] = useState<ILocation[]>(locations);
 
   const openForm = () => {
     document.getElementById('addPinDropForm')!.style.display = 'flex';

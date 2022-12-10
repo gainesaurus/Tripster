@@ -6,6 +6,7 @@ import { respondInvite } from '../../services/inviteService';
 import { DateTime } from 'luxon';
 import styles from './TripInviteItem.module.css';
 import { getUser } from '../../services/userService';
+import Image from 'next/image';
 
 interface TripItemProps {
   trip: ITripItem;
@@ -13,9 +14,9 @@ interface TripItemProps {
 }
 
 const TripInviteItem: FC<TripItemProps> = ({ trip, setUpdateTrips }) => {
-  const [host, setHost]:any = useState('')
+  const [host, setHost] = useState<IUser | void>();
   const tripsContext = useTripsContext();
-  // const created_by = 'Jane Doe';
+
   const userContext = useUserContext();
   async function handleResponseInvite(response: boolean) {
     if (userContext.authUser && trip._id)
@@ -26,7 +27,7 @@ const TripInviteItem: FC<TripItemProps> = ({ trip, setUpdateTrips }) => {
   }
 
   useEffect(() => {
-    getUser(trip.createdBy!).then(hostUser => setHost(hostUser)); 
+    getUser(trip.createdBy!).then((hostUser) => setHost(hostUser));
   }, [])
 
   const startDate = DateTime.fromISO(`${trip.startDate}`);
@@ -52,11 +53,12 @@ const TripInviteItem: FC<TripItemProps> = ({ trip, setUpdateTrips }) => {
         </h3>
       </div>
       <div className={styles.footer}>
-        <img
-          src={host?.profile_pic}
-          alt="invite profile picture"
-          className={styles.inviteProfileImage}
-        />
+        {
+          host && host.profile_pic !== '/add_photo.png' ?
+          <div className={styles.profileBox}>
+            <Image className={styles.inviteProfileImage} width={500} height={500} src={`${host.profile_pic}`} alt={'profile pic'} />
+          </div> : null
+        }
         <h5 className={styles.headingItem}>Hosted by: {host?.username}</h5>
         <div className={styles.buttonsContainer}>
           <button

@@ -10,10 +10,6 @@ interface UserProps {
 
 const TripItem: FC<UserProps> = ({ person }) => {
 
-  const emailStart = 'daniellestroscher';
-  //person.email.split(/(\S[^\.]*)(\.(\S*))?@(\S*)/ig);
-  console.log(emailStart);
-
   return (
     <>
       {
@@ -28,9 +24,8 @@ const TripItem: FC<UserProps> = ({ person }) => {
           <div
           className={styles.userIconCont}
           >
-            <AccountCircle className={styles.blankProfile} fontSize='inherit'/>
           </div>
-          <p className={styles.name}>{emailStart}</p>
+          <p className={styles.name}>{person.email}</p>
         </div>
       }
     </>
