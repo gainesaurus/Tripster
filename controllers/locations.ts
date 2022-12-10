@@ -12,7 +12,6 @@ export async function getAllLocations(
   const locations = await Location.find<ILocation>({
     tripId: req.query.tripId,
   }).exec();
-  console.log(locations);
   res.status(200).json(locations);
 };
 

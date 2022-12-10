@@ -28,7 +28,10 @@ function Photos({ photos }:InferGetServerSidePropsType<typeof getServerSideProps
     </>
   )
 }
-export default withAuthUser()(Photos as React.FunctionComponent<any>)
+export default withAuthUser({
+  whenAuthedBeforeRedirect: AuthAction.SHOW_LOADER,
+  LoaderComponent: FullPageLoader,
+})(Photos as React.FunctionComponent<any>)
 
 export const getServerSideProps: GetServerSideProps<{photos: IPhoto[]}> = withAuthUserTokenSSR({
   whenUnauthed: AuthAction.REDIRECT_TO_LOGIN,

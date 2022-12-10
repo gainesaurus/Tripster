@@ -37,7 +37,7 @@ function Profile() {
           </Link>
           <ProfileInfo />
           <div className={styles.invitations}>
-            {tripInvites.length > 0 ? (
+            {tripInvites && tripInvites.length > 0 ? (
               <TripInviteList
                 title="My Invitations:"
                 trips={tripInvites}

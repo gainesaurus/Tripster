@@ -42,8 +42,8 @@ function Home() {
   );
 }
 export default withAuthUser({
-  whenUnauthedBeforeInit: AuthAction.SHOW_LOADER,
   whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
+  whenUnauthedBeforeInit: AuthAction.SHOW_LOADER,
   LoaderComponent: FullPageLoader,
 })(Home);
 
