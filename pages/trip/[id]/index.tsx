@@ -64,8 +64,8 @@ function TripPage({ tripItem, attendeesObjArr, lodgings, locations, events, phot
             <AttendeeList attendeesObjArr={attendeesObjArr} attendees={trip.attendees} invites={trip.invites} />
             <AlbumList tripId={id.toString()} photos={photos}/>
             <TimeLineList tripId={id.toString()} events={events}/>
-            <TripPinDropList tripId={id.toString()} locations={locations} />
-            <LodgingList tripId={id.toString()} lodgings={lodgings} />
+            <TripPinDropList locations={locations} />
+            <LodgingList lodgings={lodgings} />
           </div>
         </div>
       </div>

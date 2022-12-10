@@ -8,7 +8,6 @@ import { Wrapper } from '@googlemaps/react-wrapper';
 
 
 interface TripPinDropsProps{
-  tripId?: string
   locations: ILocation[]
 }
 

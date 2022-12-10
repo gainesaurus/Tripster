@@ -6,11 +6,10 @@ import styles from './LodgingList.module.css';
 import { AddBox } from '@mui/icons-material';
 
 interface LodgingListProps {
-  tripId: string
   lodgings: ILodge[]
 }
 
-const  LodgingList = ({ lodgings, tripId }: LodgingListProps ) => {
+const  LodgingList = ({ lodgings }: LodgingListProps ) => {
   const [allLodging, setAllLodging] = useState<ILodge[]>(lodgings);
 
   const openForm = () => {
