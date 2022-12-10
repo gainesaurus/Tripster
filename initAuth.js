@@ -13,22 +13,22 @@ const initAuth = () => {
       console.error(err)
     },
     //firebaseAuthEmulatorHost: process.env.FIREBASE_AUTH_EMULATOR_HOST,
-    firebaseAdminInitConfig: {
-      credential: {
-        projectId: process.env.FIREBASE_PROJECT_ID,
-        clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-        // The private key must not be accessible on the client side.
-        privateKey: process.env.FIREBASE_PRIVATE_KEY,
-      },
-      databaseURL: process.env.CONNECTION_DB,
-    },
+    // firebaseAdminInitConfig: {
+    //   credential: {
+    //     projectId: process.env.FIREBASE_PROJECT_ID,
+    //     clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+    //     // The private key must not be accessible on the client side.
+    //     privateKey: process.env.FIREBASE_PRIVATE_KEY,
+    //   },
+    //   databaseURL: process.env.CONNECTION_DB,
+    // },
     // Use application default credentials (takes precedence over firebaseAdminInitConfig if set)
     useFirebaseAdminDefaultCredential: true,
     firebaseClientInitConfig: {
       apiKey: process.env.NEXT_PUBLIC_API_KEY, // required
       authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
       databaseURL: process.env.CONNECTION_DB,
-      projectId: process.env.FIREBASE_PROJECT_ID,
+      projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
     },
     cookies: {
       name: 'authCookie', // required
