@@ -6,8 +6,6 @@ import { getUser } from '../../services/userService';
 
 import { GoogleMap, Marker } from '@react-google-maps/api';
 
-const libraries = ["places"] as any;
-
 interface PinDropItemProps {
   location: ILocation;
 }
@@ -19,9 +17,6 @@ const PinDropItem: FC<PinDropItemProps> =({ location }) => {
   }, []);
   const retrieveUser = async () => {
     const user = await getUser(location.uid as string);
-    // if (user?.profile_pic === '/add_photo.png') {
-    //   user.profile_pic = '/profileDefault.png';
-    // }
     setUser(user as IUser);
   }
 

@@ -6,8 +6,10 @@ import HomeLeft from '../src/components/HomeLeft/HomeLeft';
 import NavBar from '../src/components/NavBar/NavBar';
 import { useUserContext } from '../src/Contexts/UserContext';
 import styles from '../styles/Home.module.css';
+import { withAuthUser, AuthAction } from 'next-firebase-auth';
+import FullPageLoader from '../src/components/FullPageLoader/FullPageLoader';
 
-export default function Home() {
+function Home() {
   const router = useRouter();
   const userContext = useUserContext();
 
@@ -39,3 +41,9 @@ export default function Home() {
     </div>
   );
 }
+export default withAuthUser({
+  whenUnauthedBeforeInit: AuthAction.SHOW_LOADER,
+  whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
+  LoaderComponent: FullPageLoader,
+})(Home);
+

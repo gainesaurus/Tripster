@@ -2,15 +2,26 @@ import React from 'react';
 import { Close } from '@mui/icons-material';
 import { useUserContext } from '../../Contexts/UserContext';
 import { createEvent } from '../../services/eventService';
+import { IEvent } from '../../../Types';
 
 import styles from './AddEventForm.module.css';
 
-function AddEventForm ({ tripId, closeForm, tripEvent, setTripEvent, allEvents, setAllEvents }: any) {
+interface addEventFormProps {
+  tripId: string;
+  closeForm: () => void;
+  tripEvent: IEvent;
+  setTripEvent: (arg:IEvent) => void;
+  allEvents: IEvent[];
+  setAllEvents: (arg:IEvent[]) => void;
+
+}
+
+function AddEventForm ({ tripId, closeForm, tripEvent, setTripEvent, allEvents, setAllEvents }: addEventFormProps) {
   const user = useUserContext();
 
   const submitEvent = (e:any) => {
     e.preventDefault();
-    user.authUser && tripEvent && createEvent(user.authUser.token, tripEvent, tripId).then((event) => {setAllEvents([...allEvents, event])})
+    user.authUser && tripEvent && createEvent(user.authUser.token, tripEvent, tripId).then((event) => {setAllEvents([...allEvents, event] as IEvent[])})
     e.target.reset()
     closeForm();
   }

@@ -12,7 +12,7 @@ import { getEventsByTripId, createEvent, updateEvent, removeEvent } from '../../
 
 import styles from './TimeLineList.module.css';
 interface TimeLineListProps {
-  tripId: any;
+  tripId: string;
   events: IEvent[]
 }
 function TimeLineList({ tripId, events }:TimeLineListProps) {
@@ -41,7 +41,7 @@ function TimeLineList({ tripId, events }:TimeLineListProps) {
         </button>
       </div>
       <div id='addEventForm' className={styles.addEventForm}>
-        <AddEventForm tripId={tripId} tripEvent={tripEvent} setTripEvent={setTripEvent} allEvents={allEvents} setAllEvents={setAllEvents} closeForm={closeForm} />
+        <AddEventForm tripId={tripId} tripEvent={tripEvent as IEvent} setTripEvent={setTripEvent} allEvents={allEvents} setAllEvents={setAllEvents} closeForm={closeForm} />
       </div>
       {Object.entries(result).map(([day, events]) => ([
         <h4

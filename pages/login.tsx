@@ -5,7 +5,7 @@ import { useUserContext } from '../src/Contexts/UserContext';
 import { signIn, signUp } from '../src/firebase';
 import { createUser } from '../src/services/userService';
 import styles from '../styles/login.module.css';
-import { withAuthUser, AuthAction } from 'next-firebase-auth'
+import { withAuthUser, AuthAction } from 'next-firebase-auth';
 
 function Login() {
   const [email, setEmail] = useState('');

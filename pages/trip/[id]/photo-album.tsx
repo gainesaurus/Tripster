@@ -8,23 +8,13 @@ import { PhotoAlbum } from 'react-photo-album';
 import { IPhoto } from '../../../Types';
 import { getPhotosByTripId } from '../../../src/services/photoService';
 import { useRouter } from 'next/router';
+import { withAuthUser, AuthAction, withAuthUserTokenSSR } from 'next-firebase-auth';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import FullPageLoader from '../../../src/components/FullPageLoader/FullPageLoader';
 
-export default function Photos() {
-  const [allPhotos, setPhotos] = useState<IPhoto[]>([]);
-  const user = useUserContext();
+function Photos({ photos }:InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const [allPhotos, setPhotos] = useState<IPhoto[]>(photos);
   const router = useRouter();
-  const tripId = router.query.id;
-
-  useEffect(() => {
-    getTripPhotos()
-  }, [setPhotos]);
-
-  const getTripPhotos = async () => {
-    const photos = await getPhotosByTripId(user.authUser!.token, tripId as string)
-    if (photos) {
-      setPhotos(photos);
-    }
-  }
 
   return (
     <>
@@ -38,5 +28,17 @@ export default function Photos() {
     </>
   )
 }
+export default withAuthUser()(Photos as React.FunctionComponent<any>)
+
+export const getServerSideProps: GetServerSideProps<{photos: IPhoto[]}> = withAuthUserTokenSSR({
+  whenUnauthed: AuthAction.REDIRECT_TO_LOGIN,
+
+})(async ({ params, AuthUser }) => {
+  const token = await AuthUser.getIdToken()
+  const photos = await getPhotosByTripId(token as string, params?.id as string) as IPhoto[];
+
+  return { props:{ photos }}
+})
+
 
 

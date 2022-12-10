@@ -13,9 +13,9 @@ interface TripItemProps {
 }
 
 const TripInviteItem: FC<TripItemProps> = ({ trip, setUpdateTrips }) => {
-  const [host, setHost]:any = useState('')
+  const [host, setHost] = useState<IUser | void>();
   const tripsContext = useTripsContext();
-  // const created_by = 'Jane Doe';
+
   const userContext = useUserContext();
   async function handleResponseInvite(response: boolean) {
     if (userContext.authUser && trip._id)
@@ -26,7 +26,7 @@ const TripInviteItem: FC<TripItemProps> = ({ trip, setUpdateTrips }) => {
   }
 
   useEffect(() => {
-    getUser(trip.createdBy!).then(hostUser => setHost(hostUser)); 
+    getUser(trip.createdBy!).then((hostUser) => setHost(hostUser));
   }, [])
 
   const startDate = DateTime.fromISO(`${trip.startDate}`);

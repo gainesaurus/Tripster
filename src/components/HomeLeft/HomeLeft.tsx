@@ -5,7 +5,7 @@ import TripList from '../TripList/TripList';
 import styles from './HomeLeft.module.css';
 
 type HomeLeftProps = {
-  openForm?: any;
+  openForm?: () => void;
 };
 
 function HomeLeft({ openForm }: HomeLeftProps) {

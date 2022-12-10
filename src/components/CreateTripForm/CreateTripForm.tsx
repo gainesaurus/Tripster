@@ -20,10 +20,10 @@ import styles from './CreateTripForm.module.css';
 
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
-interface Props {
-  closeForm: any;
+interface CreateTripFormProps {
+  closeForm: () => void;
 }
-const CreateTripForm = ({ closeForm }: Props) => {
+const CreateTripForm = ({ closeForm }: CreateTripFormProps) => {
   const initialState: ITripItem = {
     title: '',
     picUrl: '',
@@ -86,7 +86,6 @@ const CreateTripForm = ({ closeForm }: Props) => {
           onupdatefiles={setImgFiles}
           allowMultiple={false}
           acceptedFileTypes={['image/*']}
-          // server="/api"
           name="files" /* sets the file input name, it's filepond by default */
           labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
         />

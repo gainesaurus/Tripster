@@ -9,12 +9,12 @@ import styles from './AttendeeList.module.css';
 
 interface AttendeeListProps {
   attendees?: string[];
-  attendeesObj: (void | IUser)[];
+  attendeesObjArr: (void | IUser)[];
   invites?: string[];
 }
 
-const AttendeeList: FC<AttendeeListProps> = ({ attendeesObj, attendees, invites }) => {
-  const [attendeesList, setAttendeesList] = useState<IUser[]>(attendeesObj as IUser[]);
+const AttendeeList: FC<AttendeeListProps> = ({ attendeesObjArr, attendees, invites }) => {
+  const [attendeesList, setAttendeesList] = useState<IUser[]>(attendeesObjArr as IUser[]);
 
   const openForm = () => {
     document.getElementById('addAttendeeForm')!.style.display = 'flex';

@@ -10,7 +10,7 @@ import { createLocation } from '../../services/locationService';
 import { useUserContext } from '../../Contexts/UserContext';
 
 
-const libraries = ["places"] as any;
+const libraries = ["places"] as ("marker" | "places" | "geometry" | "drawing" | "localContext" | "visualization")[];
 
 interface AddPinDropProps {
   closeForm: () => void

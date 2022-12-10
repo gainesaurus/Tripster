@@ -48,9 +48,9 @@ const NavBar = () => {
           {router.pathname !== '/login' ? (
             <section className={styles.userInfo}>
               {
-                user?
+                user && user.username?
                 <p className={styles.para}>Welcome back {user?.username}!</p>
-                : <p>Welcome back!</p>
+                : <p className={styles.para}>Welcome back!</p>
               }
               {user && user.profile_pic !== '/add_photo.png' ?
                 <div className={styles.profileBox}>

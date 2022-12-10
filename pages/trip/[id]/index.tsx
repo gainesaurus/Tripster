@@ -31,7 +31,7 @@ import { Auth } from 'firebase-admin/auth';
 import { getUser } from '../../../src/services/userService';
 import { ArrowBack } from '@mui/icons-material';
 
-function TripPage({ tripItem, attendeesObj, lodgings, locations, events, photos }:InferGetServerSidePropsType<typeof getServerSideProps>) {
+function TripPage({ tripItem, attendeesObjArr, lodgings, locations, events, photos }:InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
   const { id } = router.query;
   const [trip, setTrip] = useState<ITripItem>();
@@ -60,7 +60,7 @@ function TripPage({ tripItem, attendeesObj, lodgings, locations, events, photos 
               end={trip.endDate}
               pic={trip.picUrl}
             />
-            <AttendeeList attendeesObj={attendeesObj} attendees={trip.attendees} invites={trip.invites} />
+            <AttendeeList attendeesObjArr={attendeesObjArr} attendees={trip.attendees} invites={trip.invites} />
             <AlbumList tripId={id.toString()} photos={photos}/>
             <TimeLineList tripId={id.toString()} events={events}/>
             <TripPinDropList tripId={id.toString()} locations={locations} />
@@ -73,16 +73,16 @@ function TripPage({ tripItem, attendeesObj, lodgings, locations, events, photos 
 }
 export default withAuthUser()(TripPage as React.FunctionComponent<any>)
 
-export const getServerSideProps: GetServerSideProps<{tripItem: ITripItem, attendeesObj:(void | IUser)[], lodgings: ILodge[], locations:ILocation[], events:IEvent[], photos:IPhoto[]}> = withAuthUserTokenSSR({
+export const getServerSideProps: GetServerSideProps<{tripItem: ITripItem, attendeesObjArr:(void | IUser)[], lodgings: ILodge[], locations:ILocation[], events:IEvent[], photos:IPhoto[]}> = withAuthUserTokenSSR({
   whenUnauthed: AuthAction.REDIRECT_TO_LOGIN,
 })(async ({ params, AuthUser }) => {
   const token = await AuthUser.getIdToken()
 
   const tripItem = await getTripById(params?.id as string, token as string) as ITripItem;
 
-  let attendeesObj:(IUser | void)[] = [];
+  let attendeesObjArr:(IUser | void)[] = [];
   if(tripItem.attendees) {
-    attendeesObj = await Promise.all<IUser | void>(tripItem.attendees.map<Promise<IUser | void>>(async (uid) => await getUser(uid)))
+    attendeesObjArr = await Promise.all<IUser | void>(tripItem.attendees.map<Promise<IUser | void>>(async (uid) => await getUser(uid)))
   }
 
   const lodgings = await getLodgingsByTripId(token as string, params?.id as string) as ILodge[];
@@ -90,5 +90,5 @@ export const getServerSideProps: GetServerSideProps<{tripItem: ITripItem, attend
   const events = await getEventsByTripId(token as string, params?.id as string) as IEvent[];
   const photos = await getPhotosByTripId(token as string, params?.id as string) as IPhoto[];
 
-  return { props:{ tripItem, attendeesObj, lodgings, locations, events, photos }}
+  return { props:{ tripItem, attendeesObjArr, lodgings, locations, events, photos }}
 })

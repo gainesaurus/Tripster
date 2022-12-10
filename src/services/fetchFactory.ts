@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3000/api';
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL + '/api';
 
 export async function fetchData<T>(
   route: string,
@@ -17,7 +17,6 @@ export async function fetchData<T>(
   }
   try {
     const res = await fetch(baseUrl + route, options);
-    //return await JSON.parse(JSON.stringify(res));
     return await res.json();
   } catch (e) {
     console.log(e);
