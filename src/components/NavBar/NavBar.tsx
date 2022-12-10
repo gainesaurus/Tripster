@@ -17,8 +17,10 @@ const NavBar = () => {
   }, []);
 
   const retrieveUser = async () => {
-    const user = await getUser(userContext.authUser?.uid as string) as IUser;
-    setUser(user as IUser);
+    if (userContext && userContext.authUser?.uid) {
+      const user = await getUser(userContext.authUser?.uid as string) as IUser;
+      setUser(user as IUser);
+    }
   }
 
   const router = useRouter();
