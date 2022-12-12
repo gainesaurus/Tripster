@@ -1,0 +1,85 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: all .2s ease-in-out;
+  min-width: 400px;
+  min-height: 150px;
+  cursor: pointer;
+  margin-bottom: 1em;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+  transform: scale(1.015);
+}
+
+.heading {
+  color: white;
+  flex: 1;
+  backdrop-filter: blur(1px);
+}
+
+.headingItem {
+  margin: 5px 0px 5px 10px;
+  text-shadow: 1px 1px 1px black;
+  backdrop-filter: blur(1px);
+}
+
+.footer{
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  color: white;
+  text-shadow: #000;
+}
+
+.profileBox {
+  border-radius: 50%;
+  aspect-ratio: 1.1;
+  overflow: hidden;
+  background-color: rgb(61, 61, 61);
+  height: 32px;
+}
+
+.inviteProfileImage{
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.buttonsContainer{
+  display: flex;
+  flex-direction: column;
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.button{
+  margin: 5px;
+  border-radius: 15px;
+  background-color: #000;
+  color: white;
+  padding: 5px 15px;
+  opacity: 75%;
+  font-size: 15px;
+  font-weight: bold;
+  border: 0px;
+}
+.button:hover {
+  opacity: 100%;
+}
+
+@media screen and (max-width:750px) {
+  .card{
+    min-width: 400px;
+    min-height: 150px;
+  }
+
+}

@@ -1,0 +1,41 @@
+.attendeeContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 2% 0 1%;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.attendeeTitle {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.addIcon {
+  display: flex;
+  color: #003f5c;
+  font-size: 2rem;
+}
+
+.addIcon:active {
+  color: #2c4875;
+}
+
+.attendeeList {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}

@@ -1,0 +1,79 @@
+.navigation {
+  display: flex;
+  position: fixed;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
+  width: 100vw;
+  z-index: 200;
+  background-color: #00202E;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+}
+
+.spacer {
+  height: 90px;
+}
+
+.para {
+  margin:0;
+  padding:0px 0px 0px 10px;
+  color: white;
+}
+
+.logo{
+  cursor: pointer;
+  height: 60px;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.profileBox {
+  display: flex;
+  height: 3rem;
+  margin: 5px;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+  border: 2px solid white;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background-color:#ffd380;
+  margin: 0 1em 0 1em;
+  justify-content: center;
+  align-self: center;
+}
+.profile {
+  cursor: pointer;
+  object-fit: cover;
+  flex: 1;
+}
+
+.blankProfile {
+  color: white;
+  margin: 0 1em 0 1em;
+}
+
+.logout {
+  margin: 0 1em 0 0;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: white;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 750px) {
+  p.para {
+    display: none;
+  }
+}
+
+@media screen and (max-width:380px) {
+  .profile{
+    display: none;
+  }
+}

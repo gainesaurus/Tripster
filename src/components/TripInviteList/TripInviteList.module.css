@@ -1,0 +1,11 @@
+.listCont::-webkit-scrollbar { width: 0 !important }
+.listCont {
+  display: flex;
+  flex-direction: column;
+  overflow-x: scroll;
+  padding: 5px;
+}
+
+.header {
+  margin: 20px 0 0 0;
+}

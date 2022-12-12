@@ -1,0 +1,49 @@
+.main {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.homeLeft {
+  justify-content: center;
+  height: 100vh;
+  flex: 1;
+  overflow-y: scroll;
+}
+
+.homeLeft::-webkit-scrollbar {
+  display: none;
+}
+
+.homeRight{
+  justify-content: center;
+  display: flex;
+  flex: 1;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  padding: 2em 4em 1em 4em;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+@media screen and (min-width: 751px) {
+  div.homeRight {
+    display: flex!important;
+    position: static!important;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  div.homeRight {
+    display: none;
+  }
+  div.homeLeft {
+    width: 96%;
+  }
+}
+
+
+

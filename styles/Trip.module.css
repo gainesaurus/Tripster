@@ -1,0 +1,38 @@
+.pageContainer {
+  display: flex;
+}
+
+.homeContainer {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+  overflow-y: scroll;
+}
+.homeContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.tripContainer {
+  margin: 20px;
+  height: 100vh;
+  flex: 1;
+  overflow-y: scroll;
+}
+.tripContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.backbtn {
+  background: none;
+  border: none;
+  color: #757575;
+}
+
+@media screen and (max-width: 750px) {
+  div.homeContainer {
+    display: none;
+  }
+  div.tripContainer {
+    width: 96%;
+  }
+}

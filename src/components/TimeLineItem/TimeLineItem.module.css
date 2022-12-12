@@ -1,0 +1,156 @@
+.timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time {
+  font-size: 20px;
+}
+
+.timelineItem {
+  display: grid;
+  grid-template-columns: 80px 60px 1fr;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  width: 100%;
+}
+
+.timelineContent {
+  font-size: 22px;
+  background-color: #e6e6e6;
+  width: fit-content;
+  max-width: 90%;
+  display: grid;
+  padding: 12px;
+  margin: 10px;
+  border-radius: 6px;
+  box-shadow: 0 5px 10px -5px #2c4875;
+}
+
+.eventTitle {
+  padding: 0;
+  margin: 5px 0 5px 0;
+}
+
+.eventInfo {
+  height: 0;
+  visibility: hidden;
+  background-color:white;
+  border-radius: 6px;
+  padding: 0 10px 0 10px;
+}
+
+.eventInfo:active {
+  height: fit-content;
+  visibility: visible;
+}
+
+.buttonDiv {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.editButton {
+  background-color: #8a508f;
+  color: white;
+  margin: 5px 12px 5px 0;
+  padding: 5px 0 5px 0;
+  width: 65px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.4);
+}
+
+.deleteButton {
+  background-color: #003f5c;
+  color: white;
+  margin: 5px 0 5px 0;
+  padding: 5px 0 5px 0;
+  width: 65px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.4);
+}
+
+.editButton:active {
+  box-shadow: none;
+}
+
+.deleteButton:active {
+  box-shadow: none;
+}
+
+.restaurantIcon {
+  background-color: #8a508f;
+  display: flex;
+  margin: 0;
+  padding: 4px;
+  justify-self: center;
+  color: lightblue;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+}
+
+.activeIcon {
+  background-color: #ff8531;
+  display: flex;
+  margin: 0;
+  padding: 4px;
+  justify-self: center;
+  color: #003f5c;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+}
+
+.leisureIcon {
+  background-color: #2c4875;
+  display: flex;
+  margin: 0;
+  padding: 4px;
+  justify-self: center;
+  color: white;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+}
+
+.shopIcon {
+  background-color: #ffd380;
+  display: flex;
+  margin: 0;
+  padding: 4px;
+  justify-self: center;
+  color: green;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+}
+
+.travelIcon {
+  background-color: #003f5c;
+  display: flex;
+  margin: 0;
+  padding: 4px;
+  justify-self: center;
+  color: #ffa600;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+}
+
+.otherIcon {
+  background-color: #ff8531;
+  display: flex;
+  margin: 0;
+  padding: 4px;
+  justify-self: center;
+  color: white;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+}
+
+@media screen and (max-width:750px) {
+  .time, .timelineContent
+  {
+    font-size: 18px;
+  }
+}

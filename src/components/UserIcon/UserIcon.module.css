@@ -1,0 +1,51 @@
+.profilePic {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.profilePicCont {
+  display: flex;
+  height: 4rem;
+  margin: 5px;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+  border: 2px solid white;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background-color:#ffd380;
+}
+
+.userIconCont {
+  display: flex;
+  height: 4rem;
+  margin: 5px;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+  border: 2px solid white;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background-color: #00202e;
+
+}
+.attendeeBox {
+  display: flex;
+  flex-direction: column;
+  font-size: 4rem;
+  margin-right: 3px;
+}
+
+.blankProfile {
+  color: #586b88;
+  align-self: center;
+}
+.name {
+  display: flex;
+  color: #2c4875;
+  font-weight: 600;
+  font-size: 10px;
+  margin: 0px;
+  padding: 0px;
+  justify-content: center;
+  align-items: center;
+}
+

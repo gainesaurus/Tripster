@@ -1,0 +1,50 @@
+.body {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color:rgb(33, 33, 33);
+}
+
+.leftSide{
+  width: 50%;
+  display: flex;
+  flex: 1;
+  /* padding: 1%; */
+  max-width: 50%;
+}
+
+.profileContainer{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 2em;
+}
+
+.invitations{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.noInvites {
+  margin: 1em 0 0 2em;
+  color: #757575;
+}
+
+@media screen and (max-width:750px) {
+  .leftSide{
+    display: none;
+  }
+  .profileContainer{
+    padding: 2%;
+  }
+  
+}

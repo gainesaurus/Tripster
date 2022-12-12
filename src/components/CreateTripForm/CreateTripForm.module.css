@@ -1,0 +1,104 @@
+.formCont {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 2px solid #00202e;
+  border-radius: 6px;
+  height: fit-content;
+  width: 50%;
+  min-width: 350px;
+  max-width: 600px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.5);
+}
+
+.titleX {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.formTitle {
+  margin: 1em;
+}
+
+.XButton {
+  display: flex;
+  background: none;
+  color: black;
+  border: none;
+  margin: 5px 5px 0 0;
+  height: fit-content;
+  padding: 0;
+}
+
+.XButton:active {
+  background-color: #ff6361;
+  color: white;
+  border-radius: 6px;
+}
+
+.formInputs {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+}
+
+.formContImage {
+  height: 250px;
+  width: 400px;
+  background-color: rgb(240, 240, 240);
+  border-radius: 8px;
+  padding: 0px 25px 25px;
+  margin-bottom: 25px;
+}
+
+.formInput {
+  margin: 10px;
+  padding: 10px;
+  min-width: 300px;
+  background-color: transparent;
+  font-family: 'Manrope', sans-serif;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.formDate {
+  text-align: right;
+}
+
+.formInput:before {
+  color: rgb(145, 145, 145);
+  font-family: 'Manrope', sans-serif;
+  content: attr(placeholder) !important;
+  margin-right: 0.5em;
+}
+.formInput:focus:before {
+  content: '' !important;
+}
+
+.button,
+.spinnerContainer {
+  margin: 10px;
+  padding: 10px;
+  width: 50%;
+  background-color: #00202E;
+  color: white;
+  border: 1px solid #00202E;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  align-self: center;
+  font-family: inherit;
+}
+
+.spinnerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (min-width: 750px) {
+  button.XButton {
+    display: none;
+  }
+}

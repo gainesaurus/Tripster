@@ -1,0 +1,107 @@
+.container{
+  display: flex;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background-color: #e3e3e3;
+}
+
+.input{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  border: 2px solid #00202e;
+  border-radius: 6px;
+  height: 60%;
+  width: 50%;
+  min-width: 270px;
+  max-width: 600px;
+  margin: 0 auto;
+  top: 130px;
+  left: 0;
+  right: 0;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.5);
+}
+
+.logoCont {
+  display: flex;
+  height: 25%;
+}
+
+.logo {
+  display: flex;
+  height: 70%;
+  margin: 0 0 20px 0;
+}
+
+.formBody{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  max-width: 450px;
+}
+
+.selector{
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  width: 60%;
+  max-width: 450px;
+}
+
+.selectorText{
+  width: 50%;
+  text-align: center;
+  min-width: fit-content;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.selected{
+  font-weight: bold;
+  font-family: arial;
+  border-bottom: 4px solid #8a508f;
+  color: #2c4875;
+}
+
+.inputText{
+  margin: 5px;
+  padding: 5px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: 2px solid #2c4875;
+  width: 98%;
+}
+
+.submitButton{
+  width: 100px;
+  padding: 15px;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-radius: 6px;
+  border: 0px;
+  background-color: #8a508f;
+  color: white;
+  font-size: 18px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.4);
+}
+
+.submitButton:active {
+  box-shadow: none;
+}
+
+@media screen and (max-width:750px) {
+  .selectorText{
+    font-size: 18px;
+  }
+  .inputText,
+  .submitButton{
+    font-size: 16px;
+  }
+}
