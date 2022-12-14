@@ -24,7 +24,7 @@ function HomeLeft({ openForm }: HomeLeftProps) {
         </button>
       </div>
       {context.currentTrips.length > 0 ? (
-        <TripList trips={context.currentTrips} title={'Current Trips:'} />
+        <TripList trips={context.currentTrips} title={'Current Trip:'} />
       ) : (
         null
       )}
