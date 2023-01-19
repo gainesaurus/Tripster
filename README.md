@@ -1,34 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Vakay - The Ultimate Trip Planning App
 
-## Getting Started
+Welcome to Vakay, the app that makes it easy to plan your trips with friends and family. With Vakay, you can share locations, lodging, photos, and events with your fellow travelers, all in one convenient place.
 
-First, run the development server:
+## Screenshots
 
-```bash
-npm run dev
-# or
-yarn dev
+![2022-12-13 (5)](https://user-images.githubusercontent.com/110689119/207482598-62b3b845-6252-41b6-9c28-7bc229ea638e.png)
+![2022-12-13](https://user-images.githubusercontent.com/110689119/207482601-6f104eeb-1335-4b0d-bdd5-071c9709ed59.png)
+![2022-12-13 (3)](https://user-images.githubusercontent.com/110689119/207482593-011f481b-67ac-4bec-bef7-a74ec4759951.png)
+![2022-12-13 (4)](https://user-images.githubusercontent.com/110689119/207482595-69bd04fe-d1a6-4e00-98c8-61ab946cba91.png)
+![2022-12-13 (2)](https://user-images.githubusercontent.com/110689119/207482602-07660c3a-7188-4874-aadb-616d4e8e5c9a.png)
+![2022-12-13 (6)](https://user-images.githubusercontent.com/110689119/207482599-d0c58c92-1293-4e64-bc89-33092457ddaf.png)
+
+## Features
+
+- Create and manage trips with your friends and family
+- Invite others to join your trips
+- Share locations, lodging, photos, and events with your fellow travelers
+- View all trip details in one convenient location
+
+## Development
+
+If you want to contribute to the development of Vakay, follow these steps:
+
+1. Clone the Vakay repository from GitHub:
+
+```console
+$ git clone https://github.com/gainesaurus/Vakay
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Navigate to the root folder of the repository and install the dependencies:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```console
+$ cd Vakay
+$ npm i
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+3. Create a file called `.env` in the root folder and add the following environment variables:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```js
+//These are accessable through your Firebase account, just add a new project!
+NEXT_PUBLIC_API_KEY=<your_API_key>
+NEXT_PUBLIC_AUTH_DOMAIN=<your_public_auth_domain>
+NEXT_PUBLIC_PROJECT_ID=<your_project_id>
+NEXT_PUBLIC_STORAGE_BUCKET=<your_storage_bucket>
+NEXT_PUBLIC_MESSAGING_SENDER_ID=<your_message_sender_id>
+NEXT_PUBLIC_APP_ID=<your_app_id>
+NEXT_PUBLIC_MEASUREMENT_ID=<your_measurment_id>
 
-## Learn More
+//Also from your Firebase account
+GOOGLE_APPLICATION_CREDENTIALS=<path_to_your_google_credentials_.json_file>
 
-To learn more about Next.js, take a look at the following resources:
+//Credentials for initAuth, these can be anything!
+COOKIE_SECRET_CURRENT='anyRandomString',
+COOKIE_SECRET_PREVIOUS='randomStringAgain',
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+//Create a google cloud account to get a maps API key
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=<your_google_maps_API_key>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+CONNECTION_DB=<your_mongoDB_connection_URI>
+NEXT_PUBLIC_BASE_URL=<your_base_URL / http://localhost:3000>
+```
 
-## Deploy on Vercel
+4. Run the app: This is a Next.js app, so you can start the app in one command from the root folder.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```console
+$ npm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Support
+
+If you have any questions or need help using Vakay, Send a pull! We are happy to assist you!
