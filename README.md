@@ -1,6 +1,6 @@
 # Vakay - The Ultimate Trip Planning App
 
-Welcome to Vakay, the app that makes it easy to plan your trips with friends and family. With Vakay, you can share locations, lodging, photos, and events with your fellow travelers, all in one convenient place.
+Welcome to Vakay, the app that makes it easy to plan your trips with friends and family. With Vakay you can share locations, lodging, photos, and events with your fellow travelers, all in one convenient place.
 
 ## Screenshots
 
